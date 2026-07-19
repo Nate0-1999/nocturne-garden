@@ -75,3 +75,15 @@ law: After GET `/v1/memories`' behavior, add: "Supplied filters are ANDed;
      `1 <= limit <= 200` and `offset >= 0`."
 why: This gives the existing panel-list parameters their minimal conventional
      meaning while preserving its stated stable order and response shape.
+
+[A-006] [S2] [SPEC C.2, C.4, C.5] [P1.4]
+gap: C.2 and C.5 cap labels by characters and bodies by tokens but do not define
+     the M1 tokenizer or the API behavior when either limit is exceeded.
+law: After POST/PATCH `/v1/memories`' behavior, add: "For M1, label length is
+     measured in Unicode code points and body length is measured with the
+     `cl100k_base` tokenizer. On create, and for each non-null replacement value
+     supplied to PATCH, require `len(label) <= cfg.label_max` and
+     `tokens(body) <= cfg.memory_max_tokens`; a violation returns RFC7807 422
+     before embedding or any database write."
+why: This makes the existing 64-character/128-token atomic-memory limits
+     deterministic across providers without changing either configured bound.
