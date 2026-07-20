@@ -10,7 +10,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | S2 | Memory CRUD & dedup bands      | S1                                | DONE        | codex / 2026-07-17 / c842    |         |
 | S3 | Scorer v0 + inject/prepare     | S2                                | DONE        | codex / 2026-07-19 / b73a    |         |
 | S4 | Commit, feedback, quarantine   | S3, S5                            | TODO        |                              |         |
-| S5 | origin_path metadata           | S3                                | IN_PROGRESS | codex / 2026-07-19 / e5a7    |         |
+| S5 | origin_path metadata           | S3                                | DONE        | codex / 2026-07-19 / e5a7    |         |
 | D1 | GCP deploy gate (HUMAN)        | S4                                | TODO        |                              |         |
 | H1 | Envelope + daemon WS           | P0                                | TODO        |                              |         |
 | H2 | spine_client + contract tests  | S2                                | TODO        |                              |         |
