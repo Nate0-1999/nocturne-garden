@@ -131,3 +131,24 @@ Plugin architecture (the "Max for Live" layer), enabled by existing law:
   Curator agents render as small faceted drone-shells with a glowing core
   (Ghost-INSPIRED, original silhouette), visibly combining/separating
   memory units, driven by live feeds (curator ops = events like any other).
+
+## v5: the time axis — the project as organism (2026-07-20)
+
+The SolidWorks ROLLBACK BAR is the missing control: a time scrubber under
+the stage. Drag it and the whole organism rebuilds to that moment — the
+colony's chambers appear and vanish (files added/removed), roots extend
+and die, tips bloom, the Palace restructures. Release at NOW and it's live
+again. Time-lapse mode: replay a day of work in seconds — the project
+visibly grows like a living thing (which completes the Garden metaphor:
+this is a terrarium, and the work is alive).
+
+Architectural cost ≈ zero BY CONSTRUCTION: every surface is append-only
+and timestamped (envelope events, git/shadow-git history, session tree,
+injection_event log, checkpoints per human turn). Rendering the past is a
+query, not a feature.
+
+ONE law-level requirement to carry into the Cube ADR: every visualizer
+query surface accepts `as_of` (timestamp/checkpoint ref), so any face can
+render any moment. The scrubber, time-lapse, and live view are then one
+mechanism at three speeds — and the scrubber composes with rewind/fork:
+scrub to a moment, fork from it (ADR-016 tree).
