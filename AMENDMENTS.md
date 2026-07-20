@@ -268,3 +268,14 @@ law: After POST `/v1/inject/prepare`'s request body, add: "Require
      embedding or any database write."
 why: This makes the existing implemented/OpenAPI boundary explicit without
      changing prepare behavior, its budget formula, or any completed packet.
+
+[A-015] [H3] [SPEC C.6 save_memory] [P1.4]
+gap: C.6 tells the model to call save_memory again with force=true after a
+     similar response, but the exact tool signature exposes no force input.
+law: Replace `save_memory(label, body, kind, keywords?, project_scoped: bool)`
+     with `save_memory(label, body, kind, keywords?, project_scoped: bool,
+     force: bool = false)`. Forward force unchanged to C.4 POST /v1/memories.
+     The tool never enables or retries force automatically. `true` skips only
+     the near-similar band and does not override label or hard-duplicate 409s.
+why: This makes C.6's already-required retry executable using C.4's enacted
+     force field without adding another behavior family.
