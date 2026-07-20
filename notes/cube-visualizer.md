@@ -55,9 +55,32 @@ can never perturb injection optimization.
 - Scope: nothing here touches M1; H4 ships the minimal thread list + chat
   as charged. Cube is M2/M3 viz law after approval.
 
-## Open questions for the human
+## v2 direction (human walkthrough, 2026-07-20)
 
-- OQ-C1: default face on open — Deck (attention-first) or Roots (map-first)?
-- OQ-C2: is the cube per-project (one cube per score) or global (fleet-wide
-  with project filtering)?
-- OQ-C3: EV encoding — opacity-with-floor vs node-color ramp?
+Videogame-grade rendering; the viz IS the app (ComfyUI pattern): a large
+CENTER STAGE (the cube's current face) with satellite panels, navigation by
+clicking into the visualization. Aesthetic: sci-fi HUD — X-wing pilot
+display / Nostromo terminal: near-black phosphor ground, wireframe
+structures, mono readouts, angular clipped panels, restrained glow.
+
+Layout law (from the three scenarios):
+- LEFT RAIL = the deck, always present, ordered by completion/wait time;
+  selecting an agent on stage tops its card; cards carry a DRAFT response
+  (conductor-prepared, clearly machine-labeled) the human tweaks and
+  fires; after firing, the rail auto-advances to the longest-waiting.
+- CENTER STAGE = the cube face, large: FARM (projects + agents as ants in
+  wireframe directory trees) ⇄ rotate ⇄ ROOTS (selected agent's subagents
+  fanned in full color; other subtrees low-opacity ghosts).
+- RIGHT RAIL (on selection) = inspector: context-window visualizer,
+  injected memories with one-tap pop-off (mid_thread_removed), and
+  SUGGESTIONS to add — near-misses surfaced live (both already in the
+  event log; zero new data needed).
+- BOTTOM-RIGHT overlay = Palace minimap: curator agents drifting through
+  the memory field (M3), LIVE·CLOUD connection status.
+
+Answers to OQ-C1/C2 implied: stage+rails replaces "default face" (deck is
+a rail, not a face); cube is GLOBAL (fleet-wide; scenario 3 hops projects).
+OQ-C3 (EV: opacity-floor vs node ramp) still open.
+New concept to codify with ADRs: DRAFT RESPONSES on judge-released cards —
+attention spent editing, not composing. Guard: drafts are labeled machine
+text; a card is never auto-fired.
