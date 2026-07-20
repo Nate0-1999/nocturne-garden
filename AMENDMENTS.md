@@ -246,3 +246,16 @@ law: After POST `/v1/search`, add: "Require `1 <= k <= 50`; a violation returns
 why: This completes the existing field, filter, and result contract using C.3's
      M1 pool bound and the established cosine/UUID tie convention, without
      adding a search signal or scorer behavior.
+
+[A-013] [H1] [SPEC C.7] [P3]
+gap: C.7 defines the WebSocket envelope but not its frame encoding or the
+     deterministic malformed-message rejection that H1 is charged to test.
+law: After C.7's M1 type list, add: "Each browser-to-daemon message occupies
+     exactly one JSON text frame whose top-level value validates as the C.7
+     envelope. A binary frame, invalid JSON, non-object JSON value, or object
+     that fails envelope validation is malformed. On the first malformed
+     message, the daemon invokes no type handler, closes that `/ws` connection
+     with WebSocket code 1008 and reason `invalid C.7 envelope`, and performs no
+     further processing on that connection."
+why: This makes H1's existing rejection requirement observable and closes the
+     binary-frame crash without defining any per-type payload or business flow.
