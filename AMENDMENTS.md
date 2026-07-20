@@ -350,3 +350,51 @@ why: This fills only the wire/state details H7 must implement, repairs the
      snapshot request direction in the direction C.7 already promises, and
      uses daemon-lifetime local state rather than inventing sessions,
      authorization, M3 controls, or H4/H5-specific behavior.
+
+[A-017] [H4] [SPEC C.7 thread.snapshot / thread.create] [P2, P3]
+gap: H4 must render authoritative snapshot messages and a thread list, while
+     C.7 leaves each message object's shape, thread creation/listing, the
+     browser's required outer machine_id, and the trigger for recovering a
+     backpressured live subscription undefined.
+law: In M1, daemon-authored `thread.snapshot.messages` use these minimum JSON
+     objects. A user message is `{message_id,run_id,role:"user",content,state}`
+     where `message_id` is the run's prompt_id, both IDs are ULIDs, content is
+     a string, and state is one of `queued`, `running`, `end_turn`,
+     `cancelled`, `error`, or `budget_exceeded`. An assistant message is
+     `{message_id,run_id,role:"assistant",content,thinking,events,partial}`
+     where `message_id` equals `run_id`, both are ULIDs, content and thinking
+     are strings, events is an array of JSON objects, and partial is boolean.
+     Additional JSON members are allowed and ignored by clients that do not
+     understand them. A matching snapshot replaces the browser's transcript,
+     open gate, active run, and usage for that thread; it is never merged with
+     cached messages or prior deltas.
+
+     The M1 browser owns a per-browser navigation catalog of
+     `{thread_id,title,created_at,updated_at}` in local storage. `thread_id` is
+     a browser-generated UUID, timestamps are ISO 8601 strings, and title is
+     `New thread` until the first submitted prompt, then the first 48 Unicode
+     code points of that prompt after collapsing whitespace, with `…` appended
+     exactly when the normalized prompt exceeds 48 code points. `created_at`
+     is fixed at catalog insertion; `updated_at` changes on each prompt submit.
+     Creating or selecting a catalog entry sends a `thread.snapshot` request
+     with payload `{request:true}` for that UUID; the first prompt creates
+     daemon state through the existing prompt.submit path. The catalog is only
+     local navigation metadata: snapshot remains transcript authority, the
+     daemon provides no M1 thread enumeration or persistence, and
+     `thread.create` gains no M1 behavior.
+
+     A browser-authored direct-link envelope uses the literal machine_id
+     `direct` until it has observed a daemon envelope, then echoes the latest
+     non-blank daemon machine_id. The M1 direct daemon does not consult this
+     field for identity or authority; future relay targeting supersedes the
+     direct-link sentinel. Every browser-authored envelope still receives a
+     fresh ULID and timestamp.
+
+     When bounded live delivery or a connection outbox drops a subscriber, the
+     daemon closes that WebSocket with code 1013 and reason
+     `snapshot resync required`. The browser reconnects, requests its selected
+     thread snapshot, and replaces local thread state before consuming later
+     live events; it does not poll or replay buffered deltas.
+why: This supplies only the render and navigation facts H4 already requires,
+     formalizes H7's existing snapshot rows, and avoids inventing server-side
+     thread storage, a title model call, sessions, or an authority boundary.
