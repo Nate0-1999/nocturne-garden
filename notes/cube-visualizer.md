@@ -195,3 +195,29 @@ PLUGIN ARCHITECTURE (Ableton doctrine made concrete):
       never touch three.js. Keeps the contract and the render loop ours.
 - Plugin API is VERSIONED (surfaces v1); upstream/ecosystem churn is
   contained exactly like ADR-013 wraps pydantic-ai.
+
+## v7: the COBALT-SERAPH aesthetic (human reference image, 2026-07-20)
+
+Reference: 90s cel-anime — deep cobalt night + starfield, brilliant whites,
+liquid chrome, gold glints, one coral note, crisp hard-edged linework,
+4-point star sparkles. Distilled + palette VALIDATED (dataviz six checks):
+
+- Grounds: void #0a1124 · panel #0e1730 · panel2 #131e3c
+- Lines: wire #3a55a5 (structural) · bright #6d86d8 (chamber strokes)
+- Primary HUD: ice-white #eaf2ff (was phosphor green — retired)
+- Gold #e8c364: conductor, attention accents, gauge needles, glints
+- Chrome gradient (white→#c3d2ef→#8fa3c8→#e6eeff): the FIRE button and
+  future premiere/seraph flourishes
+- Danger/coral #e6404d (the lips)
+- FLEET (validated dark-surface categorical, fixed order): teal #279e84 ·
+  cobalt #4f8fe8 · bronze #b08324 · coral #d95983
+- Motifs: tiled starfield ground; 4-point glint sparkles (twinkle,
+  reduced-motion safe); scanlines dialed to whisper; cel-crisp 1.5-2px
+  strokes, minimal glow.
+- FONTS: HUD/data = monospace (ui-monospace stack). Display/titles =
+  condensed bold (mock: Avenir Next Condensed/Bahnschrift stack).
+  PRODUCTION recommendation: Michroma or Eurostile Bold Extended for
+  display (the 90s mecha-tech face), Inter for body, JetBrains Mono for
+  data readouts — all self-hostable (CSP: no font CDNs).
+- Verified per B.6 rule 7: screenshot-driven pass caught dim wireframes
+  (brightened) and confirmed the palette on both Farm and deck surfaces.
