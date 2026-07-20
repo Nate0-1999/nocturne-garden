@@ -154,3 +154,13 @@ palette validator; never eyeball color accessibility.
 - No visualization that writes to, delays, or biases the memory scorer.
 - The mock is a ROUGH APPROXIMATION — match its intent and vocabulary,
   refine its craft. When in doubt: crisper, calmer, more alive.
+
+## 12. Procedural law (added 2026-07-20)
+
+The visuals are MODELS, not pictures: real 3D parts with materials and
+lighting, and every one of them GROWN procedurally from the work's own
+metadata — roots from search data, colonies from the live directory tree,
+the Palace from its memory populations. Deterministic (same data, same
+geometry) so the rollback bar can regrow any moment. Nothing hand-modeled
+ever enters the stage: an asset that isn't generated from truth is a
+picture of the organism, not the organism.
