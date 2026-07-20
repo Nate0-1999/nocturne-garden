@@ -150,3 +150,84 @@ law: After POST `/v1/inject/prepare`'s behavior, add: "M1 accepts exactly one
 why: The one-shot transaction is the smallest implementation of M1's explicit
      one-injection-per-thread law; event snapshots keep the log replayable, and
      the counter rule follows rather than weakens the standing CAS invariant.
+
+[A-009] [S4] [SPEC C.4 POST /v1/inject/commit] [P1.2.1a–c]
+gap: The commit body does not define batch membership, invalid choices, outcome
+     transitions and retries, add-back statistics, eventless prepares, or the
+     transaction and attribution boundary needed to apply its behavior.
+law: After POST `/v1/inject/commit`'s behavior, add: "The event batch is every
+     `injection_event` row with the requested `injection_id`. Each `removed`
+     memory ID must be distinct and name a batch row whose `shown_as` is
+     `injected` or `pinned`; each `added_back` ID must be distinct and name a
+     `near_miss` row; the lists must be disjoint. Duplicate, foreign, or
+     wrong-class choices return RFC7807 422 with no write. No batch rows plus
+     nonempty choices returns RFC7807 404. No batch rows plus both lists empty
+     succeeds with the canonical zero-member C.6 block and `wrong_removed=[]`;
+     because A-008 persists no batch row for a zero-card prepare, this also
+     accepts any unknown injection UUID with empty choices in M1.
+
+     The desired commit outcome is `removed:<reason>` for each removed row,
+     `kept` for every untouched injected or pinned row, and `added_back` for
+     each selected near miss; an unselected near miss remains NULL. Outcomes
+     transition from NULL exactly once. Repeating the same desired outcome is
+     idempotent. For retry comparison, `cited` or `mid_thread_removed` is a
+     descendant of `kept` when `shown_as` is injected/pinned and of
+     `added_back` when `shown_as` is near_miss. Any different non-NULL outcome
+     returns RFC7807 409 with no write. An all-near-miss commit with no add-back
+     is necessarily a durable no-op under the frozen C.2 schema.
+
+     Only a new NULL-to-outcome transition changes head statistics. Each newly
+     removed row increments `stats.removals` once. A new `removed:never` also
+     increments `stats.never_kills`, adds that event's scorer-version
+     `never_bias_step` to `bias`, and changes an ACTIVE head to quarantined when
+     the resulting kill count is at least that version's `quarantine_kills`;
+     an already quarantined or tombstoned status is preserved. Each newly
+     `added_back` row increments `stats.injections` once and sets
+     `stats.last_injected_at` to the commit transaction's database clock. Load
+     the two never parameters from the event's `scorer_version` row. Apply all
+     new event outcomes, head changes, and revisions atomically; update each
+     affected head once through C.2 CAS in memory-ID order with editor
+     `system:inject`, the event's `machine_id`, and reason
+     `inject/commit:<outcome>`. `wrong_removed` contains the post-stat CURRENT
+     MemoryUnit for every requested `removed:wrong`, ordered by event rank.
+
+     Final members are rows whose outcome is `kept`, `added_back`, or `cited`,
+     ordered by rank ASC then memory_id ASC. Render them only from the frozen
+     event `_memory` payload and `memory_kind`, never from a current head."
+why: This completes the promised gate decision on A-008's existing rows, keeps
+     retries and counters exactly-once without a forbidden schema rewrite, and
+     makes the unavoidable zero-card ambiguity harmless and explicit.
+
+[A-010] [S4] [SPEC C.4 POST /v1/feedback] [P1.2.1d]
+gap: The feedback endpoint names two signals but does not define membership,
+     legal outcome transitions, retries, or their M1 statistic effects.
+law: After POST `/v1/feedback`'s response, add: "Feedback targets the single
+     `injection_event` matching both IDs; no match returns RFC7807 404. A new
+     signal may transition only `kept` or `added_back` to the signal's literal
+     outcome. Repeating that same signal is idempotent `{ok:true}` with no new
+     write. Outcome NULL, any `removed:*` outcome, or the other feedback signal
+     returns RFC7807 409. `mid_thread_removed` also increments the current
+     head's `stats.removals` exactly once through C.2 CAS; its event transition,
+     head update, and revision are one transaction using editor
+     `system:feedback`, the event's `machine_id`, and reason
+     `feedback/mid_thread_removed`. It changes no bias, status, citation, or
+     other statistic. In M1, `cited` is event-log-only: it writes the outcome
+     but does not change `stats.citations`, write a memory revision, or affect
+     scorer v0, whose citation feature remains inert."
+why: The existing outcome vocabulary can log both signals exactly once while
+     preserving C.3's explicit M1 citation inertness and C.2's CAS invariant.
+
+[A-011] [S4] [SPEC C.6 final_block] [P1.2.1c]
+gap: The exact block template does not define member ordering, escaping,
+     structural newlines, or the zero-member serialization.
+law: After C.6's rendered block template, add: "Join structural lines with LF,
+     with no blank separator lines and no terminal LF. Emit attributes in
+     `label`, `kind`, `updated` order. In attributes escape `&`, `<`, `>`, and
+     `"` as `&amp;`, `&lt;`, `&gt;`, and `&quot;`, and encode tab, LF, and CR as
+     `&#9;`, `&#10;`, and `&#13;`. In body text escape only `&`, `<`, and `>`;
+     preserve every other character and existing newline. Use frozen event
+     values verbatim apart from that escaping. With zero members, return these
+     four lines exactly: `<memory_system>`, the two literal preamble lines from
+     the template, and `</memory_system>`."
+why: Deterministic safe serialization completes the already-fixed XML-shaped
+     wire block without adding a field, renderer option, or new behavior family.
