@@ -1,6 +1,6 @@
 # The Garden Plan — loop-enabled M1 execution
 
-Companion to docs/SPEC.md v1.7. This is OPERATIONS, not constitution: it may
+Companion to docs/SPEC.md v1.8. This is OPERATIONS, not constitution: it may
 change freely; the spec may not. This document is written to be executed by a
 relay of agents, generation 0 through n, each arriving with no memory of the
 last. Everything an agent needs is in files; nothing lives in anyone's head.
@@ -19,6 +19,16 @@ repo carries a frozen copy at `docs/SPEC.md`, refreshed only at human gates.
 Amending the master is a human act — agents propose via FLAGS, or enact
 qualifying COMPLETIONS via AMENDMENTS.md (Section 2), and never edit
 SPEC.md themselves.
+
+**Cloud footprint (D1, 2026-07-19):** GCP project `n8-memory-palace`
+(us-central1), Cloud SQL `n8-memory-palace-db` (Postgres 16 + pgvector,
+db-f1-micro), Cloud Run service `n8-memory-palace-spine` — deployed URL in
+the D1 board claim. $100/month budget with 50/90/100% alerts. Secrets live
+ONLY in `harness/.env` (untracked; `.env.example` is the shape): SPINE_TOKEN
+(shared with the Cloud Run service), OPENAI (embeddings), OPENROUTER (chat;
+dev/test default model per SPEC C.5). Local `docker compose` remains the
+C.8 acceptance path; the cloud spine is the always-on heart. Migrations run
+from a workstation via cloud-sql-proxy, never at container boot.
 
 ---
 
@@ -215,6 +225,13 @@ before the relay continues.
   UNTOUCHED (inert metadata — scorer v0 neither reads it nor may any later
   scorer penalize its absence, per the null rule); tests. Nodes: P1.3.
   (Deps: S3.)
+- **S6 — /v1/search.** Sections: C.4 (search, shared shapes), C.3
+  (candidate rule). Deliver: POST /v1/search per the exact body — embed
+  query; top-k by cosine over ACTIVE units of the principal, applying the
+  C.3 project filter when project_key is supplied; results as MemoryCards
+  with score = cosine similarity, features/rank null; tests on
+  deterministic embeddings. The last 501 dies here. Nodes: P1.1.
+  (Deps: S2.)
 
 **Cloud gate**
 - **D1 — GCP deploy & remote verification (HUMAN — agents never claim).**
@@ -272,7 +289,7 @@ before the relay continues.
 # Ground rules (read every session)
 1. You are one runner in a relay governed by ../garden/PLAN.md — run its
    Boot Sequence before anything else.
-2. The constitution is docs/SPEC.md (v1.7): sections 1 -> 2 -> B -> C; read
+2. The constitution is docs/SPEC.md (v1.8): sections 1 -> 2 -> B -> C; read
    fully the sections your packet names.
 3. You are in Milestone M1 unless your charge says otherwise. Feature
    ledger (SPEC B.4) applies: FORBIDDEN means do not build, stub, or

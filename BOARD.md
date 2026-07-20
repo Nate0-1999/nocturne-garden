@@ -11,14 +11,15 @@ deterministic packet order when more than one dependency-ready packet exists.
 | S3 | Scorer v0 + inject/prepare     | S2                                | DONE        | codex / 2026-07-19 / b73a    |         |
 | S4 | Commit, feedback, quarantine   | S3, S5                            | DONE        | codex / 2026-07-19 / a4c9    |         |
 | S5 | origin_path metadata           | S3                                | DONE        | codex / 2026-07-19 / e5a7    |         |
+| S6 | /v1/search                     | S2                                | TODO        |                              |         |
 | D1 | GCP deploy gate (HUMAN)        | S4                                | TODO        |                              |         |
 | H1 | Envelope + daemon WS           | P0                                | TODO        |                              |         |
 | H2 | spine_client + contract tests  | S2                                | TODO        |                              |         |
-| H3 | Agent + memory tools           | H2                                | TODO        |                              |         |
+| H3 | Agent + memory tools           | H2, S6                            | TODO        |                              |         |
 | H4 | Web shell + chat               | H1                                | TODO        |                              |         |
 | H5 | The gate                       | D1, H4                            | TODO        |                              |         |
 | H6 | Memory panel                   | H5                                | TODO        |                              |         |
-| I1 | Integration & AC dry run       | S1-S5, H1-H6                      | TODO        |                              |         |
+| I1 | Integration & AC dry run       | S1-S6, H1-H6                      | TODO        |                              |         |
 | J  | Judge                          | I1                                | TODO        |                              |         |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
