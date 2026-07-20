@@ -1,6 +1,6 @@
 # The Garden Plan — loop-enabled M1 execution
 
-Companion to docs/SPEC.md v1.8. This is OPERATIONS, not constitution: it may
+Companion to docs/SPEC.md v1.9. This is OPERATIONS, not constitution: it may
 change freely; the spec may not. This document is written to be executed by a
 relay of agents, generation 0 through n, each arriving with no memory of the
 last. Everything an agent needs is in files; nothing lives in anyone's head.
@@ -277,9 +277,13 @@ before the relay continues.
   client mirroring every body; contract-test job against a live spine
   container covering S1–S2. Nodes: P1.1. (Deps: S2.)
 - **H3 — Agent + memory tools.** Sections: C.6 (tools, instructions,
-  /remember), C.5. Deliver: pydantic-ai agent — chat + memory tools ONLY;
-  docstrings per spec; similar/409 surfaced to the model; /remember with
-  generated label. Nodes: P1.2, P1.4. (Deps: H2.)
+  /remember), C.5, ADR-013. Deliver: pydantic-ai agent — chat + memory
+  tools ONLY; docstrings per spec; similar/409 surfaced to the model;
+  /remember with generated label. MemoryCapability is the ADR-013 seam's
+  FIRST feature: define the minimal internal capability protocol and the
+  single adapter module; ship it as a pydantic-ai v2 Capability subclass;
+  nothing outside the adapter imports pydantic-ai capability machinery.
+  Nodes: P1.2, P1.4. (Deps: H2.)
 - **H4 — Web shell + chat.** Sections: C.1 web/, C.7, ADR-009 mobile law.
   Deliver: responsive SPA — thread list, chat pane, run.delta streaming;
   sane at 390px. Nodes: P2, P3. (Deps: H1.)
@@ -312,7 +316,7 @@ before the relay continues.
 # Ground rules (read every session)
 1. You are one runner in a relay governed by ../garden/PLAN.md — run its
    Boot Sequence before anything else.
-2. The constitution is docs/SPEC.md (v1.8): sections 1 -> 2 -> B -> C; read
+2. The constitution is docs/SPEC.md (v1.9): sections 1 -> 2 -> B -> C; read
    fully the sections your packet names.
 3. You are in Milestone M1 unless your charge says otherwise. Feature
    ledger (SPEC B.4) applies: FORBIDDEN means do not build, stub, or
