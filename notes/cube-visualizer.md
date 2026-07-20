@@ -107,3 +107,27 @@ Plugin architecture (the "Max for Live" layer), enabled by existing law:
 - Distribution rides the ADR-013 seam philosophy: plugins are wrapped,
   versioned, sandboxed to their three surfaces; a broken plugin can only
   break its own panel.
+
+## v4 face aesthetics (human direction, 2026-07-20)
+
+- FARM: a literal ant farm — the WHOLE directory tree as chambered burrows:
+  directories = chambers, files = small empty cells, tunnels connect.
+  Scroll to zoom in/out. The colony floats in space like a CAD/SolidWorks
+  object on a black field with a faint white line grid.
+- ROOTS: organically root-like — meandering, not smooth beziers (seeded
+  jitter, deterministic per branch). COMPLETE: every agent across every
+  project grows a root/sankey flow in parallel; dead roots (pruned/stalled
+  loops) visibly desiccated. Clustered by project.
+- TIPS (new face — geometrically OPPOSITE the Farm): the roots seen
+  end-on — a cross-section of root tips in per-project grids; each tip is
+  a start for the next round. Gives the cube true spatial logic:
+  Farm (surface) → Roots (growth) → Tips (frontier).
+- CONSOLE (bottom strip): car-dashboard dials — tokens/min, main agents,
+  total agents, spend past hour. Rate data suits needles; totals as
+  odometer-style readouts.
+- PALACE (full scene, future workstream): architecturally modern but
+  abstract — pale monumental geometry floating in void-mist, gold accents
+  (Destiny Trials-of-the-Nine ENERGY, original design, no copied assets).
+  Curator agents render as small faceted drone-shells with a glowing core
+  (Ghost-INSPIRED, original silhouette), visibly combining/separating
+  memory units, driven by live feeds (curator ops = events like any other).
