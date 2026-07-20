@@ -20,22 +20,24 @@ Amending the master is a human act — agents propose via FLAGS, or enact
 qualifying COMPLETIONS via AMENDMENTS.md (Section 2), and never edit
 SPEC.md themselves.
 
-**Cloud footprint (D1; state as of 2026-07-19):** GCP project
-`n8-memory-palace` (us-central1) is LIVE with a $100/month budget alerting
-at 50/90/100% (alerts, not a hard stop — an auto-shutoff function is a
-possible follow-up). Cloud SQL `n8-memory-palace-db` (Postgres 16,
-db-f1-micro) is created; pgvector arrives with migration 0001. Secrets live
-ONLY in `harness/.env` (untracked; `.env.example` is the shape): SPINE_TOKEN
-(generated), OPENROUTER (verified live for BOTH chat and embeddings — as
-of v2.3 the broker carries everything; NO OpenAI credits are needed; the
-OPENAI line in .env is vestigial). D1 now also deps S7 (broker embedding
-wiring). REMAINING for D1, human
-only: create spine db/user; run Alembic through cloud-sql-proxy; deploy
-Cloud Run service `n8-memory-palace-spine` from the spine Dockerfile
-(migrations never run at container boot); verify /healthz plus a
-real-embed create → dedup → prepare → commit round trip; record the URL in
-the D1 claim and set DONE. Local `docker compose` remains the C.8
-acceptance path; the cloud spine is the always-on heart.
+**Cloud footprint (D1; live-audited 2026-07-20):** GCP project
+`n8-memory-palace` is ACTIVE and billed, with a $100/month budget alerting at
+50/90/100%. Cloud SQL `n8-memory-palace-db` is RUNNABLE in `us-central1`
+(Postgres 16, db-f1-micro), but contains only the default `postgres` database
+and user. There is no Cloud Run service, Artifact Registry repository, Secret
+Manager setup, or GCS bucket. GCS is not an M1 dependency; snapshot lifecycle
+is M4 horizon. The ignored `harness/.env` is the local/operator source for
+SPINE_TOKEN and the OpenRouter key (`.env.example` is the shape); deployed
+runtime copies belong in Secret Manager. OpenRouter is verified live for chat
+and embeddings, so no OpenAI credits are needed and the OPENAI line is a
+direct-provider-only legacy slot.
+
+D1 is now relay-claimable with dependencies S4 and S7 DONE. Its remaining
+work is the narrowly scoped database initialization, migration, protected
+Cloud Run deployment, and remote real-embedding verification in the named
+project. Every cloud command must carry explicit project and region flags;
+ambient gcloud configuration is never authority. Local `docker compose`
+remains the C.8 acceptance path; the cloud spine is the always-on heart.
 
 ---
 
@@ -108,9 +110,10 @@ FAILED_JUDGMENT (see verdict path).
 **Rules:**
 - Claim only a TODO packet whose deps are all DONE. If several qualify,
   take the lowest id (determinism beats optimization).
-- HUMAN packets (marked in Section 5; currently D1) are never claimed by an
-  agent. If every dependency-ready packet is HUMAN, write no code: end the
-  session directing the human to the gate.
+- HUMAN packets or substeps explicitly marked in Section 5 are never claimed
+  or executed by an agent. The current D1 packet is relay-owned. D2's
+  destructive billing-breaker deployment remains human-only even though its
+  build packet is DONE.
 - **Stale claim recovery:** an IN_PROGRESS claim from a session that left no
   handoff report is stale after inspection confirms the session is dead.
   Inspect its branch: salvage what passes tests into your work if trivial,
@@ -253,17 +256,57 @@ before the relay continues.
   (Deps: S2.)
 
 **Cloud gate**
-- **D1 — GCP deploy & remote verification (HUMAN — agents never claim).**
-  Sections: ADR-003, C.8. The human, assisted outside the relay, deploys
-  spine to Cloud Run with Cloud SQL for PostgreSQL + pgvector per ADR-003,
-  runs Alembic there, and re-verifies the S1–S4 surface against the cloud
-  URL with real embeddings: /healthz, then a create → dedup → prepare →
-  commit round trip. Exit: BOARD row DONE with the cloud URL noted in the
-  claim; H5 and later harness work exercise the deployed spine (contract
-  tests may still use a local container; C.8 criterion 1 still runs on
-  local compose). (Deps: S4.) Rationale: B.3 commits M1 to "spine on Cloud
-  Run" — the gate exists so the relay cannot finish M1 having only ever
-  talked to localhost.
+- **D1 — GCP deploy & remote verification.** Sections: ADR-003, C.5, C.8.
+  Starting truth is the live-audited cloud footprint at the top of this plan.
+  In project `n8-memory-palace`, region `us-central1`, the claiming relay agent
+  may perform only this packet's named mutations:
+  1. tighten `harness/.env` to mode 0600 without printing values; create the
+     built-in Cloud SQL user/database `spine` with a generated credential;
+     enable automated backups/PITR and deletion protection; run production
+     Alembic through Cloud SQL Auth Proxy and prove head `0002` (migrations
+     never run at container boot);
+  2. enable Secret Manager; create secrets for the complete database URL,
+     static Spine token, and OpenRouter key; bind the latter to runtime env
+     `SPINE_OPENAI_API_KEY`, the adapter's generic compatible-bearer slot;
+  3. create dedicated runtime identity `spine-runtime`, granting only Cloud
+     SQL Client at the project and Secret Accessor on those exact secrets;
+     never deploy on the broad default compute identity;
+  4. create exactly one Docker-format Artifact Registry repository, `spine`,
+     in `us-central1`; use the active deployer locally (not Cloud Build or a
+     new build identity) to build the current Spine Dockerfile for Linux/amd64.
+     This Apple-Silicon workspace currently lacks Docker Buildx and its legacy
+     builder cannot cross-build; D1 may install only Homebrew `docker-buildx`
+     and add `/opt/homebrew/lib/docker/cli-plugins` to Docker's
+     `cliPluginsExtraDirs`, preserving all other Docker config. Prove Buildx,
+     tag the image
+     `us-central1-docker.pkg.dev/n8-memory-palace/spine/spine:<SPINE_SHA>`, and
+     push it without any build-IAM mutation. Deploy exactly one service,
+     `n8-memory-palace-spine`, from that immutable tag with the SQL attachment,
+     gen2 execution, port 8000, max scale 1, the three secret env bindings, and
+     explicit C.5 broker URL/model.
+     Cloud Run transport must allow unauthenticated invocation because the
+     frozen application boundary is the Spine static bearer; this does not
+     make the API itself unauthenticated;
+  5. verify authenticated `/healthz`, then a real OpenRouter-backed create →
+     duplicate/dedup → prepare → commit round trip against the cloud URL;
+     update only the ignored local `SPINE_URL`; run a Harness remote smoke.
+
+  Every command uses explicit `--project=n8-memory-palace` and the applicable
+  `--region`/`--location=us-central1`. Never echo, commit, or place secret
+  values in normal Cloud Run environment settings or reports. No deletes, GCS,
+  billing/budget/D2 changes, broad IAM, default-runtime use, unrelated resource
+  edits, or destructive replacement are authorized. Unexpected existing state,
+  a non-forward migration, interactive reauthentication, or any need for wider
+  authority returns the packet honestly to TODO/BLOCKED for the human.
+
+  Exit: both product suites green; redacted evidence under
+  `spine/verification/d1/` records project/region, DB and Alembic state, backup
+  protection, service URL, revision, image digest, Spine SHA, IAM topology,
+  and the remote round trip; the D1 handoff records the URL and BOARD is DONE.
+  H5 and later Harness work use the deployed Spine. Local contract tests may
+  still use their deterministic container. (Deps: S4, S7.) Rationale: B.3
+  commits M1 to "spine on Cloud Run"; the gate prevents the relay from
+  finishing M1 having only ever talked to localhost.
 - **D2 — Billing circuit breaker (build: agent; deploy: HUMAN).** Sections:
   none (pure infra; pattern: Google's documented "disable billing with
   notifications"). Deliver in spine `infra/billing-breaker/`: a Cloud Run
@@ -380,8 +423,9 @@ before the relay continues.
     contractor wrote it (cheapest possible recalibration).
   - after S3 — hand-verify one injection's scores against C.3 by
     calculator (catches golden tests written from code instead of spec).
-  - after S4 — execute D1 yourself: spine onto Cloud Run + Cloud SQL,
-    verified remotely with real embeddings, before any gate work begins.
+  - after D1 — review the relay handoff and its redacted cloud evidence.
+    Agents have the narrow D1 grant above; billing, budget, D2 deployment,
+    destructive recovery, and any authority expansion remain yours.
   - after H5 — use the gate yourself for a day of real prompts; the gate
     is the product's soul and no judge substitutes for your hands.
   - after J — read VERDICT.md beside its screenshots; only then is M1
