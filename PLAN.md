@@ -1,6 +1,6 @@
 # The Garden Plan — loop-enabled M1 execution
 
-Companion to docs/SPEC.md v2.2. This is OPERATIONS, not constitution: it may
+Companion to docs/SPEC.md v2.3. This is OPERATIONS, not constitution: it may
 change freely; the spec may not. This document is written to be executed by a
 relay of agents, generation 0 through n, each arriving with no memory of the
 last. Everything an agent needs is in files; nothing lives in anyone's head.
@@ -26,9 +26,10 @@ at 50/90/100% (alerts, not a hard stop — an auto-shutoff function is a
 possible follow-up). Cloud SQL `n8-memory-palace-db` (Postgres 16,
 db-f1-micro) is created; pgvector arrives with migration 0001. Secrets live
 ONLY in `harness/.env` (untracked; `.env.example` is the shape): SPINE_TOKEN
-(generated), OPENROUTER (verified live, minimax-m3 dev default per C.5),
-OPENAI for embeddings (key valid but account quota EXHAUSTED — the human
-must add credits before D1's verification step). REMAINING for D1, human
+(generated), OPENROUTER (verified live for BOTH chat and embeddings — as
+of v2.3 the broker carries everything; NO OpenAI credits are needed; the
+OPENAI line in .env is vestigial). D1 now also deps S7 (broker embedding
+wiring). REMAINING for D1, human
 only: create spine db/user; run Alembic through cloud-sql-proxy; deploy
 Cloud Run service `n8-memory-palace-spine` from the spine Dockerfile
 (migrations never run at container boot); verify /healthz plus a
@@ -234,6 +235,15 @@ before the relay continues.
   UNTOUCHED (inert metadata — scorer v0 neither reads it nor may any later
   scorer penalize its absence, per the null rule); tests. Nodes: P1.3.
   (Deps: S3.)
+- **S7 — Broker-routed embeddings.** Sections: C.5 (v2.3), C.1 embeddings
+  interface. Deliver: `embed_base_url` setting wired through to the
+  existing adapter's base_url parameter; embed_model default updated to
+  the namespaced broker id; compose/env passthrough
+  (SPINE_EMBED_BASE_URL); dimension validation unchanged (1536 stays
+  law); tests: config default = OpenRouter, override = direct provider,
+  both against the deterministic fake; OpenAPI freshness. Small packet —
+  the adapter already accepts base_url; this exposes it. Nodes: P1.1.
+  (Deps: S2.)
 - **S6 — /v1/search.** Sections: C.4 (search, shared shapes), C.3
   (candidate rule). Deliver: POST /v1/search per the exact body — embed
   query; top-k by cosine over ACTIVE units of the principal, applying the
@@ -333,7 +343,7 @@ before the relay continues.
 # Ground rules (read every session)
 1. You are one runner in a relay governed by ../garden/PLAN.md — run its
    Boot Sequence before anything else.
-2. The constitution is docs/SPEC.md (v2.2): sections 1 -> 2 -> B -> C; read
+2. The constitution is docs/SPEC.md (v2.3): sections 1 -> 2 -> B -> C; read
    fully the sections your packet names.
 3. You are in Milestone M1 unless your charge says otherwise. Feature
    ledger (SPEC B.4) applies: FORBIDDEN means do not build, stub, or
