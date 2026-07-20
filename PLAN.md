@@ -1,6 +1,6 @@
 # The Garden Plan — loop-enabled M1 execution
 
-Companion to docs/SPEC.md v1.11. This is OPERATIONS, not constitution: it may
+Companion to docs/SPEC.md v1.12. This is OPERATIONS, not constitution: it may
 change freely; the spec may not. This document is written to be executed by a
 relay of agents, generation 0 through n, each arriving with no memory of the
 last. Everything an agent needs is in files; nothing lives in anyone's head.
@@ -296,6 +296,16 @@ before the relay continues.
   Deliver: live list; ad-hoc remove → mid_thread_removed → re-render next
   call; edit flow with CAS conflict surfacing; manual pin toggle. Nodes:
   P1.2.1d, P1.3. (Deps: H5.)
+- **H7 — Envelope v1.12 & loop controls.** Sections: C.7 (v1.12), ADR-014
+  (M1 subset). Deliver: daemon behavior + envelope models for run.started,
+  run.cancel (confirmed abort, work preserved), prompt.queued
+  (queue-to-turn-boundary), thread.snapshot (hydration on (re)connect),
+  run.usage, gate.dismiss; stop_reason on run.done; typed run.delta union;
+  gate.open kind field; reserved-type passthrough (forward/ignore unknown
+  types). Tests: cancel mid-stream is confirmed by run.done(cancelled);
+  reconnect hydrates from snapshot only; a queued prompt fires exactly once
+  after turn end. Nodes: P3. (Deps: H1. Runs BEFORE H4 — the UI consumes
+  every one of these.)
 
 **Closing**
 - **I1 — Integration & AC dry run.** Sections: C.8. Deliver: compose
@@ -316,7 +326,7 @@ before the relay continues.
 # Ground rules (read every session)
 1. You are one runner in a relay governed by ../garden/PLAN.md — run its
    Boot Sequence before anything else.
-2. The constitution is docs/SPEC.md (v1.11): sections 1 -> 2 -> B -> C; read
+2. The constitution is docs/SPEC.md (v1.12): sections 1 -> 2 -> B -> C; read
    fully the sections your packet names.
 3. You are in Milestone M1 unless your charge says otherwise. Feature
    ledger (SPEC B.4) applies: FORBIDDEN means do not build, stub, or
