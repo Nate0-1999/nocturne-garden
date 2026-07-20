@@ -1,6 +1,6 @@
 # Harness + Memory System — Specification
 
-**Version 1.15** (2026-07-20) — the owner's extended vision is codified as `garden/NATES_VISION.md` (GUIDANCE per 1.4): packets touching user-facing surface read it at Boot STEP 5; it concatenates the human-gate design sessions — least attention, modes-as-music, Symphony search, the Cube and its aesthetic, stack and plugin doctrine (D.2 entry 040). Prior v1.14 (2026-07-20): B.6 rule 7: UI packets verify by emulated human use (browser-driven, screenshot evidence) from the first packet (D.2 entry 039). Prior v1.13 (2026-07-20): Invariant 14 "least attention" codified as core law (D.2 entry 038). Prior v1.12 (2026-07-20): loop & interfacing: C.7 envelope v1.12 (cancel/queue/snapshot/usage + reserved M3 types) and ADR-014 prime loop with three-level send gesture (D.2 entry 037). Prior v1.11 (2026-07-19): deconflict pass: OQ-14 resolved (repo names fixed, "rename allowed" removed), vision/Invariant-1 aligned to the vernacular (D.2 entry 036). Prior v1.10 (2026-07-19): Vernacular fixed (1.0): Memory Palace / spine / Harness / Garden / relay defined once (D.2 entry 035). Prior v1.9 (2026-07-19): ADR-013 framework seam: own the interface, adapt pydantic-ai's implementations (D.2 entry 034). Prior v1.8 (2026-07-19): config: dev/test chat default minimax-m3 via OpenRouter; D1 cloud footprint recorded; /v1/search assigned to S6 (D.2 entry 033). Prior v1.7 (2026-07-19): ADR-012 work protocol: spec → loop → judge as the default grammar of all project work (D.2 entry 032). Prior v1.6 (2026-07-19): memory location law (origin_path, f_loc, movement/refresh) + flashcard-deck interface (D.2 entries 030–031). Prior v1.5 (2026-07-17): C.2/C.4 contract gaps closed at the human gate (Garden flags F001–F005) and COMPLETION authority added to 1.4 (D.2 entries 028–029). Prior v1.4 (2026-07-07): execution protocol complete (judges + Agent Zero) — reorganized from the v0.x iteration transcript;
+**Version 2.0** (2026-07-20) — EDITOR PASS: content-preserving consolidation of the v1.5–v1.15 organic growth. New/amended law: ADR-012 mode scale, ADR-015 walls, ADR-016 tree, ADR-017 Symphony, ADR-018 Cube+plugins+stack, ADR-007→index, ADR-008 stack resolved; enacted amendments A-001–A-017 folded into Part C (AMENDMENTS.md remains the historical record); D.1 refreshed. Full version lineage: Appendix D.2. Prior v1.4 (2026-07-07) was reorganized from the v0.x iteration transcript;
 content-preserving. Audience: implementing agents (via /goal) and the human owner.
 Everything here is binding unless marked OPEN or given a non-accepted status.
 ADR numbers are immutable; superseding requires a new ADR. The chronological
@@ -11,8 +11,9 @@ the Problem Tree — the why-lineage from root pain to atomic build element,
 and the Blight Protocol for local defects. Part A holds the architecture
 decisions (grouped by pillar, not by the order we argued them). Part B is
 roadmap + scope law. Part C is the literal build spec for M1. Implementing
-agents: read 1 → 2 → B → C, consult A when deeper rationale is needed; cite
-tree node IDs in DECISIONS.md. Loops begin with Agent Zero (C.10) and end
+agents: read 1 → 2 → B → C, consult A when deeper rationale is needed;
+packets touching user-facing surface also read garden/NATES_VISION.md
+(GUIDANCE per 1.4); cite tree node IDs in DECISIONS.md. Loops begin with Agent Zero (C.10) and end
 with a judge (B.6, C.9).
 
 ---
@@ -602,19 +603,26 @@ automatic text merging for facts a human must trust); syncing learned weights.
 
 ## A.3 Pillar 2 — Harness & Interface
 
-### ADR-007 — Harness feature parity
+### ADR-007 — Harness feature parity (now an index)
 
-**Status: DRAFT** — parity with modern harnesses; each item a capability:
-queuing (prompt queue + steering/interjection mid-run), loops (/goal-style
-autonomous iteration with stop conditions), skills (SKILL.md discovery,
-project > user precedence), subagents (spawn/track/report; each registers
-presence + context accounting), compaction (summarization strategy +
-threshold), sessions (durable, resumable, branching), MCP, human-in-the-loop
-tool approval, per-model tokenizer abstraction for honest context accounting.
-Parity lands with the M3 harness buildout (re-planned after M2); the M1
-agent is deliberately chat + memory tools only. Durable execution (DBOS)
-arrives with loops/subagents in M3 — M1 sessions are plain DB rows.
-Plan-mode compaction variant: parked (D.4).
+**Status: ACCEPTED as index (2026-07-20; D.2 041)** — the 2026-07-19/20
+gate sessions designed what this draft only named. Parity items and their
+owning law:
+- Queuing / steering / interruption → ADR-014 (three-level send gesture).
+- Human-in-the-loop & tool approval → ADR-015 (walls and boundaries; the
+  approval ladder is deliberately DEAD — read ADR-015 before assuming one).
+- Sessions (durable, resumable, branching) + checkpoints/rewind → ADR-016.
+- Loops / autonomous iteration / subagent orchestration at scale → ADR-012
+  (work protocol + mode scale) and ADR-017 (Symphony search).
+- Skills, MCP, compaction, cost batteries → adopted through the ADR-013
+  seam (pydantic-ai capabilities; compaction chassis = ProcessHistory,
+  plan-mode variant parked in D.4).
+- Visualization & interfacing → ADR-008 (deck, scrubber, gallery) and
+  ADR-018 (the Cube, plugins, stack).
+Remaining parity items still owned here until their milestone planning:
+per-model tokenizer abstraction for honest context accounting; DBOS
+durable execution (arrives with loops/subagents in M3; M1 sessions are
+plain DB rows).
 
 ### ADR-008 — Interface layer & control plane
 
@@ -644,8 +652,13 @@ surface cards and never address the human directly; they are visible only
 through the visualizers (Ant Farm et al.), and their work reaches the
 human, if at all, through their top-level agent's card.
 
-- **Frontend:** React + TypeScript + Vite SPA; SVG/canvas visualizations (no
-  heavy chart deps); WebSocket (control/streams) + SSE (memory/presence).
+- **Frontend (stack RESOLVED 2026-07-20 — D.2 041; was PROPOSED):** React +
+  TypeScript + Vite SPA. DOM for rails/panels/text; ONE WebGL/WebGPU stage
+  scene for the Cube (three.js + react-three-fiber, TSL dual-target
+  shaders) per ADR-018; SVG for small panel charts; WebSocket
+  (control/streams) + SSE (memory/presence). Chromium-class browsers only
+  through M4. M1's H4 chat shell is plain React DOM — the stage arrives
+  with the M2/M3 viz buildout.
 - **Not Electron.** Desktop feel = Chrome app mode (`chrome --app=<url>`),
   matching the existing popout pattern; Tauri can wrap the same SPA later.
   Rationale: zero desktop-runtime maintenance for a single-user tool.
@@ -714,6 +727,28 @@ attention-pushes are solo-run only.
 exceptions — the spec simply scales down); human-picked winners among
 parallel attempts (reopens human attention mid-protocol; the judge exists
 precisely so that attention is spent once, at the end).
+
+**The mode scale (amended 2026-07-20; D.2 041).** One protocol, a movable
+JUDGE SEAT, four rungs — scalar so new rungs slot in without machinery:
+- **Solo** (pp): one agent, headless one-shot; the output is the verdict.
+- **Duet** (mp): turn-based pair — THE HUMAN HOLDS THE JUDGE SEAT, every
+  turn. Attention flows continuously by the human's choice, which is an
+  Invariant-14-legal spend: the architecture's decision is that the human
+  elected it. For trust-building and craft.
+- **Ensemble** (mf): a few parallel agents; gallery watching; interjection
+  on solo runs only. The seat is shared.
+- **Symphony** (ff): full ADR-017 search; judges conduct; attention
+  arrives as the premiere card.
+Roles in the music: the human is the COMPOSER (writes the score — spec,
+objective, budget); the CONDUCTOR is the orchestrator plus its judges;
+agents are SECTIONS. The composer does not play in the pit; the composer
+hears the premiere. The seat transfers per-thread, mid-thread, both
+directions, in one gesture ("take it from here" / "let me drive"). Pair
+mode is not an escape from the protocol — it is the human occupying one of
+its offices.
+*Verification:* mode state is an envelope-visible thread property; judged
+by driving a seat transfer both directions and observing that attention
+pulls (cards) occur only per the active rung's law.
 
 ### ADR-013 — Framework seam: own the interface, adapt the implementation
 
@@ -795,6 +830,191 @@ preserved and labeled partial — the loop never fabricates completeness.
 harness config); consumption streams via run.usage; breach is a DISTINCT
 terminal status (stop_reason:"budget_exceeded"), rendered differently from
 error. Enforcement seat: pydantic-ai UsageLimits through the ADR-013 seam.
+
+### ADR-015 — Walls and boundaries: the permission model
+
+**Status: ACCEPTED (2026-07-20; D.2 041).** CONTRACT from the milestone
+agents hold fs/shell tools (M3). Codifies the human-gate discussion that
+produced Invariant 14.
+
+**Motivation (the intuition).** Per-command approval is security theater:
+an agent with write+bash already holds full capability the moment one
+command runs; fifty "allow" clicks change nothing except training the
+human to click. The field's approval-mode ladders replace judgment with
+fatigue. Meanwhile our own gate/judge design already knows the answer:
+spend attention only where it is decisive.
+
+**Decision — safety from walls, attention at the walls:**
+1. DEFAULT posture, zero setup: every agent runs inside an OS-level
+   sandbox scoped to its workspace/worktree (Seatbelt on macOS,
+   Landlock/container on Linux) with a network allowlist. INSIDE the
+   walls: full autonomy — no per-action approvals exist. (Pi's honesty
+   with Codex's kernel enforcement, made the default.)
+2. Attention is spent only at BOUNDARY CROSSINGS: leaving the sandbox —
+   remote pushes, deploys, credentials, network beyond allowlist,
+   spending money. A crossing is not an "approval"; it routes like every
+   attention pull: through the judge first (ADR-012 blocker triage — a
+   PermissionJudge answers what the boundary list can answer; only
+   decisions genuinely reserved for the human become cards).
+3. There is no permission-mode ladder. Configuration = sandbox profiles
+   (what the walls permit) + the boundary list (what makes a card).
+   Worktree isolation per parallel attempt means every swarm branch is
+   its own walled garden.
+4. Trust invariant: the repository and all tool output are UNTRUSTED
+   input; only human-owned configuration escalates capability.
+
+**Rejected:** approval-mode ladders (fatigue generation); pure
+Pi-style YOLO without default walls (right honesty, wrong default —
+"a clean protected environment should be the default"); LLM screening of
+every in-wall action (attention theater relocated into compute).
+*Verification:* drive an in-wall destructive-looking action (no prompt
+appears) and a boundary crossing (card appears, judge-triaged); attempt
+capability escalation from repo config (refused).
+
+### ADR-016 — Two ledgers, one tree: sessions, checkpoints, rewind
+
+**Status: ACCEPTED (2026-07-20; D.2 041).** CONTRACT for M2/M3 session
+machinery; ONE M1 seed already landing with H4 (see below).
+
+**Motivation.** Two user stories are one mechanism: the Duet user who went
+down a bad path wants one-click return of conversation AND code to any
+earlier point (Cursor's revert, SolidWorks' rollback bar); the Symphony
+search needs cheap branchable states. Undo and exploration are the same
+tree walked in different directions.
+
+**Decision:**
+1. TWO LEDGERS. The real git repo stays deliberate — commits happen when
+   work means something; history stays clean. A SHADOW ledger (second git
+   dir over the same worktree) checkpoints file state automatically at
+   every HUMAN TURN. A checkpoint is a restore point, never a commit.
+2. ONE TREE. Every message carries `parentId`; a session is a tree that
+   usually never branches. REWIND = continue from an earlier node (the
+   old continuation survives as a sibling). FORK = new child from any
+   node, conversation + checkpointed files traveling together into a
+   fresh worktree. Restore scope is always explicit:
+   conversation | files | both.
+3. The scrubber (one line per human input — ADR-008) is the tree's UI:
+   every line anchors a checkpoint; click to jump, rewind, or fork.
+4. Every query surface accepts `as_of` (timestamp/checkpoint ref):
+   live view, scrubbing, and time-lapse are one mechanism at three
+   speeds. Client state is event-sourced with keyframe snapshots so
+   seeking is cheap.
+5. M1 SEED (H4): browser message objects already carry ULID ids; the
+   `parentId` column lands with the first persistent transcript store so
+   no migration is ever needed. Tree semantics activate in M2/M3.
+
+**Rejected:** committing every turn to the real repo (noise; the two
+ledgers exist so history stays human); flat sessions with git-only undo
+(kills forking, the scrubber-as-time-machine, and Symphony's substrate);
+conversation-only rewind (Cursor taught that code and chat must travel
+together).
+*Verification:* scrub to an earlier human turn, rewind scope=both,
+verify workspace + transcript match that moment; fork two siblings from
+one node and verify divergent worktrees with a shared prefix.
+
+### ADR-017 — Symphony search: the work protocol at scale
+
+**Status: ACCEPTED (2026-07-20; D.2 041).** CONTRACT for the M3+ Symphony
+rung of ADR-012. Generalizes the one-round swarm ADR-012 already defines.
+
+**Motivation.** ADR-012's parallel attempts are one round of breadth.
+Real problems (optimize this kernel) want ITERATED, COORDINATED search:
+many stratagems advancing in parallel, evidence reallocating effort,
+partial wins combining — Karpathy-style auto-research, but multi-agent
+and budget-aware. The relay that built this system is the manual version;
+Symphony is its automation.
+
+**Decision — value-guided tree search over materialized workspaces:**
+- A NODE is (conversation, workspace checkpoint, spec) — cheap to mint
+  (ADR-016 shadow ledger), isolated to run (worktree).
+- Four operators: EXPAND (an agent advances a leaf) · FORK (N siblings
+  seeded with named STRATAGEMS — approach hypotheses enumerated at spec
+  alignment by human or strategist agent) · GRAFT (git-native crossover:
+  merge the best of two branches; elevates ADR-012's graft to a
+  first-class move) · PRUNE (defund; branches PERSIST forever —
+  auditable, revivable).
+- The VALUE FUNCTION is the judge: a BENCHMARK when the spec declares its
+  objective MEASURED (latency, tests, tokens/sec — full autonomy); a
+  judge MODEL when JUDGED (taste; premiere cards deserve more
+  skepticism). Every spec declares which.
+- The BUDGET is a portfolio: allocation follows expected value PLUS
+  uncertainty (bandit-style); beam width = max_parallel_project_agents.
+  Evaluation competes with expansion for tokens (value-of-information:
+  sometimes the right spend is to listen, not play).
+- CONVERGENCE: target metric hit, budget exhausted, or judge COMPLETE →
+  exactly one premiere card (Invariant 14).
+- THE REMEMBERING ORCHESTRA (the moat): every branch — especially pruned
+  ones — files atomic lessons to the Palace, stamped project +
+  origin_path. The next search on similar ground opens with those
+  lessons injected. Search compounds across projects; this is only
+  possible because the Palace was built first.
+
+**Rejected:** fixed-round tournaments (evidence should move money);
+human-picked winners mid-search (ADR-012's rejection, inherited);
+deleting pruned branches (their lessons and audit trail are half the
+value).
+*Verification:* on a MEASURED toy objective, verify budget reallocation
+away from a weak stratagem, one graft producing a leaf that outscores
+both parents, pruned-branch lessons appearing as Palace units, and
+exactly one card at convergence.
+
+### ADR-018 — The Cube and the plugin rack
+
+**Status: ACCEPTED (2026-07-20; D.2 041).** CONTRACT for the M2/M3 viz
+buildout; supersedes nothing — it UNIFIES ADR-009/decision-016's committed
+visualizers into one object. Detail and aesthetics: garden/NATES_VISION.md
+(GUIDANCE) + garden/notes/cube-visualizer.md (design notes).
+
+**Motivation.** The viz suite was a list; the Cube is its geometry. One
+underlying object — the work — projected on faces the human rotates
+between, with ComfyUI's lesson (the visualization IS the app; you get
+where you're going by clicking into it) and Ableton's lesson (a rack the
+user rearranges, not furniture).
+
+**Decision:**
+1. FACES with true spatial logic: FARM front (the colony: whole directory
+   tree as chambered burrows, files as cells, zoom, CAD-floating on black
+   + faint grid) · ROOTS the depth axis (organic meandering roots growing
+   horizontally from each colony; dead roots preserved and desiccated;
+   thickness = tokens spent; EV encoding = OQ-17) · TIPS opposite the
+   Farm (roots end-on; the frontier grid of next-round starts) · plus
+   DECK (left rail, time-ordered, auto-advance, conductor drafts — the
+   ONLY surface that may demand) · LEDGER (capital alluvial) · PALACE
+   (memory; inverted light scheme) · SCORE (context bars + timeline).
+   ORBIT rotates around (90°-class azimuth moves), zoom scrolls, faces
+   render FLAT when focused (the cube is navigation, not decoration).
+2. ONE SELECTION shared by every face; selection is also navigation.
+   The rollback bar (ADR-016) scrubs every face to any `as_of`.
+3. MEMORY-TRACE SANCTITY: selecting anything traces its injections —
+   injected list with one-tap pop-off, near-miss suggestions with
+   one-tap add — as pure CONSUMERS of the injection_event log. No
+   visualizer may write to, delay, or bias the scorer. Ever.
+4. THE RACK: layouts are savable per-mode SETS. Plugins (panels, console
+   widgets, card renderers, stage faces) receive exactly THREE surfaces —
+   the C.7 event stream, the query surface (+as_of), the selection bus —
+   and no notify API exists: Invariant 14 is structural. Panel plugins =
+   sandboxed iframes (postMessage bridge); face plugins = data-driven
+   scene schemas (never raw renderer access). Plugin API versioned;
+   churn contained per ADR-013.
+5. STACK (resolves ADR-008's PROPOSED details): React DOM for rails and
+   all text; ONE WebGL/WebGPU stage scene — three.js + react-three-fiber
+   inside the existing React+Vite app, TSL shaders dual-targeting
+   WGSL/GLSL; instancing for populations, compute for living systems
+   (curators, root growth); text never enters the canvas; refs +
+   useFrame, never per-frame setState; parallel DOM/table rendering for
+   accessibility. Chromium-class browsers are the ONLY support target
+   through M4. Fleet palette machine-validated on final grounds
+   (dataviz six checks) — revalidate on any ground change.
+
+**Rejected:** literal always-3D rendering (readability loses to
+spectacle); per-visualizer data plumbing (the three surfaces are the
+whole API); plugin notify capability (would re-open the attention wall);
+Safari/Firefox support before M4 (single-user product; compat tax steals
+packets).
+*Verification:* per B.6 rule 7 throughout — plus: a hostile test plugin
+must be unable to notify, write, or escape its rectangle; selection made
+on any face must appear on all faces and the trace drawer within one
+event cycle; the palette validator must pass on the shipped grounds.
 
 ### ADR-006 — Presence
 
@@ -1489,6 +1709,11 @@ into its owning ADR above)
   milestone. [M3 planning]
 - **OQ-15:** Per-prompt re-scoring within a thread (gate-less, panel-only)
   vs once per thread. M1 deliberately ships once-per-thread. [M2 decision]
+- **OQ-17:** ROOTS expected-value encoding — opacity-with-floor (mocked)
+  vs node-color ramp. Feel both in the living mock. [M2/M3 viz planning]
+- **OQ-18:** The full Palace scene (pale monumental architecture, ghost
+  curator drones restructuring memory live) — dedicated design workstream.
+  [M3 planning; aesthetics anchored in NATES_VISION §8]
 
 ## D.2 Decision log (chronological, immutable)
 
@@ -1536,6 +1761,7 @@ into its owning ADR above)
 | 038 | 2026-07-20 | v1.13 Invariant 14 LEAST ATTENTION codified as core philosophy: attention is the scarcest resource and the architecture decides when it is spent; walls not questions (per-action approvals inside the sandbox are forbidden theater); pulls only at boundary crossings + judge releases, once, at highest leverage; all watchable, almost nothing demands. Ground-rules template gains rule 9 so every relay agent boots into it | ACCEPTED |
 | 039 | 2026-07-20 | v1.14 B.6 rule 7: UI/visualizer packets verify by EMULATED HUMAN USE from the first packet — browser automation drives the real rendered interface, screenshots at every acceptance state are first-class builder evidence (verification/<packet>/), assertions on rendered outcomes never internals. Motivated by mock iteration: cascade collisions and encoding drift are invisible to unit tests; the screenshot is the test. Applies to H4/H5/H6 and every viz packet after | ACCEPTED |
 | 040 | 2026-07-20 | v1.15 garden/NATES_VISION.md codified (GUIDANCE per 1.4): concatenated owner intent from the 2026-07-19/20 human-gate sessions — Invariant-14 soul, founding differentiators, organism/time thesis, modes-as-music with movable judge seat, ADR-012 protocol + conductor drafts, Symphony search (4 operators, portfolio budgets, MEASURED/JUDGED, lessons to Palace), the Cube (faces, selection, memory-trace sanctity, Ableton rack, aesthetics: black/white/orange chrome-seraph), stack (R3F/WebGPU hybrid, Chromium-only ≤M4), quality (B.6 r7), anti-vision. UI-surface packets read it at Boot STEP 5; full ADR-015/016/017 codification still pending human blessing | ACCEPTED |
+| 041 | 2026-07-20 | v2.0 EDITOR PASS (content-preserving, mirroring 022's v0.x→v1.0 consolidation): ADR-012 gains the mode scale (Solo/Duet/Ensemble/Symphony, movable judge seat); ADR-015 walls & boundaries, ADR-016 two-ledgers/one-tree, ADR-017 Symphony search, ADR-018 Cube + plugin rack + resolved stack (R3F/WebGPU, Chromium-only ≤M4) authored from the gate sessions with Verification clauses per B.6; ADR-007 converted to a parity index; amendments A-001–A-017 folded verbatim into Part C (AMENDMENTS.md preserved as historical record; future completions still enact there first); header lineage compressed; D.1 gains OQ-17/18. No semantic change to built behavior | ACCEPTED |
 
 ## D.3 Resolved-question index (where each folded)
 
