@@ -84,3 +84,26 @@ OQ-C3 (EV: opacity-floor vs node ramp) still open.
 New concept to codify with ADRs: DRAFT RESPONSES on judge-released cards —
 attention spent editing, not composing. Guard: drafts are labeled machine
 text; a card is never auto-fired.
+
+## v3 principle: framework, not furniture (Ableton doctrine, 2026-07-20)
+
+The Cube is a RACK, not a fixed layout. The human's described arrangement
+(stage + deck rail + inspector + minimap) is the DEFAULT SET, not the law.
+Users add, remove, rearrange, and author visualizers and panels.
+
+Plugin architecture (the "Max for Live" layer), enabled by existing law:
+- Every visualizer — built-in or user-authored — is a consumer of exactly
+  three surfaces: (1) the C.7 envelope EVENT STREAM (live), (2) the QUERY
+  surface (injection_event log, session tree, board/ledger state — all
+  append-only reads), (3) the shared SELECTION BUS (one selection, every
+  panel follows). ADR-014's "UI renders only from the event stream" is
+  what makes third-party panels possible with zero core hooks.
+- Panels declare slots (stage face / rail / overlay), receive fleet-color
+  and theme tokens, and MUST honor Invariant 14: no plugin may demand —
+  cards remain the Deck's monopoly. A plugin that notifies is rejected at
+  the API, not by review.
+- Layouts are savable/sharable PRESETS (per project, per mode — a Duet
+  set vs a Symphony set), like Ableton sets.
+- Distribution rides the ADR-013 seam philosophy: plugins are wrapped,
+  versioned, sandboxed to their three surfaces; a broken plugin can only
+  break its own panel.
