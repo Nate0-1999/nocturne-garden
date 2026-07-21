@@ -199,3 +199,12 @@ to sections: teammates each CHOOSE memories to contribute into a shared
 Palace — consent-based, lineage-tracked, revocable, never automatic —
 so a project can have a memory greater than any one of its people,
 without anyone surrendering their own.
+
+## 14. Agents use it like I would (added 2026-07-21)
+
+Scripted tests prove regressions; they do not prove EXPERIENCE. During
+development the implementing agents must USE the product the way I would:
+open it in a browser, look at the screen, click around, type things, and
+watch what happens — SOPs like we write for humans, executed by agents,
+with their observations in prose. If it feels wrong to the agent walking
+through it, I want that written down before it ever feels wrong to me.

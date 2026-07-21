@@ -1,6 +1,6 @@
 # The Garden Plan — loop-enabled M1 execution
 
-Companion to docs/SPEC.md v2.4. This is OPERATIONS, not constitution: it may
+Companion to docs/SPEC.md v2.5. This is OPERATIONS, not constitution: it may
 change freely; the spec may not. This document is written to be executed by a
 relay of agents, generation 0 through n, each arriving with no memory of the
 last. Everything an agent needs is in files; nothing lives in anyone's head.
@@ -365,14 +365,14 @@ before the relay continues.
 - **H5 — The gate.** Sections: C.6 steps 1–4, ADR-005 gate UX, B.6 rule 7.
   Deliver: prepare-on-send; modal with full bodies + per-feature scores;
   one-tap ✕, modifier reasons, near-miss add-back; hard pause; commit →
-  run. Verification per B.6 rule 7 (browser-driven, screenshot evidence).
-  Nodes: P1.2.1a–c. (Deps: D1, H4.) The human personally uses the result
+  run. Verification per B.6 rules 7 AND 8 (scripted checks + an executed live
+  SOP walkthrough with prose observations). Nodes: P1.2.1a–c. (Deps: D1, H4.) The human personally uses the result
   before the relay continues (Section 7).
 - **H6 — Memory panel.** Sections: C.6 (live panel), C.4 (feedback, PATCH),
   B.6 rule 7. Deliver: live list; ad-hoc remove → mid_thread_removed →
   re-render next call; edit flow with CAS conflict surfacing; manual pin
-  toggle. Verification per B.6 rule 7 (browser-driven, screenshot
-  evidence). Nodes: P1.2.1d, P1.3. (Deps: H5.)
+  toggle. Verification per B.6 rules 7 AND 8 (scripted checks + an executed live
+  SOP walkthrough with prose observations). Nodes: P1.2.1d, P1.3. (Deps: H5.)
 - **H7 — Envelope v1.12 & loop controls.** Sections: C.7 (as amended), ADR-014
   (M1 subset). Deliver: daemon behavior + envelope models for run.started,
   run.cancel (confirmed abort, work preserved), prompt.queued
@@ -385,7 +385,8 @@ before the relay continues.
   every one of these.)
 
 **Closing**
-- **I1 — Integration & AC dry run.** Sections: C.8. Deliver: compose
+- **I1 — Integration & AC dry run.** (Also re-executes every UI packet's
+  SOP per B.6 rule 8.) Sections: C.8. Deliver: compose
   end-to-end; walk all seven criteria as a BUILDER (not judge); fix gaps;
   seed demo memories; verification/README pointing a judge at everything.
   (Deps: all S*, H*.)
@@ -403,7 +404,7 @@ before the relay continues.
 # Ground rules (read every session)
 1. You are one runner in a relay governed by ../garden/PLAN.md — run its
    Boot Sequence before anything else.
-2. The constitution is docs/SPEC.md (v2.4): sections 1 -> 2 -> B -> C; read
+2. The constitution is docs/SPEC.md (v2.5): sections 1 -> 2 -> B -> C; read
    fully the sections your packet names.
 3. You are in Milestone M1 unless your charge says otherwise. Feature
    ledger (SPEC B.4) applies: FORBIDDEN means do not build, stub, or
