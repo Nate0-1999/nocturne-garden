@@ -427,3 +427,59 @@ law: The M1 browser keeps every successfully sent but unacknowledged
 why: This preserves A-017 snapshot authority while preventing an overlapping
      pre-ack snapshot from erasing the only copy of an accepted prompt. It adds
      no replay, persistence, server correlation field, or new behavior family.
+
+[A-019] [H5] [SPEC C.6 steps 1–4; SPEC C.7 gate.*] [P1.2.1a–c]
+gap: H5 must block on a concrete browser decision and carry C.4 prepare/commit
+     data, but C.6 does not source model_context_tokens or reconcile its
+     first-prompt rule with /remember, and A-016 deliberately leaves gate.*
+     extension fields, normal resume, rejection, and memory-failure behavior
+     undefined.
+law: After C.6 step 4, add: "In M1, the one gate belongs to the first ordinary
+     chat turn. The daemon-only /remember command neither opens nor consumes
+     it. The attempt is claimed when that chat turn begins the injection flow;
+     cancellation, model failure, or memory failure does not surprise the user
+     with a later gate in the same daemon-lifetime thread. Harness config adds
+     positive integer model_context_tokens (environment name
+     MODEL_CONTEXT_TOKENS), default 1000000 for the default chat model, and
+     sends it unchanged to inject/prepare; a model override must also override
+     this value when its context window differs.
+
+     An M1 memory gate.open requires
+     {run_id,kind:'memory_gate',injection_id,snapshot_ts,scorer_version,
+     injected,near_misses}; injection_id is a UUID, snapshot_ts is an ISO 8601
+     timestamp, scorer_version is non-blank, and both card arrays contain the
+     exact C.4 scored MemoryCard shape. The six feature values are the raw M1
+     feature scores supplied by C.4. H5 renders them truthfully as feature
+     scores; weighted contribution bars remain M2 per B.3.
+
+     The matching browser gate.commit requires outer thread_id and
+     {run_id,injection_id,removed,added_back}. removed is a unique array of
+     exact C.4 {memory_id,reason} entries whose IDs occur in that gate's
+     injected array; added_back is a unique array of IDs from that gate's
+     near_misses; the two sets are disjoint. The daemon validates run, thread,
+     injection, membership, and the single-submit boundary against its open
+     gate before resolving the hard pause, and uses its server-held
+     injection_id for C.4 commit. Any stale, duplicate, mismatched, or invalid
+     decision changes nothing and returns error
+     {code:'gate_not_committable',run_id}.
+
+     A valid decision is accepted exactly once. The gate remains open and the
+     active run remains waiting_gate while inject/commit is in flight. On a
+     successful commit the daemon emits gate.dismiss, returns the active state
+     to running, supplies final_block as system-adjacent instructions, and
+     only then invokes the model. Cancellation retains A-016 ordering and
+     never invokes the model for that run.
+
+     Only a Spine client failure during prepare or commit degrades memory: the
+     daemon emits error {code:'memory_unavailable',run_id,
+     phase:'prepare'|'commit',message:'Memory is unavailable; continuing
+     without injected context.'} and invokes the chat model without a
+     final_block. Prepare failure opens no gate; commit failure emits that
+     error and gate.dismiss before the memoryless model invocation. This is
+     fail-open for chat, not a gate timeout. Validation and programming faults
+     retain the ordinary run.done(error) path."
+why: This is the smallest executable handshake already promised by C.6 and
+     A-016, makes the configured default model's context explicit, preserves
+     the hard human pause and typed training signal, and enforces Invariant 9
+     without inventing retries, offline cache behavior, M2 contributions, or
+     H6 editing UI.
