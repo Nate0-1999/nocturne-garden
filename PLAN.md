@@ -20,24 +20,28 @@ Amending the master is a human act — agents propose via FLAGS, or enact
 qualifying COMPLETIONS via AMENDMENTS.md (Section 2), and never edit
 SPEC.md themselves.
 
-**Cloud footprint (D1; live-audited 2026-07-20):** GCP project
+**Cloud footprint (D1; live-audited 2026-07-21):** GCP project
 `n8-memory-palace` is ACTIVE and billed, with a $100/month budget alerting at
 50/90/100%. Cloud SQL `n8-memory-palace-db` is RUNNABLE in `us-central1`
-(Postgres 16, db-f1-micro), but contains only the default `postgres` database
-and user. There is no Cloud Run service, Artifact Registry repository, Secret
-Manager setup, or GCS bucket. GCS is not an M1 dependency; snapshot lifecycle
-is M4 horizon. The ignored `harness/.env` is the local/operator source for
-SPINE_TOKEN and the OpenRouter key (`.env.example` is the shape); deployed
-runtime copies belong in Secret Manager. OpenRouter is verified live for chat
-and embeddings, so no OpenAI credits are needed and the OPENAI line is a
-direct-provider-only legacy slot.
+(Postgres 16, db-f1-micro), contains the `spine` database and built-in user,
+has backups/PITR and deletion protection enabled, and is migrated to Alembic
+`0002 (head)`. Three region-pinned secrets and the dedicated least-privilege
+`spine-runtime` identity feed one Gen2 Cloud Run service from the immutable
+regional `spine` Artifact Registry repository. Revision
+`n8-memory-palace-spine-00003-pjh` serves 100% of default traffic at
+`https://n8-memory-palace-spine-713925718873.us-central1.run.app`. GCS was not
+created: it is not an M1 dependency, and snapshot lifecycle remains M4 horizon.
 
-D1 is now relay-claimable with dependencies S4 and S7 DONE. Its remaining
-work is the narrowly scoped database initialization, migration, protected
-Cloud Run deployment, and remote real-embedding verification in the named
-project. Every cloud command must carry explicit project and region flags;
-ambient gcloud configuration is never authority. Local `docker compose`
-remains the C.8 acceptance path; the cloud spine is the always-on heart.
+D1 passed an application-bearer health check, real OpenRouter create → hard
+duplicate → prepare → commit round trip, and typed Harness client smoke. Cloud
+Run reserves some paths ending in `z`, so remote verification uses Spine's
+authenticated, OpenAPI-hidden `/health` alias; the specified `/healthz` remains
+the local `docker compose` C.8 acceptance path. The ignored `harness/.env` is
+mode 0600 and points at the deployed service; deployed runtime credentials live
+only in Secret Manager. OpenRouter is the default for chat and embeddings, so
+no OpenAI credits are needed and the OPENAI line is a direct-provider-only
+legacy slot. Every cloud command must still carry explicit project and region
+flags; ambient gcloud configuration is never authority.
 
 ---
 
@@ -274,10 +278,10 @@ before the relay continues.
   4. create exactly one Docker-format Artifact Registry repository, `spine`,
      in `us-central1`; use the active deployer locally (not Cloud Build or a
      new build identity) to build the current Spine Dockerfile for Linux/amd64.
-     This Apple-Silicon workspace currently lacks Docker Buildx and its legacy
-     builder cannot cross-build; D1 may install only Homebrew `docker-buildx`
-     and add `/opt/homebrew/lib/docker/cli-plugins` to Docker's
-     `cliPluginsExtraDirs`, preserving all other Docker config. Prove Buildx,
+     This Apple-Silicon workspace uses Homebrew `docker-buildx` for the required
+     cross-build. If it is absent, D1 may install only that package and add
+     `/opt/homebrew/lib/docker/cli-plugins` to Docker's `cliPluginsExtraDirs`,
+     preserving all other Docker config. Prove Buildx,
      tag the image
      `us-central1-docker.pkg.dev/n8-memory-palace/spine/spine:<SPINE_SHA>`, and
      push it without any build-IAM mutation. Deploy exactly one service,
@@ -287,9 +291,12 @@ before the relay continues.
      Cloud Run transport must allow unauthenticated invocation because the
      frozen application boundary is the Spine static bearer; this does not
      make the API itself unauthenticated;
-  5. verify authenticated `/healthz`, then a real OpenRouter-backed create →
-     duplicate/dedup → prepare → commit round trip against the cloud URL;
-     update only the ignored local `SPINE_URL`; run a Harness remote smoke.
+  5. verify authenticated `/health` on Cloud Run, then a real OpenRouter-backed
+     create → hard-duplicate → prepare → commit round trip; update only the
+     ignored local `harness/.env` `SPINE_URL`, preserve mode 0600, and prove a
+     typed Harness client call against the deployed URL. Retain `/healthz` for
+     local C.8 acceptance: Cloud Run reserves some paths ending in `z`, so that
+     exact path can be intercepted before the container.
 
   Every command uses explicit `--project=n8-memory-palace` and the applicable
   `--region`/`--location=us-central1`. Never echo, commit, or place secret
