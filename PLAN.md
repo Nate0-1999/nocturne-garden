@@ -20,9 +20,18 @@ Amending the master is a human act — agents propose via FLAGS, or enact
 qualifying COMPLETIONS via AMENDMENTS.md (Section 2), and never edit
 SPEC.md themselves.
 
-**Cloud footprint (D1; live-audited 2026-07-21):** GCP project
-`n8-memory-palace` is ACTIVE and billed, with a $100/month budget alerting at
-50/90/100%. Cloud SQL `n8-memory-palace-db` is RUNNABLE in `us-central1`
+**Cloud footprint (D1 + D2; live-audited 2026-07-21):** GCP project
+`n8-memory-palace` is ACTIVE and billed, with a $100/month
+BILLING_ACCOUNT-scoped budget (`82be62a3-…`) alerting at 50/90/100%. The D2
+billing circuit breaker is ARMED: that budget is wired (schema 1.0) to the
+`billing-breaker` Pub/Sub topic, which feeds a private no-retry Cloud Run
+function that detaches project billing at cost ≥ budget. Least-privilege
+verified — topic accepts only Google's `billing-budget-alert@system`
+publisher, the function is invokable only by its trigger SA, and detach
+authority (`roles/billing.projectManager`) is held only by the
+`billing-breaker-runtime` SA (spine DECISIONS 016–018; report 018). An
+older project-scoped $100 budget (`304a09a7-…`) remains as alert-only
+redundancy. Cloud SQL `n8-memory-palace-db` is RUNNABLE in `us-central1`
 (Postgres 16, db-f1-micro), contains the `spine` database and built-in user,
 has backups/PITR and deletion protection enabled, and is migrated to Alembic
 `0002 (head)`. Three region-pinned secrets and the dedicated least-privilege
@@ -314,23 +323,17 @@ before the relay continues.
   still use their deterministic container. (Deps: S4, S7.) Rationale: B.3
   commits M1 to "spine on Cloud Run"; the gate prevents the relay from
   finishing M1 having only ever talked to localhost.
-- **D2 — Billing circuit breaker (build: agent; deploy: HUMAN).** Sections:
-  none (pure infra; pattern: Google's documented "disable billing with
-  notifications"). Deliver in spine `infra/billing-breaker/`: a Cloud Run
-  function (Python 3.12) subscribed to a `billing-breaker` Pub/Sub topic
-  that parses budget notifications and, when costAmount >= budgetAmount,
-  DETACHES billing from project `n8-memory-palace` via the Cloud Billing
-  API (updateBillingInfo, empty billingAccountName) — deliberately
-  terminating all project services; idempotent and decision-logged; unit
-  tests on fixture notifications with NO live cloud calls; a deploy script
-  that creates the topic, points the existing $100 budget at it, and
-  deploys the function under a dedicated service account holding Project
-  Billing Manager on this project ONLY; a README runbook with a
-  synthetic-message drill and billing re-attach steps. Agents build and
-  test but NEVER execute the deploy script or any gcloud mutation — the
-  human runs the runbook at a gate. Revisit when Google's Spend Caps
-  (private preview 2026; covers Cloud Run but NOT Cloud SQL) reaches GA.
-  Nodes: P4. (Deps: P0.)
+- **D2 — Billing circuit breaker (build: agent; deploy: HUMAN). DONE +
+  ARMED 2026-07-21.** Pure infra (Google's "disable billing with
+  notifications" pattern), in spine `infra/billing-breaker/`: a private
+  no-retry Cloud Run function on a `billing-breaker` Pub/Sub topic that
+  detaches project billing at cost ≥ budget; unit-tested on fixtures with
+  no live calls; a human-only deploy script + runbook. Agents built and
+  tested; the human armed it at the gate (see cloud footprint above;
+  report 018; spine DECISIONS 016–018). The deploy preflight was hardened
+  at the gate to run against a default-posture GCP project. Revisit when
+  Google's Spend Caps (private preview 2026; covers Cloud Run but NOT
+  Cloud SQL) reach GA. Nodes: P4. (Deps: P0.)
 
 **Harness track**
 - **D3 — The deploy & onboarding command (packaging wave).** Sections:
