@@ -1,6 +1,6 @@
 packet:            D2 deploy — live finding (human gate)
 session:           human+claude / 2026-07-21
-status:            DEFERRED — deploy shelved pending D4 rework
+status:            RESOLVED — preflight fixed at the human gate (spine 335539f, DECISIONS 018); ready to arm
 what exists now:   The D2 billing-breaker FUNCTION is built, unit-tested
                    (76 pass), and correct. Its deploy.sh preflight, however,
                    refuses to arm against a STANDARD GCP project. Three
@@ -35,14 +35,16 @@ finding:           The breaker is over-engineered. Asked to "build a billing
                    10 UI states verified) is clean. Useful signal: the relay
                    errs maximally paranoid on security-flavored charges.
 decision:          Owner chose to SIMPLIFY the preflight rather than harden the
-                   project's IAM to satisfy it. Deploy shelved; budget alert
-                   emails (50/90/100%) remain the live guard, backed by tight
-                   Cloud Run max-instances. New packet D4 reworks the preflight
-                   to bound the ACTUAL threat at the resource level without
-                   demanding a pristine project-wide IAM graph. D4 is pure
-                   offline Python + tests — no cloud mutation; the human still
-                   runs the eventual --apply.
-notes to the next agent:  Claim D4. Keep every RESOURCE-level check (topic
+                   project's IAM. Fixed directly at the human gate (no relay
+                   packet needed): the project-IAM audit now recognizes Google's
+                   default identities (Container Registry agent, default Compute
+                   SA, gcp-sa-* agents) and trusts Google project service agents
+                   except direct billing detach — while still refusing genuine
+                   anomalies (users/groups/custom SAs). Every resource-level and
+                   billing-account guard is preserved. Live project-IAM audit is
+                   clean; 76 D2 + 160 spine tests pass. The human re-runs --apply
+                   (unchanged command). See spine DECISIONS 018.
+notes (resolved):  The fix (spine 335539f) kept every RESOURCE-level check (topic
                    publish policy = Google budget alerter only; function
                    private + no-retry; exact detach-role binding; budget shape;
                    trusted deployer via the 2233df2 casefold). DEMOTE the
