@@ -91,6 +91,40 @@ Analysis — YES, and the machinery is closer than it looks:
   step auditable and rollbackable; human gate approves axis adoption in
   early eras. Milestone: post-M3 (needs curator agents + replay tooling).
 
+## Sessions table — schema sketch (owner directive + riff, 2026-07-21)
+
+Owner: all sessions in a table; session id = alphanumeric + timestamp;
+riff requested on sub-agents. Sketch, grounded in existing law:
+- The id instinct is ALREADY REALIZED by our id discipline: a ULID is
+  a 48-bit timestamp + randomness, lexicographically time-sortable
+  alphanumeric — the id IS the timestamp. run_id/prompt_id/message_id
+  are ULIDs today (A-016/A-017); rev_uid/event_uid likewise.
+- `thread` already exists in spine (C.2). Add at durable-sessions time
+  (M2/M3, per the perpetuity directive below):
+  session_message(message_id ULID PK, thread_id FK, parent_id ULID —
+  the ADR-016 tree, run_id, role, content, thinking, events JSONB,
+  agent_id, machine_id, ts). Append-only; tombstones never deletes.
+- SUB-AGENTS: child conversations are the SAME table, own thread_id,
+  plus lineage: thread gains parent_thread_id + spawn_run_id (which
+  run of which parent thread spawned it). Sub-agent sessions form a
+  FOREST hanging off top-level threads — the FOURTH instance of the
+  one parent-pointer shape (memory_revision lineage, message tree,
+  Symphony attempt branches, now thread spawning). Deck law unchanged
+  (sub-agents never card); the Cube/Ant Farm walk the lineage; audits
+  can descend premiere → sub-agent work. Retention: perpetuity
+  directive applies.
+- PRIOR ART to examine at the tools deep-dive: Code Puppy (owner recall:
+  stores memories/state with sub-agents locally) — its DBOS plugin
+  checkpoints every agent step (inputs, LLM responses, tool calls) to
+  SQLite/Postgres; also Claude Code's per-subagent persistent `memory`
+  dirs. Both are candidate patterns for sub-agent session persistence.
+
+## Gate-day tactical findings (2026-07-21, cont.)
+
+- MARKDOWN RENDERING missing in chat pane: model output shows raw
+  pipes/asterisks (screenshot evidence). Table-stakes across all models.
+  → packet H8 (with model-visibility from earlier feedback).
+
 ## Owner directive: complete logs in perpetuity
 
 Keep COMPLETE logs of all conversations in perpetuity, until cost forces

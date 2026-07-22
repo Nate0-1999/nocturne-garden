@@ -376,6 +376,20 @@ before the relay continues.
   re-render next call; edit flow with CAS conflict surfacing; manual pin
   toggle. Verification per B.6 rules 7 AND 8 (scripted checks + an executed live
   SOP walkthrough with prose observations). Nodes: P1.2.1d, P1.3. (Deps: H5.)
+- **H8 — Gate-day polish: markdown + model visibility.** Sections: C.1
+  web/, B.6 rules 7+8, NATES_VISION, garden/notes/gate-day-feedback.md +
+  scorer-evolution.md (gate-day findings). Deliver: (1) MARKDOWN
+  rendering of assistant content in the chat pane — sanitized subset
+  (headings, bold/italic, lists, tables, fenced code with monospace
+  styling; NO raw HTML passthrough — render as text; theme-token
+  styled); user messages stay plain text; (2) the ACTIVE MODEL visible
+  in the thread header/top bar (read from config; per-thread selector
+  remains M2). Verification per B.6 rules 7+8 including a rendering
+  screenshot of a markdown-heavy reply (table + code block) at desktop
+  and 390px, and an SOP step confirming raw-HTML input renders inert.
+  Nodes: P2, P3. (Deps: H5. Claimable once the human-use hold clears;
+  H6 precedes by board order.)
+
 - **H7 — Envelope v1.12 & loop controls.** Sections: C.7 (as amended), ADR-014
   (M1 subset). Deliver: daemon behavior + envelope models for run.started,
   run.cancel (confirmed abort, work preserved), prompt.queued
