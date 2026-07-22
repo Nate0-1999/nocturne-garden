@@ -66,10 +66,19 @@ live rollout. Not overfit — schedule with OQ-15.
   makes replay-reconstruction an acceptance test. The owner's first
   add-back (2026-07-21) is training row one.
 
-## HORIZON candidate: agentic axes — the curator grows its own instruments
+## HORIZON candidate: agentic axes — the Chrysopoeia grows its own instruments
+
+TERMINOLOGY (aligned with owner 2026-07-21): the CHRYSOPOEIA is the
+learning loop — it changes the ALGORITHM (weights, features, injection).
+The CURATORS are the M3 maintenance agents — they tend the CONTENTS
+(dedup merges, splits, promotion, staleness, quarantine). Axis discovery
+is Chrysopoeia work; at the horizon, curator-class agents may serve as
+the Chrysopoeia's hands (running the feature-search Symphony). Mnemonic:
+curators ask "is this memory in good condition?"; the Chrysopoeia asks
+"did we show the right memories?"
 
 Owner (2026-07-21): could the scorer's AXES themselves be added and
-relegated over time by the curators, optimizing injection performance?
+relegated over time, optimizing injection performance?
 Analysis — YES, and the machinery is closer than it looks:
 - RELEGATION is already law: the null-rule pattern (omit a feature,
   renormalize remaining weights) + scorer_config versioning retire an
