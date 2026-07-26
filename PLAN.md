@@ -179,9 +179,24 @@ amending the spec) and resets the row to TODO.
    milestone, REFUSE the role** — end the session instructing the human to
    launch a fresh one (different model preferred). A judge with build
    context is a rubber stamp.
-3. **BUILDER** — otherwise: claim the next eligible packet (Section 1 rules)
+3. **SCOUT** (SPEC B.6 rule 9) — milestone progress is gated on a HUMAN
+   gate: a HUMAN packet row, or a HUMAN USE HOLD note on a DONE packet
+   (e.g. H5's hold). Do NOT claim a build packet. Your claim: append a
+   scout note (session tag) under the gated row and commit. Execute the
+   gate's checklist — H5's is garden/notes/h5-closing-checklist.md, agent
+   tiers — as a rule-8 SOP through live browser use, exactly as the owner
+   would, under machine_id '<gate>-sop-verification' (events
+   hygiene-excluded per SPEC v2.7); classify each item PASS / FAIL /
+   NEEDS-TASTE; tombstone your fixtures (record ids); write
+   verification/<gate>/SOP-SCOUT.md in the harness repo + a handoff
+   report; FAILs → Blight Protocol / flag for owner consultation;
+   NEEDS-TASTE → listed for the owner's personal session. You never clear
+   the hold — only the owner does. If a scout report for this gate
+   already exists and ground is unchanged, report so and stop (no
+   re-scouting unchanged ground).
+4. **BUILDER** — otherwise: claim the next eligible packet (Section 1 rules)
    and follow its charge (Section 5).
-4. **NOBODY** — board shows all DONE and J passed: M1 is complete. Write a
+5. **NOBODY** — board shows all DONE and J passed: M1 is complete. Write a
    closing report; instruct the human that M2 planning opens (SPEC B.1:
    M3 re-plans then too). Build nothing.
 
