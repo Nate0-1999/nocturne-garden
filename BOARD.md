@@ -31,4 +31,4 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Gate scout notes
 
-- H5 — SCOUT IN_PROGRESS — codex / 2026-07-27 / 86af
+- H5 — SCOUT DONE — codex / 2026-07-27 / 86af — report 020; FAIL; HUMAN USE HOLD remains
