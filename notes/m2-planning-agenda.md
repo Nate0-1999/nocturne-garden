@@ -76,3 +76,24 @@ better algorithm for our scale). NOT yet law — planning input.
   entity/importance (queued); ragged features via the null rule; trees
   handle missing natively. The scoreboard metric (replay win-metric)
   remains the open owner-taste decision.
+
+## Chrysopoeia ops answers (owner Q&A, 2026-07-27)
+
+- CADENCE, two decoupled clocks: RE-FIT generously (every ~25 hygiene-
+  passing gate events + nightly cron — curator-trigger pattern); GO-LIVE
+  rarely (only on time-split replay win; early era also passes the
+  hyperparameter console for owner approval). Version changes never move
+  ground under a running thread (prepare-time scoring + scorer_version
+  stamps).
+- COMPUTE: palace-anchored like the curators — a scheduled Cloud Run job
+  beside the palace. Rungs 1-2 are sub-second single-CPU numeric solves
+  (no GPU, no LLM calls; pennies/month, D2-compatible); rung 3 still
+  CPU-seconds. First era may use a manual /retrain command from the
+  harness.
+- DISSEMINATION: none needed — clients never score locally; every
+  harness calls spine inject/prepare and the SPINE scores with the
+  active scorer_config row. Activation = one row flip; all machines
+  serve the new version on their next thread; zero client sync, zero
+  skew. Offline replicas RECOMPUTE weights from their log (never sync);
+  cloud head's active version is authoritative on reconnect. Shared
+  palaces carry their own scorer_config (per-palace learning).
