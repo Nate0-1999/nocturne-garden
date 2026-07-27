@@ -28,3 +28,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | J  | Judge                          | I1                                | TODO        |                              |         |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
+
+### Gate scout notes
+
+- H5 — SCOUT IN_PROGRESS — codex / 2026-07-27 / 86af
