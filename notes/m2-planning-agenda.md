@@ -39,3 +39,40 @@ sizes, indexed fields, language config) for hybrid retrieval;
 extraction anti-pattern SAMPLES (negative examples in the instruction,
 per the samples principle); verification-principal enforcement becomes
 real (not string-convention) at M4 identity.
+
+## Chrysopoeia methodology sketch (owner riff, 2026-07-27)
+
+Sharpens agenda item 1; refines decision 010's "SGD" wording (same phasing,
+better algorithm for our scale). NOT yet law — planning input.
+
+- BATCH EXACT RE-FIT over online SGD: at hundreds of events the whole
+  hygiene-filtered log re-solves exactly (convex). Gate events become
+  pairwise ranking constraints ("added-back should outscore removed in
+  that context"); hinge loss + weights ≥0 summing to 1 = LP/QP —
+  normalization becomes a CONSTRAINT, not a patch. Signal-class weights
+  (C5) weight the constraints. b_m fitted with shrinkage (regularized;
+  sparse memories can't earn wild biases); the instant never-kill bias
+  stays online (safety response, not learning). Solver: scipy/sklearn/
+  cvxpy-class batteries — NO Gurobi (license = a third onboarding secret;
+  6-variable problem needs no cannon). Perfect fit with the existing
+  invariant: "log is primary; weights recomputed from it, never synced."
+- CHAMPION/CHALLENGER (owner): incumbent scorer serves every thread;
+  challengers train OFFLINE with zero latency pressure; go-live only on
+  TIME-SPLIT replay win (train ≤T, beat incumbent on events >T);
+  scorer_version stamp; instant rollback. Training cost is irrelevant;
+  interpretability is the only real constraint.
+- INTERPRETABILITY AS CONTRACT, not model class: any scorer qualifies if
+  it emits honest per-feature contributions for gate cards.
+- MODEL-CLASS LADDER, each rung earned by data volume + replay win, human
+  gate approves class jumps in early eras:
+  1. linear combiner (now → ~1k events; contributions exact);
+  2. learned feature shaping / GAM (learn per-feature response curves,
+     e.g. per-kind recency half-lives; still additive, contributions
+     still exact, inference lookup+sum);
+  3. gradient-boosted trees / LambdaMART (interactions; SHAP
+     contributions — slight explanation-fidelity cost, replay decides);
+  4. learned-embedding rankers (JEPA-class) at shared-palace data scale.
+- FEATURE GROWTH robustness: 6 live + f_loc (law, M3) + f_gen/f_phase/
+  entity/importance (queued); ragged features via the null rule; trees
+  handle missing natively. The scoreboard metric (replay win-metric)
+  remains the open owner-taste decision.
