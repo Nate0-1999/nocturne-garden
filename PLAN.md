@@ -193,7 +193,11 @@ amending the spec) and resets the row to TODO.
    NEEDS-TASTE → listed for the owner's personal session. You never clear
    the hold — only the owner does. If a scout report for this gate
    already exists and ground is unchanged, report so and stop (no
-   re-scouting unchanged ground).
+   re-scouting unchanged ground). A gated row with NO written checklist:
+   derive one from the packet's charge and its named spec sections,
+   commit it as garden/notes/<gate>-closing-checklist.md marked PROPOSED
+   (owner blesses or amends it), then execute its agent-safe tiers —
+   a missing file is work to do, not a reason to stop.
 4. **BUILDER** — otherwise: claim the next eligible packet (Section 1 rules)
    and follow its charge (Section 5).
 5. **NOBODY** — board shows all DONE and J passed: M1 is complete. Write a
