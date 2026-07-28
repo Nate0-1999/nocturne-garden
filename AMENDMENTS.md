@@ -638,6 +638,27 @@ law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
          [slope:<λ> added by the owner's pen 2026-07-28, pre-claim:
          the owner's ratified marginal-price rule; the hull is part of
          the law so the λ-crossing is unique on a discrete table.]
+       [Calibration record, owner's pen 2026-07-28. On the owner's
+         reference chart of the budget tier (frontier, prices read
+         approximately: 44.4/$0.09, 51.2/$0.20, 55.0/$0.53, 57.1/$0.60,
+         60.7/$1.15), elbow computes signed offsets 0, +.10, -.05,
+         +.03, 0 and selects 51.2 — matching the owner's independently
+         stated "52 today" with zero configuration. The owner's
+         underlying intent, recorded for whoever tunes role policies:
+         buy the COMMODITY TIER — the capability level competition has
+         already priced to the bone — and do not pay the scarcity
+         premium single models charge for the last few index points.
+         The dense pocket of near-frontier models crowding just above
+         the elbow is the market confirming that tier (the same skipped
+         pocket noted under slope as M3 diversity shards); density is
+         the market's echo of the elbow, not an independent selection
+         signal, which is why no density policy exists. elbow is
+         therefore the recommended chat policy value at enable time.
+         slope:<λ> remains for expressing an absolute willingness-to-
+         pay, with a measured caution: λ=0.5 is far too generous for
+         the budget tier — on this chart it buys to the top; the
+         owner's revealed rate there is nearer $0.03-0.05 per index
+         point.]
        floor:<n> — A-020(a)'s rule unchanged: lowest prompt price with
          intelligence_index >= n; ties by completion price, then permaslug.
      Table sourcing, the 24-hour cache, per-thread resolution timing,

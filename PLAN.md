@@ -61,7 +61,10 @@ need in files; the runners after you will have only what you leave in files.
 
 **STEP 1 — Law.** Read `garden/PLAN.md` (this file) top to bottom. Read
 `garden/AMENDMENTS.md` — enacted completions there are law, equal to the
-spec. Read the `CLAUDE.md` / `AGENTS.md` ground rules in any repo you will
+spec. Read `garden/GLOSSARY.md` — the project's proper nouns; every term
+in law is used in its glossary sense, and if you coin or meet an
+undefined term, PROPOSE its entry in your handoff report. Read the
+`CLAUDE.md` / `AGENTS.md` ground rules in any repo you will
 touch. Do NOT read the whole spec yet — your packet will name its sections.
 
 **STEP 2 — Ground truth.** Read `garden/BOARD.md`. Read the LAST handoff
