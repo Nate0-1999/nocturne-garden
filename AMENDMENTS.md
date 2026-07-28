@@ -562,7 +562,7 @@ gap: A-020 fixed one economic policy (a flat floor) for one role (chat), and
      inherit a bargain-hunting policy fit only for high-volume filtered
      work, and a flat floor cannot follow a drifting frontier.
 law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
-     role-generic type with exactly four M1 values:
+     role-generic type with exactly five M1 values:
        pinned:<model> — the named model verbatim (existing chat_model
          syntax); no benchmark table consulted.
        max — the model with the highest intelligence_index in the cached
@@ -605,6 +605,39 @@ law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
          distance rule — which on a concave frontier could select a
          worse-than-average point — replaced by signed offset, an
          identical ranking on the intended side of the chord.]
+       slope:<λ> — pay for intelligence until its marginal price
+         exceeds λ, a positive number in prompt-dollars per M tokens
+         per intelligence-index point (raw units, never normalized).
+         Compute the frontier exactly as defined under elbow, sorted by
+         intelligence_index ascending, in raw (intelligence_index,
+         prompt price) space — no logs, no normalization. Take its
+         LOWER CONVEX HULL: the chain of frontier models running from
+         the cheapest to the most intelligent such that every frontier
+         model lies on or above every chain segment — the taut string
+         stretched beneath the points. Hull segment slopes
+         (delta price / delta intelligence_index) are non-decreasing by
+         construction, so the slope crosses any λ at most once; models
+         the hull skips are strictly worse buys than the hull vertices
+         bracketing them. The selection is the upper endpoint of the
+         last hull segment whose slope is <= λ — the most intelligent
+         model reachable while every marginal index point still costs
+         <= λ. If the first segment's slope already exceeds λ, select
+         the hull's cheapest vertex; if no segment's slope exceeds λ,
+         select the hull's most intelligent vertex. Collinear frontier
+         models on a hull segment count as hull vertices; remaining
+         ties break by cheaper prompt price, then permaslug.
+         Worked example: frontier (54, $0.90) (55, $1.00) (55.3, $1.60)
+         (58, $1.70) (65, $9.00). Adjacent secant slopes 0.10, 2.00,
+         0.04, 1.04 whipsaw around any threshold, but the lower hull is
+         (54, $0.90)-(55, $1.00)-(58, $1.70)-(65, $9.00) with slopes
+         0.10, 0.23, 1.04 — monotone — so at λ=0.5 the crossing is
+         unique and the selection is (58, $1.70). Design intent for M3,
+         non-binding, nothing built now: the frontier models a hull
+         segment skips — the dense pocket around the selection — are
+         natural diversity shards for Symphony search pools.
+         [slope:<λ> added by the owner's pen 2026-07-28, pre-claim:
+         the owner's ratified marginal-price rule; the hull is part of
+         the law so the λ-crossing is unique on a discrete table.]
        floor:<n> — A-020(a)'s rule unchanged: lowest prompt price with
          intelligence_index >= n; ties by completion price, then permaslug.
      Table sourcing, the 24-hour cache, per-thread resolution timing,
@@ -623,7 +656,7 @@ law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
      do not exist until then (B.5). Design intent recorded for those
      milestones: price a role by the blast radius and reviewability of its
      errors, not by task difficulty — high-volume judge-filtered leaf work
-     runs economic policies (elbow, floor); low-volume compounding roles
+     runs economic policies (slope, elbow, floor); low-volume compounding roles
      (orchestrators, judges, curators) run pinned or max. A spend-rate
      policy (budget:$/hr) is deliberately absent until the M2 Vitals spend
      lanes (v2.17) supply measured burn.
@@ -638,9 +671,10 @@ law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
      points falls back to max over that frontier; all other degenerate or
      unavailable-table cases keep A-020(f)'s fail-open to the static
      chat_model default.
-why: The owner ratified this grammar in the 2026-07-27 design session: four
-     auditable policy points over one cached numeric table, assigned per
-     role, replacing both a single magic floor and any classifier. The
+why: The owner ratified this grammar across the 2026-07-27/28 design
+     sessions: five auditable policy points over one cached numeric table,
+     assigned per role, replacing both a single magic floor and any
+     classifier. The
      elbow's normalization is pinned in law because a knee is only
      auditable when its axis scaling is explicit — and log price because
      frontier prices span orders of magnitude. The role table exists so the
