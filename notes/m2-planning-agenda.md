@@ -154,3 +154,16 @@ Owner ALIGNED on append-only spend_event schema + axes. Additions:
   problem for; D2 grounds). BigQuery = designated OVERFLOW path only if
   analytics outgrow the instance (append-only ULID table streams there
   trivially); never a second system before then (two-secrets onboarding).
+
+## Spend ledger vocabulary + line-item form (owner, 2026-07-27)
+
+RENAMES (owner): kind → PRODUCT_TYPE; driver → QUANTITY_TYPE +
+UNIT_OF_MEASURE + QUANTITY (numeric). basis stays BASIS (glossary gloss:
+confidence — measured/allocated/estimated). The split upgrades the schema
+to RECEIPT-LINE NORMAL FORM: one spend line per price class — an LLM
+request emits 3-4 lines (input_fresh / input_cached / cache_write /
+output), grouped by shared ref (broker generation id); unit_price
+derivable (cost/quantity). Kills the per-token-class column cluster;
+cache-efficiency = quantity arithmetic; "cost of a request" = GROUP BY
+ref. Infra lines read identically (product_type=infra.db.storage,
+quantity_type=storage, unit=GB-month). Row volume ~3-4×, still trivial.
