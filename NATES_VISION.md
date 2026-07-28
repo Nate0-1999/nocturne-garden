@@ -237,3 +237,11 @@ want. And devices that WRITE, not just show: a model-parameters block —
 temperature, top_p, the works — as an Ableton-esque device strip with
 real knobs. Every knob bound to a real parameter, every turn journaled,
 nothing decorative.
+
+Addendum (2026-07-28): I don't care what people do in their own code —
+document what we recommend modifying and what we don't; that's a larger
+project rule (document the edges, don't police the interior). The
+intuition is Ableton: everyone is making music, but they each want
+different ways to SEE and MODIFY things while making it. Modules should
+be resizable to some extent. And ship a nocturne-plugin-contributor
+skill with the repo so agents can roll and contribute plugins for you.
