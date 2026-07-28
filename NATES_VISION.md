@@ -245,3 +245,9 @@ intuition is Ableton: everyone is making music, but they each want
 different ways to SEE and MODIFY things while making it. Modules should
 be resizable to some extent. And ship a nocturne-plugin-contributor
 skill with the repo so agents can roll and contribute plugins for you.
+
+Second addendum (2026-07-28): the contributor skill should be written
+assuming the agent knows NOTHING about the repo — motivate all the main
+decisions so they can effectively build things. Heavy on exposing the
+DATA that builds other visualizers and input modules. And to be clear:
+visualizers AND input modules — it was never just visualizers.
