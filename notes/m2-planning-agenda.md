@@ -131,3 +131,26 @@ and Vitals; the dashboard is one consumer of this, not the thing itself).
 - HORIZON PAYOFF: memory_id on the ledger enables cost-per-citation —
   "what has this memory cost vs earned" as a curator slop/promotion
   signal. The economics term rides the schema key.
+
+## Spend ledger: views, glossary, storage (owner alignment, 2026-07-27)
+
+Owner ALIGNED on append-only spend_event schema + axes. Additions:
+- CANONICAL DERIVED VIEWS (materialized, minute-refresh, never
+  authoritative): v_spend_rate(bucket, lane_dim, lane_value, usd, tokens)
+  powering the strip lanes — total, by purpose (memory curation =
+  curation+extraction+embedding), by model (floor routing made visible),
+  by agent/sub-agent (origin_agent exact vs LIKE 'run/root.N%' subtree);
+  plus v_thread_cost, v_run_cost, v_memory_cost, v_cache_efficiency
+  (tokens_cached/tokens_in — proves KV stickiness earns its keep).
+- GLOSSARY (receipt-language; ships with the DDL): kind = what was
+  bought; driver = what the meter counted; purpose = which job it
+  served; lineage = who spent it doing what; basis = how sure the number
+  is (measured/allocated/estimated); behavior = how the cost moves
+  (variable/fixed/step). Row-reads-as-a-sentence is the intuition test.
+- STORAGE DECIDED: same Cloud SQL Postgres as the palace, own module —
+  the presence precedent ("one spine, two schemas"; extraction = deploy
+  change). ~1M skinny rows/yr = milliseconds for bucketed GROUP BYs.
+  AlloyDB rejected (premium baseline for analytics muscle we lack the
+  problem for; D2 grounds). BigQuery = designated OVERFLOW path only if
+  analytics outgrow the instance (append-only ULID table streams there
+  trivially); never a second system before then (two-secrets onboarding).
