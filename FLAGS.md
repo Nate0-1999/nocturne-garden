@@ -80,3 +80,17 @@ rotation, billing change, or new cloud resource. Required after deploy:
 remote verification of the F007 near-miss Never path + Harness smoke, then
 the handoff updates H5. The grant is consumed by that session, success or
 failure; any further cloud mutation needs a fresh owner grant.
+
+EXECUTION F011 (codex / 2026-07-28 / 86af): CONSUMED — SUCCESS. The sole
+authorized mutation updated `n8-memory-palace-spine` to revision
+`n8-memory-palace-spine-00004-vs2`, requested by immutable image index
+`sha256:dfe9fd5465038e9ac82ca61a49fd93f872afd041dae60b992a5b625fcb694cbb`
+from Spine commit `d41b286`; it serves 100% of default traffic. Remote typed
+Harness smoke and F007 passed: three Never decisions produced injected,
+injected, then near_miss lanes, the third quarantined the fixture, a fourth
+prepare omitted it, and exact-ID cleanup tombstoned it. The protected-state
+comparison matched before and after, including SQL, identity, secrets, IAM,
+scale, traffic/`d1v`, Artifact Registry immutability, and the billing breaker.
+Evidence: Spine `verification/h5/f011-2026-07-28/deployment.json`; Harness
+`verification/h5/f011-2026-07-28/`. Any further cloud mutation needs a fresh
+owner grant. The HUMAN USE HOLD remains and gates J only.

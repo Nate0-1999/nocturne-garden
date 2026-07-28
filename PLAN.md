@@ -20,7 +20,7 @@ Amending the master is a human act — agents propose via FLAGS, or enact
 qualifying COMPLETIONS via AMENDMENTS.md (Section 2), and never edit
 SPEC.md themselves.
 
-**Cloud footprint (D1 + D2; live-audited 2026-07-21):** GCP project
+**Cloud footprint (D1 + D2; live-audited 2026-07-28):** GCP project
 `n8-memory-palace` is ACTIVE and billed, with a $100/month
 BILLING_ACCOUNT-scoped budget (`82be62a3-…`) alerting at 50/90/100%. The D2
 billing circuit breaker is ARMED: that budget is wired (schema 1.0) to the
@@ -37,7 +37,9 @@ has backups/PITR and deletion protection enabled, and is migrated to Alembic
 `0002 (head)`. Three region-pinned secrets and the dedicated least-privilege
 `spine-runtime` identity feed one Gen2 Cloud Run service from the immutable
 regional `spine` Artifact Registry repository. Revision
-`n8-memory-palace-spine-00003-pjh` serves 100% of default traffic at
+`n8-memory-palace-spine-00004-vs2`, built from Spine commit `d41b286` and
+requested by immutable image index `sha256:dfe9fd5465038e9ac82ca61a49fd93f872afd041dae60b992a5b625fcb694cbb`,
+serves 100% of default traffic at
 `https://n8-memory-palace-spine-713925718873.us-central1.run.app`. GCS was not
 created: it is not an M1 dependency, and snapshot lifecycle remains M4 horizon.
 
@@ -431,8 +433,8 @@ before the relay continues.
   reply (table + code block) at desktop and 390px, an SOP step confirming
   raw-HTML input renders inert, and a scripted check that a /remember
   memory lands with non-empty keywords.
-  Nodes: P2, P3. (Deps: H5. Claimable once the human-use hold clears;
-  H6 precedes by board order.)
+  Nodes: P2, P3. (Deps: H5. H6 precedes by board order; the H5 human-use
+  hold gates J only.)
 
 - **H7 — Envelope v1.12 & loop controls.** Sections: C.7 (as amended), ADR-014
   (M1 subset). Deliver: daemon behavior + envelope models for run.started,
