@@ -20,7 +20,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H3 | Agent + memory tools           | H2, S6                            | DONE        | codex / 2026-07-20 / 7c3a    |         |
 | H4 | Web shell + chat               | H1, H7                            | DONE        | codex / 2026-07-20 / c84d    |         |
 | H5 | The gate                       | D1, H4                            | DONE        | codex / 2026-07-28 / 86af    | report 022; remote F007 PASS; HOLD gates J only |
-| H6 | Memory panel                   | H5                                | IN_PROGRESS | codex / 2026-07-28 / 86af    |         |
+| H6 | Memory panel                   | H5                                | DONE        | codex / 2026-07-28 / 86af    | report 023 |
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | TODO        |                              |         |
 | H9 | Model policy routing A-020/021 | H5                                | TODO        |                              |         |
