@@ -112,6 +112,32 @@ and this file disagree, law wins — then this file gets fixed.
   pinned / max / elbow / slope:<λ> / floor over the broker's benchmark
   table; KV-cache-sticky (session_id = thread_id); never classifier
   routing.
+- **the frontier / the lower hull** — of the broker's benchmark table:
+  the non-dominated price-intelligence set, and the taut string
+  stretched beneath it. Hull slopes only ever increase, so they are the
+  true marginal prices of intelligence (A-021).
+- **the elbow** — the frontier model that undercuts the frontier's
+  average exchange rate of log-price for intelligence by the most: the
+  point of diminishing returns, zero configuration. Reproduced the
+  owner's independent "52 today" on first calibration; the recommended
+  chat policy at enable time.
+- **the commodity tier / scarcity premium** — the capability level
+  competition has already priced to the bone, versus what lone
+  top-of-frontier models charge for the last few index points. The
+  owner's standing intent: buy the first, never pay the second.
+- **the pocket** — the dense cluster of near-frontier models crowding
+  just above the elbow; the market's echo of the commodity tier, never
+  an independent selection signal; earmarked as M3 Symphony diversity
+  shards.
+- **cache-sticky routing** — session_id = thread_id on every broker
+  request, pinning provider and model from turn one so a run's growing
+  prefix re-bills at cache-read prices. The cheapest token is the one
+  already cached (A-020).
+- **the blast-radius principle** — price a role by the blast radius and
+  reviewability of its errors, never by task difficulty: economic
+  policies where volume is high and errors are judge-filtered (leaf
+  search); pinned or max where errors compound (orchestrators, judges,
+  curators).
 
 ## Visualization and plugins
 
