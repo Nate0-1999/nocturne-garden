@@ -754,3 +754,54 @@ law: The memory gate has two typed stages under the same run and hard pause.
 why: This completes the edit/expire consequence ADR-005 and C.4 already
      promise, using the existing gate lifecycle and PATCH contract rather than
      prebuilding H6's memory panel or trusting stale browser state.
+
+[A-024] [H6] [SPEC C.7 memory.panel.update; C.6 live panel] [P1.2.1d, P1.3]
+gap: C.7 names `memory.panel.update` as an M1 type, but gives it no direction
+     or payload, so H6 cannot expose C.4 list, feedback, and PATCH behavior
+     without inventing an undisclosed browser authority boundary.
+law: `memory.panel.update` is bidirectional and requires outer `thread_id`.
+     Its C→D payload is a discriminated union with exactly these required
+     members:
+       `{action:"refresh"}`;
+       `{action:"remove", memory_id}`;
+       `{action:"edit", memory_id, expected_revision, body}`;
+       `{action:"pin", memory_id, expected_revision, pin}`.
+     Memory IDs are UUIDs, `expected_revision >= 1`, body is a string, and pin
+     is boolean. The D→C payload is one of:
+       `{action:"state", request_id,
+         result:"refreshed"|"removed"|"edited"|"pin_changed",
+         items:[{memory:MemoryUnit,in_context:bool}], total}`;
+       `{action:"conflict", request_id, operation:"edit"|"pin",
+         memory:MemoryUnit, message}`;
+       `{action:"error", request_id,
+         operation:"refresh"|"remove"|"edit"|"pin", code, message}`.
+     `request_id` echoes the triggering C→D envelope id. `code` and `message`
+     are safe display strings and never carry credentials, response bodies, or
+     raw exception text.
+
+     The daemon derives principal, machine, editor, PATCH reason, and current
+     injection ID from trusted configuration and thread state; the browser
+     supplies none of them. State contains every ACTIVE C.4 list unit for that
+     configured principal, in C.4 stable order, and `total` is that filtered
+     count. `in_context` is true only for a member still retained in the
+     thread's successfully committed injection.
+
+     Remove is valid only for an `in_context` unit. It submits C.4
+     `mid_thread_removed` using the server-held injection ID. Only after
+     `{ok:true}` does the daemon remove that unit from the thread's current
+     rendered block and add its ID to the thread's memory-tool exclusions;
+     every later model call receives exactly that updated block, with stale
+     dynamic memory blocks removed from provider history. Failure changes
+     neither context nor exclusions.
+
+     Edit and pin call C.4 PATCH with the displayed expected revision,
+     daemon-owned `editor="user"` and machine ID, and reason `panel/edit` or
+     `panel/pin`. The daemon never retries a human CAS conflict: it returns the
+     conflict's current MemoryUnit so the UI replaces the stale row, visibly
+     explains the conflict, and requires a fresh action. A successful mutation
+     returns a refreshed state. Pin affects future injection candidacy; neither
+     edit nor pin rewrites the already-frozen current-thread injection.
+why: This fills the one wire/state seam H6 needs using only already-promised
+     C.4 operations, preserves server-held identity and injection authority,
+     and makes mid-thought removal bind the next model call without adding
+     polling, persistence, retry automation, or a new API behavior family.
