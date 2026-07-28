@@ -208,3 +208,19 @@ open it in a browser, look at the screen, click around, type things, and
 watch what happens — SOPs like we write for humans, executed by agents,
 with their observations in prose. If it feels wrong to the agent walking
 through it, I want that written down before it ever feels wrong to me.
+
+## 15. The spend dashboard — Ableton's bottom strip (added 2026-07-27)
+
+At the bottom of the main window, looking and functioning a bit like
+Ableton: a dockable strip of line graphs showing SPEND PER UNIT TIME —
+lanes selectable by agent, sub-agent (the origin_agent subtree), model,
+memory curation, category, and total. Cool dashboard AND usable: it is
+the 10%-attention principle made glanceable, the D2 budget's early-warning
+sibling, and the per-model cost lens in one surface. Since the broker is
+OpenRouter, cost arrives in real dollars on every call — we just need a
+bit of logging to attribute it into the categories (the ADR-021-era
+purpose enum + origin_agent tags). Lanes behave like Ableton tracks:
+thin, stacked, hover to scrub values, click a lane to focus it (selection
+focus, same law as the roots); the strip scrubs on the same as_of
+timeline as the rest of the stage. Collapsible — watchable, never
+demanding.
