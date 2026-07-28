@@ -94,3 +94,12 @@ follows; then I1, J).
 - Item 6, POPULATION FEEL: still open — owner's personal session with a
   ~15-20 memory palace; jot "shouldn't be here / should have surfaced"
   notes per gate (M2 scorer-tuning input).
+- Item 6 AMENDED (owner, 2026-07-28): full population-feel verdict is
+  DEFERRED to the real-work era (M3 harness parity — the M1 agent is
+  chat+memory only by law, so "real work" selection judgment is
+  premature). For the hold: seed DUMMY-BUT-PLAUSIBLE memories (~15-20)
+  and do a light sincere pass. Hygiene note: plausible content + honest
+  taps = valid training signal (the scorer learns feature→judgment
+  relationships, not content truth); never click insincerely. The deep
+  relevance verdict accumulates naturally once the harness does real
+  work — gate feedback is the permanent channel, not a one-time exam.
