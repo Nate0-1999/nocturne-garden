@@ -191,3 +191,8 @@ tenses: ledger (past), Vitals strip (present), walls (future).
 NOTE (2026-07-28, Editor Pass III): the cost sections of this file are now
 LAW — consolidated into SPEC ADR-024 (The Cost Domain). This file remains
 planning context; ADR-024 is authoritative where they differ.
+
+ITEM 3 RESOLVED (2026-07-28, SPEC v2.25 / D.2 068): unified queue law —
+birthplace routing (deck flashcards with passive approval on literal
+visibility vs Palace queue module), approval_mode signal classes, no
+expiry timers. See ADR-021.

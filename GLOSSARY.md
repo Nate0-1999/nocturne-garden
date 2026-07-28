@@ -46,8 +46,15 @@ and this file disagree, law wins — then this file gets fixed.
 - **reinforcement** — a hard-duplicate save coalesces into a stats bump
   on the existing unit: independent re-derivation IS importance signal.
 - **the approval queue** — the palace's front porch: candidates and
-  proposals from machine producers (extraction, seeds, curators, judges)
-  wait for the owner's tap; invisible to injection until approved.
+  proposals from machine producers wait here; invisible to injection
+  until approved. Renders in two places by BIRTHPLACE: thread/run-born
+  cards ride their origin's deck flashcard; corpus-born proposals live
+  in the Palace queue module.
+- **passive approval** — deck-ridden queue items actually rendered in
+  the viewport and passed without denial are approved when the card
+  resolves (enter-unless-denied, the gate's grammar on the write door);
+  logged as weak signal; contradictions and collapsed groups never
+  passive-approve.
 - **candidate** — a memory unit's status while waiting in the queue.
 - **seed ingestion** — uploading markdown that splitters break into
   atomic candidates (the cold open; ADR-019).
