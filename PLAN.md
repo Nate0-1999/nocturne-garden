@@ -123,6 +123,18 @@ FAILED_JUDGMENT (see verdict path).
 **Rules:**
 - Claim only a TODO packet whose deps are all DONE. If several qualify,
   take the lowest id (determinism beats optimization).
+- EXCLUSIONS (owner, 2026-07-28; D.2 065): a packet may declare an
+  exclusion set — packets it must never be IN_PROGRESS alongside
+  (declared in the board's Exclusions note; always symmetric). Claim law
+  extends: a packet is claimable only if no excluded packet is
+  IN_PROGRESS. Exclusions express FILE-SURFACE CONFLICTS (same
+  subsystem, likely merge collisions), never ordering — ordering is
+  deps. Dormant under a serial relay (one session = vacuously
+  satisfied); it is the safety that makes CONCURRENT sessions legal:
+  any independent set of ready, mutually non-excluded packets may be
+  claimed by parallel sessions, each still obeying one-packet-per-
+  session and the full boot sequence. The claim-commit remains the
+  lock; a push race means rebase and take the next eligible packet.
 - HUMAN packets or substeps explicitly marked in Section 5 are never claimed
   or executed by an agent. The current D1 packet is relay-owned. D2's
   destructive billing-breaker deployment remains human-only even though its

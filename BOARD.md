@@ -30,6 +30,10 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
+### Exclusions (symmetric; see PLAN §1)
+
+- H6 ⊗ H8 — both edit the harness web SPA (gate/chat surfaces).
+
 ### Gate scout notes
 
 - H5 — SCOUT DONE — codex / 2026-07-27 / 86af — report 020; FAIL; HUMAN USE HOLD remains
