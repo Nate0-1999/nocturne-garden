@@ -54,3 +54,18 @@ RESOLUTIONS (owner consult, 2026-07-27, via the human gate — SPEC v2.16, D.2 0
   sticky actions. Local rendering fix only.
 FIXER inherits all five; re-run only the affected SOP slices (1, 2, 8, 12,
 responsive repeat) before the owner's personal gate session.
+
+[F011] [H5 FIXER] [P1.2.1b, P4] — F006–F010 now pass against the repaired
+Harness and Spine source, but live Cloud Run still serves pre-fix Spine image
+`e0cf50d50283cd2c4f800272b832b8166e299cab`. PLAN §5 says H5 and later Harness
+work use deployed Spine, while the only current grant to mutate that service is
+D1's packet-specific authority; H5 cannot manufacture wider cloud authority as
+a COMPLETION. Minimally, the owner either performs the deployment or grants a
+fresh relay one forward-only update of the existing
+`n8-memory-palace-spine` service from immutable Spine commit `d41b286`, followed
+by remote F007 and Harness smoke verification. The resolution must preserve
+the existing project, region, service, SQL attachment, runtime identity,
+secrets, IAM, max scale, traffic posture, and billing breaker, with no database
+migration, deletes, broad IAM, secret rotation, billing change, or new cloud
+resource. This disturbs only the D1 cloud-mutation boundary and live runtime;
+the repaired product contracts and local evidence do not need redesign.

@@ -19,7 +19,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H2 | spine_client + contract tests  | S2                                | DONE        | codex / 2026-07-20 / db84    |         |
 | H3 | Agent + memory tools           | H2, S6                            | DONE        | codex / 2026-07-20 / 7c3a    |         |
 | H4 | Web shell + chat               | H1, H7                            | DONE        | codex / 2026-07-20 / c84d    |         |
-| H5 | The gate                       | D1, H4                            | IN_PROGRESS | codex / 2026-07-27 / 86af    | FIXER F006–F010; HUMAN USE HOLD |
+| H5 | The gate                       | D1, H4                            | BLOCKED     | codex / 2026-07-27 / 86af    | report 021; F011; HUMAN USE HOLD |
 | H6 | Memory panel                   | H5                                | TODO        |                              |         |
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | TODO        |                              |         |
@@ -33,3 +33,5 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 ### Gate scout notes
 
 - H5 — SCOUT DONE — codex / 2026-07-27 / 86af — report 020; FAIL; HUMAN USE HOLD remains
+- H5 — FIXER BLOCKED — codex / 2026-07-27 / 86af — report 021; F006–F010
+  pass locally; deployed Spine remains pre-fix; F011; HUMAN USE HOLD remains
