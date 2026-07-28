@@ -402,8 +402,10 @@ before the relay continues.
   (headings, bold/italic, lists, tables, fenced code with monospace
   styling; NO raw HTML passthrough — render as text; theme-token
   styled); user messages stay plain text; (2) the ACTIVE MODEL visible
-  in the thread header/top bar (read from config; per-thread selector
-  remains M2); (3) KEYWORDS MANDATE (SPEC v2.7, D.2 050): update the C.6
+  in the thread header/top bar — read from the thread's RESOLVED model
+  (the A-020 floor-routed slug when MODEL_INTELLIGENCE_FLOOR is set,
+  else the static config; per-thread selector remains M2) so H8's
+  display stays truthful the day H9 lands; (3) KEYWORDS MANDATE (SPEC v2.7, D.2 050): update the C.6
   agent-instruction string (2-5 keywords per save) and make /remember
   generate label AND keywords in its one short completion. Verification
   per B.6 rules 7+8 including a rendering screenshot of a markdown-heavy
