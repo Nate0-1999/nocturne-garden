@@ -69,3 +69,14 @@ secrets, IAM, max scale, traffic posture, and billing breaker, with no database
 migration, deletes, broad IAM, secret rotation, billing change, or new cloud
 resource. This disturbs only the D1 cloud-mutation boundary and live runtime;
 the repaired product contracts and local evidence do not need redesign.
+
+RESOLUTION F011 (owner, 2026-07-28, via the human gate — D.2 064): GRANTED,
+single-use and forward-only: a fresh relay session may perform ONE update of
+the existing `n8-memory-palace-spine` Cloud Run service to immutable Spine
+commit `d41b286`, preserving the existing project, region, service, SQL
+attachment, runtime identity, secrets, IAM, max scale, traffic posture, and
+billing breaker — no database migration, deletes, broad IAM, secret
+rotation, billing change, or new cloud resource. Required after deploy:
+remote verification of the F007 near-miss Never path + Harness smoke, then
+the handoff updates H5. The grant is consumed by that session, success or
+failure; any further cloud mutation needs a fresh owner grant.

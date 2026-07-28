@@ -389,7 +389,11 @@ before the relay continues.
   one-tap ✕, modifier reasons, near-miss add-back; hard pause; commit →
   run. Verification per B.6 rules 7 AND 8 (scripted checks + an executed live
   SOP walkthrough with prose observations). Nodes: P1.2.1a–c. (Deps: D1, H4.) The human personally uses the result
-  before the relay continues (Section 7).
+  before the relay continues (Section 7). HOLD RESCOPED (owner,
+  2026-07-28; D.2 064): the HUMAN USE HOLD gates J only — H6/H8/H9/I1
+  build while the owner's real use continues in parallel (the deep
+  population-feel verdict is already deferred to the real-work era per
+  the closing checklist); only the owner clears the hold.
 - **H6 — Memory panel.** Sections: C.6 (live panel), C.4 (feedback, PATCH),
   B.6 rule 7. Deliver: live list; ad-hoc remove → mid_thread_removed →
   re-render next call; edit flow with CAS conflict surfacing; manual pin
