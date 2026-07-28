@@ -224,3 +224,16 @@ thin, stacked, hover to scrub values, click a lane to focus it (selection
 focus, same law as the roots); the strip scrubs on the same as_of
 timeline as the rest of the stage. Collapsible — watchable, never
 demanding.
+
+## 16. Plugins all the way down (added 2026-07-28)
+
+The mock we have is only VERSION ONE of the default opinion. Like
+Ableton: people can roll their own functional plugins, visualizers,
+input devices — and it should be VERY EASY to do. The interface must be
+manipulable this way from the ground up: the default UI is itself built
+of plugins on the rack, a factory preset you can rearrange or replace.
+The cost visualizer is a default plugin — make your own version if you
+want. And devices that WRITE, not just show: a model-parameters block —
+temperature, top_p, the works — as an Ableton-esque device strip with
+real knobs. Every knob bound to a real parameter, every turn journaled,
+nothing decorative.
