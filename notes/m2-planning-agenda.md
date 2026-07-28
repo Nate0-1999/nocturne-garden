@@ -196,3 +196,16 @@ ITEM 3 RESOLVED (2026-07-28, SPEC v2.25 / D.2 068): unified queue law —
 birthplace routing (deck flashcards with passive approval on literal
 visibility vs Palace queue module), approval_mode signal classes, no
 expiry timers. See ADR-021.
+
+ITEM 4 RESOLVED-IN-PRINCIPLE (owner, 2026-07-28 — "lower priority; commit
+after every chat?"): CAPTURE NOW, STRUCTURE LATER. M2 gets a ~20-line
+item: the daemon appends every message to a LOCAL per-thread jsonl as it
+happens (restart-proof; kills the F009 loss class). NOT git: transcripts
+never live in anything with a remote (push-leak vector), git adds nothing
+to an append-only file, and Invariant 11/ADR-016 assign conversation
+history to the spine, not workspace repos. The session_message TABLE +
+message tree + sub-agent forests slide to M3, arriving with the features
+that query them (extraction reads, Cube as_of, multi-machine), BACKFILLED
+from the jsonl — append-only guarantees nothing recorded between now and
+then is ever lost. Perpetuity default; archival tiers stay the parked
+horizon item priced by the spend ledger's storage lines.
