@@ -187,3 +187,7 @@ the meter; walls are config). Natural home: ADR-014/015 run-wall law +
 the M2 instrument packet's config surface; Symphony (beam × depth ×
 price) is the motivating case. With this, the cost front has all three
 tenses: ledger (past), Vitals strip (present), walls (future).
+
+NOTE (2026-07-28, Editor Pass III): the cost sections of this file are now
+LAW — consolidated into SPEC ADR-024 (The Cost Domain). This file remains
+planning context; ADR-024 is authoritative where they differ.
