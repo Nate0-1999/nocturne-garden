@@ -97,3 +97,37 @@ better algorithm for our scale). NOT yet law — planning input.
   skew. Offline replicas RECOMPUTE weights from their log (never sync);
   cloud head's active version is authoritative on reconnect. Shared
   palaces carry their own scorer_config (per-palace learning).
+
+## The spend ledger (owner design session, 2026-07-27)
+
+Expands agenda item 2 from attribution rules into a full subsystem —
+becomes DDL + law in the M2 instrument packet (with the audit instrument
+and Vitals; the dashboard is one consumer of this, not the thing itself).
+
+- TWO COST CLASSES, never silently mixed: METERED events (exact per-action
+  price at source — broker requests return real USD) vs ALLOCATED flows
+  (Cloud SQL instance-hours, storage GB-months, Cloud Run cpu-seconds —
+  allocation is policy, not measurement). Honesty column `cost_basis:
+  measured | allocated | estimated` — the accounting rhyme of ADR-017's
+  MEASURED vs JUDGED.
+- ATOMIC GRAIN: spend_event, append-only, perpetual, ULID PK (owner's
+  "spend unit id" — ULID not UUID per id discipline; the id IS the
+  timestamp). Columns: ts, dotted extensible kind (llm.request,
+  llm.embedding, infra.compute, infra.storage, …), cost_usd (nullable —
+  billing arrives late), cost_basis, tokens in/out/cached, model/provider/
+  quantization (A-020 logging folds in), purpose enum (building/extraction/
+  curation/judge/remember/embedding/scout), principal_id, machine_id,
+  origin_agent path, thread_id/run_id/prompt_id lineage, memory_id
+  (nullable), ref (broker generation id / GCP billing line id), meta jsonb.
+- GRAINS ARE GROUP BYs, NEVER NEW TABLES: "a query" = rollup over
+  prompt_id (embedding event + allocated db sliver); cost per thread /
+  run / sub-agent subtree (origin_agent prefix) / model / memory / hour
+  all derive from lineage columns. Rollups derived, never stored as truth
+  (log primary).
+- SOURCING: broker seam writes llm.* synchronously (A-020e path grown
+  up); daily reconciliation job ingests GCP billing export → infra.*
+  rows AND self-audits ledger-sum vs actual invoice (drift alerted). D2
+  breaker remains the independent backstop.
+- HORIZON PAYOFF: memory_id on the ledger enables cost-per-citation —
+  "what has this memory cost vs earned" as a curator slop/promotion
+  signal. The economics term rides the schema key.
