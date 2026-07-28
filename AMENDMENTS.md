@@ -552,3 +552,121 @@ why: P4 — one human funds the workforce, and input-token spend on growing
      intelligence_index plus per-model pricing; session_id pins model and
      provider from turn one; usage with cached-token details is returned by
      default on every response.
+
+[A-021] [H9] [SPEC C.5; supersedes A-020 clauses (a) and (c)] [P4]
+gap: A-020 fixed one economic policy (a flat floor) for one role (chat), and
+     a quantization filter no measurement supports — intelligence indices
+     are published per model, never per quantization or endpoint, so clause
+     (c) guarded against a difference nothing can observe. The relay's later
+     roles (search-pool workers, orchestrators, curators, judges) must not
+     inherit a bargain-hunting policy fit only for high-volume filtered
+     work, and a flat floor cannot follow a drifting frontier.
+law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
+     role-generic type with exactly four M1 values:
+       pinned:<model> — the named model verbatim (existing chat_model
+         syntax); no benchmark table consulted.
+       max — the model with the highest intelligence_index in the cached
+         benchmark table; ties break by lower prompt price, then permaslug.
+       elbow — the knee of the cost-intelligence Pareto frontier, computed
+         deterministically: take the frontier set (models not dominated on
+         prompt price and intelligence_index; duplicate price/index pairs
+         keep the lexically first permaslug); place each at
+         (intelligence_index, log10 prompt price), each axis min-max
+         normalized over the frontier set; the elbow is the frontier point
+         at maximum perpendicular distance from the chord joining the
+         frontier's cheapest and most-intelligent endpoints; ties break by
+         lower prompt price, then permaslug.
+       floor:<n> — A-020(a)'s rule unchanged: lowest prompt price with
+         intelligence_index >= n; ties by completion price, then permaslug.
+     Table sourcing, the 24-hour cache, per-thread resolution timing,
+     logging of the choice (now including the policy value), the per-thread
+     manual override, and the REJECTION of per-prompt classifier routing
+     all stand as A-020 wrote them. A-020 clauses (b), (d), (e), (f) stand
+     unchanged and apply to every policy; read A-020(d)'s "floor-selected"
+     as "policy-selected (non-pinned)". Env MODEL_INTELLIGENCE_FLOOR is
+     superseded by the policy grammar and is not built.
+     (a2) ROLES. Config binds one policy per agent role. M1 has two roles:
+     chat (env MODEL_POLICY_CHAT, default pinned:<chat_model> — unset
+     preserves today's behavior) and the /remember label agent, which
+     follows the chat thread's resolved model per harness decision 008 and
+     receives no independent policy in M1. Later-milestone roles MUST adopt
+     this same policy type when their milestones arrive; their config keys
+     do not exist until then (B.5). Design intent recorded for those
+     milestones: price a role by the blast radius and reviewability of its
+     errors, not by task difficulty — high-volume judge-filtered leaf work
+     runs economic policies (elbow, floor); low-volume compounding roles
+     (orchestrators, judges, curators) run pinned or max. A spend-rate
+     policy (budget:$/hr) is deliberately absent until the M2 Vitals spend
+     lanes (v2.17) supply measured burn.
+     (c-revised) The quantization filter is struck, not built:
+     Artificial Analysis publishes per-model indices and polices — rather
+     than measures — endpoint precision, and the broker's benchmark rows
+     carry no endpoint dimension. provider_quantizations does not exist.
+     Non-binding future exploration: adopt endpoint-level intelligence data
+     if a source ever publishes it. A-020(c)'s surviving sentence — sort
+     providers by price — applies to every non-pinned policy.
+     (g) DEGENERATE TABLES. elbow over a frontier of fewer than three
+     points falls back to max over that frontier; all other degenerate or
+     unavailable-table cases keep A-020(f)'s fail-open to the static
+     chat_model default.
+why: The owner ratified this grammar in the 2026-07-27 design session: four
+     auditable policy points over one cached numeric table, assigned per
+     role, replacing both a single magic floor and any classifier. The
+     elbow's normalization is pinned in law because a knee is only
+     auditable when its axis scaling is explicit — and log price because
+     frontier prices span orders of magnitude. The role table exists so the
+     economics live where errors are filtered and volume is high, never
+     where errors compound into the palace.
+
+[A-022] [H5 FIXER] [SPEC C.4 commit, C.6, ADR-005] [P1.2.1b]
+gap: SPEC v2.16 requires a near-miss "never show this" veto with the same
+     semantics as removed:never, while C.4 and A-019 still reject every
+     removed decision whose row was shown_as near_miss.
+law: In POST `/v1/inject/commit`, a `removed` item may name an injected or
+     pinned row with any existing removal reason, or a near_miss row only
+     when its reason is `never`. A near-miss ID in both `removed` and
+     `added_back` remains an RFC7807 422 with no write. The desired outcome
+     for a near-miss veto is `removed:never`; an untouched near miss remains
+     NULL. The veto uses exactly the same event transition, scorer-version
+     `never_bias_step`, removals and never_kills increments, quarantine
+     threshold, CAS revision, retry/idempotency rule, and final-block
+     exclusion as removed:never on an injected or pinned row. A-019 browser
+     membership validation uses the same class/reason rule. C.6's gate renders
+     mutually exclusive Add and Never controls for every near miss.
+why: This makes v2.16's owner-enacted F007 resolution executable by reusing
+     the existing removal wire and kill path, without a field, migration, or
+     second outcome family.
+
+[A-023] [H5 FIXER] [SPEC C.6 step 3; A-019 gate.*] [P1.2.1a]
+gap: C.4 returns current `wrong_removed` units so the UI can open the promised
+     edit/expire flow, but A-019 defines only the initial review decision and
+     would dismiss the hard pause before that response can be acted on.
+law: The memory gate has two typed stages under the same run and hard pause.
+     The existing stage is `review` (the default when `stage` is omitted).
+     After its successful inject/commit, if `wrong_removed` is nonempty, the
+     daemon keeps the model stopped and, in event-rank order, replaces the
+     open gate with a `gate.open` whose `stage` is `wrong_resolution`, whose
+     existing injected and near_misses arrays are empty, and whose
+     `wrong_removed` array contains exactly one current MemoryUnit returned by
+     that commit. It may also carry a visible `resolution_error` from a prior
+     failed attempt. The browser answers with `gate.commit` carrying empty
+     removed and added_back arrays plus
+     `wrong_resolution:{memory_id,expected_revision,action,body?}`, where
+     action is `edit` or `expire`; edit requires a nonblank body and expire
+     forbids one.
+
+     The daemon validates the run, thread, injection, stage, exact memory ID,
+     displayed revision, and one-submit boundary before accepting the
+     resolution. Edit PATCHes that unit's body; expire PATCHes its status to
+     tombstoned. Both use the returned current revision, editor `user`, the
+     trusted run machine_id, and reason `gate/wrong:edit` or
+     `gate/wrong:expire`. A CAS conflict replaces the stage with the conflict's
+     current MemoryUnit and a visible error; any other Spine client failure
+     keeps the same stage open with a visible error, so neither silently loses
+     the requested correction nor invokes the model. Cancellation retains
+     A-016 ordering. Once every wrong unit is resolved, the daemon emits the
+     single final gate.dismiss and invokes the model with the already-committed
+     final_block. A review with no wrong removals remains the one-stage flow.
+why: This completes the edit/expire consequence ADR-005 and C.4 already
+     promise, using the existing gate lifecycle and PATCH contract rather than
+     prebuilding H6's memory panel or trusting stale browser state.
