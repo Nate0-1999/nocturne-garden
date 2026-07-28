@@ -19,7 +19,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H2 | spine_client + contract tests  | S2                                | DONE        | codex / 2026-07-20 / db84    |         |
 | H3 | Agent + memory tools           | H2, S6                            | DONE        | codex / 2026-07-20 / 7c3a    |         |
 | H4 | Web shell + chat               | H1, H7                            | DONE        | codex / 2026-07-20 / c84d    |         |
-| H5 | The gate                       | D1, H4                            | TODO        |                              | report 021; F011 RESOLVED (owner deploy grant) — deploy d41b286 + remote verify; HOLD gates J only (D.2 064) |
+| H5 | The gate                       | D1, H4                            | IN_PROGRESS | codex / 2026-07-28 / 86af    | F011 single-use deploy + remote verify; HOLD gates J only |
 | H6 | Memory panel                   | H5                                | TODO        |                              |         |
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | TODO        |                              |         |
