@@ -58,8 +58,12 @@ every event landed with correct outcomes.
 11. SPINE UNREACHABLE. Kill the network briefly mid-session; try to chat
     and to /remember. EXPECT: clear degraded behavior (no crash, no data
     loss, comprehensible error), recovery on reconnect. LAW: ADR-003.
-12. RESTART PERSISTENCE. Restart daemon + browser. EXPECT: thread list
-    and history intact (spine is source of truth).
+12. RESTART PERSISTENCE. Restart daemon + browser. EXPECT what M1 law
+    (C.7) actually promises: the browser-local thread catalog survives;
+    TRANSCRIPTS DO NOT (the daemon keeps no thread persistence in M1 —
+    durable sessions are an M2 planning item). [Corrected per F009 owner
+    consult 2026-07-27; the original expectation was ahead of its
+    milestone.]
 13. UNICODE/EMOJI in /remember and chat. EXPECT: round-trips cleanly
     through embedding + storage + render.
 

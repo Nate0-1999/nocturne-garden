@@ -34,3 +34,23 @@ harness client stubs with the amended bodies, and re-verify before DONE
 [F009] [H5 SCOUT] [P0] — Closing-checklist Tier 3.12 requires daemon + browser restart to preserve the thread list and history because “spine is source of truth,” but live restart preserved only the browser-local catalog and lost the selected transcript, exactly matching C.7's explicit M1 law that the daemon provides no thread persistence. The owner must choose whether the checklist is ahead of its milestone or C.7 is wrong; minimally align the closing expectation and milestone ownership without mislabeling the conforming H5 implementation as broken, disturbing accepted session durability scope.
 
 [F010] [H5 SCOUT] [P1.2.1c] — At a live Chrome DevTools phone viewport of 390×844 at 100%, the first-turn gate retained a desktop-width inner layout and overflowed horizontally; only a narrow left slice of the cards was readable. B.6 rule 5 and C.9 J8 require the gate to be readable with full bodies visible and chat usable at that viewport. Minimally constrain the dialog, cards, and action area to the viewport, eliminate page-level horizontal overflow, and retain internal vertical scrolling/sticky actions; this is a local H5 rendering defect and must not alter scorer or memory contracts.
+
+RESOLUTIONS (owner consult, 2026-07-27, via the human gate — SPEC v2.16, D.2 059):
+- F006 — REPAIR AS FLAGGED: committed removals bind ALL memory supplied to
+  that turn (turn-scoped exclusion + trace-complete regression); wrong_removed
+  routes into the edit/expire flow. No law change needed; C.6 already promises
+  both.
+- F007 — RESOLVED BY AMENDMENT (v2.16): near-miss rows gain "never show
+  this", identical semantics/kill counter to removed:never. Implement in the
+  gate; C.8 AC4 is now satisfiable.
+- F008 — RESOLVED BY AMENDMENT (v2.16): no silent scope broadening — surface
+  missing-context, require explicit user confirmation before any global
+  fallback.
+- F009 — CHECKLIST CORRECTED (owner: nothing existed to destroy; C.7
+  conformance confirmed). No product change; durable sessions remain on the
+  M2 planning agenda.
+- F010 — REPAIR AS FLAGGED: constrain gate dialog/cards/actions to the
+  390×844 viewport, no page-level horizontal overflow, internal scrolling +
+  sticky actions. Local rendering fix only.
+FIXER inherits all five; re-run only the affected SOP slices (1, 2, 8, 12,
+responsive repeat) before the owner's personal gate session.
