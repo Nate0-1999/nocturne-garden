@@ -483,3 +483,72 @@ why: This is the smallest executable handshake already promised by C.6 and
      the hard human pause and typed training signal, and enforces Invariant 9
      without inventing retries, offline cache behavior, M2 contributions, or
      H6 editing UI.
+
+[A-020] [H9] [SPEC C.5; C.6/A-019 model_context_tokens] [P4]
+gap: C.5 makes chat model selection static: a cheap development default, a
+     flagship override, per-thread manual choice. It is silent on HOW a model
+     is chosen when the owner's operating policy is economic, and silent on
+     provider routing — so the broker's price-weighted load balancing may
+     move a mid-run conversation to a cold host, re-billing the entire
+     accumulated prompt prefix at full input price. Nothing in current law
+     lets the daemon choose "the cheapest model that is smart enough"
+     without a human hand-picking slugs.
+law: (a) FLAT INTELLIGENCE FLOOR. Harness config gains optional
+     model_intelligence_floor (env MODEL_INTELLIGENCE_FLOOR, positive
+     number, default unset). When unset, model selection is unchanged. When
+     set, the daemon resolves each new thread's chat model at that thread's
+     first run: among the broker's benchmark listing
+     (GET /api/v1/benchmarks?source=artificial-analysis), the model with
+     the lowest prompt price whose intelligence_index is >= the floor;
+     ties break by completion price, then permaslug. The benchmark response
+     may be cached for at most 24 hours. Selection is deterministic given
+     the cached table, and the daemon logs the chosen slug, its
+     intelligence_index, both prices, and the table's fetch timestamp. An
+     explicit per-thread model override (existing C.5 law) beats the floor.
+     Per-prompt classifier routing (openrouter/auto*) is REJECTED as law:
+     model choice must be reproducible and auditable from a numeric table,
+     never a third party's opaque per-prompt judgment.
+     (b) THREAD-STABLE, CACHE-STICKY ROUTING. A thread's resolved model does
+     not change within the daemon lifetime of that thread. Every OpenRouter
+     chat request carries session_id equal to the C.7 thread_id, so the
+     broker pins the serving provider (and model) from the first turn and
+     KV-cache prefix reuse survives the whole run. Broker-side expiry of
+     sticky state after inactivity is acceptable. Provider fallbacks remain
+     enabled; the daemon never sets allow_fallbacks=false.
+     (c) CHEAPEST HOST. Floor-selected requests set provider sort to price.
+     Config gains optional provider_quantizations (default unset); when set
+     it is forwarded verbatim as the broker's provider.quantizations filter,
+     because a host serving an int4 quantization of a floor-qualified model
+     silently defeats the floor. The default stays unset so an incomplete
+     host table can never empty the provider pool.
+     (d) CONTEXT WINDOW FOLLOWS THE MODEL. A-019 requires
+     model_context_tokens to match the model in use. When the floor selects
+     the model, the daemon sources that model's context length from the
+     broker's model listing at selection time and sends it to
+     inject/prepare for that thread, in place of the static default. The
+     static MODEL_CONTEXT_TOKENS default continues to govern when the floor
+     is unset.
+     (e) TRUTHFUL ACCOUNTING, NO NEW SURFACE. Broker-reported usage,
+     including cached-token and cache-write details, is recorded on the
+     existing run usage path. ADR-014 run walls are unchanged. No cost UI
+     is built in M1; Palace Vitals gauges remain M2 law.
+     (f) FENCES. The floor never applies to embed_model — C.2 fixes the
+     1536-dimension space and a changed embedding model corrupts it — and
+     the /remember label agent simply follows the thread's resolved model
+     per decision 008. Benchmark-endpoint failure, an empty eligible set,
+     or a missing context length fails open to the static chat_model
+     default (with its static context tokens) and a logged warning — never
+     a blocked run and never a question to the human.
+why: P4 — one human funds the workforce, and input-token spend on growing
+     run histories is the dominant marginal cost, a collapse vector the D2
+     circuit breaker can only stop, not economize. A flat benchmark floor
+     makes "smart enough, then cheapest" a one-number, auditable policy —
+     neither a hand-picked slug nor an unaccountable classifier. And the
+     cheapest token is the one already cached: warm-prefix reads bill at
+     roughly 0.1–0.5x input price, so within-run provider stickiness
+     dominates nominal price differences between hosts; session_id makes
+     stickiness deliberate instead of detect-then-stick luck. Verified
+     against broker docs 2026-07-27: the benchmarks endpoint returns
+     intelligence_index plus per-model pricing; session_id pins model and
+     provider from turn one; usage with cached-token details is returned by
+     default on every response.

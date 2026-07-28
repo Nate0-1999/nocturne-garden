@@ -23,6 +23,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H6 | Memory panel                   | H5                                | TODO        |                              |         |
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | TODO        |                              |         |
+| H9 | Cost-floor model routing A-020 | H5                                | TODO        |                              |         |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
 | I1 | Integration & AC dry run       | S1-S6, H1-H6                      | TODO        |                              |         |
 | J  | Judge                          | I1                                | TODO        |                              |         |
