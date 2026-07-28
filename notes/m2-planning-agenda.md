@@ -173,3 +173,17 @@ north-star UX metric is TOTAL TIME TO COMPLETION — injection quality buys
 back gate latency. Not directly replayable, but the replay win-metric
 should be chosen as its best available proxy (fewer wasted-context
 removals + more pre-empted add-backs ≈ shorter runs).
+
+## Spend walls — the prospective half of the cost front (2026-07-28)
+
+The ledger is retrospective; the D2 breaker is a $100 account-level kill
+switch. The unoccupied middle: SPEND WALLS — soft prospective budgets
+("this Symphony run may burn $5"; "curation gets $2/day"), enforced with
+the ADR-015 posture: hitting a wall is a BOUNDARY CROSSING, never a
+popup — the run pauses at the wall, the JUDGE triages (release / prune
+weakest branches / stop), and only owner-worthy releases surface as
+boundary cards. Checked against v_run_cost/v_spend_rate (the ledger is
+the meter; walls are config). Natural home: ADR-014/015 run-wall law +
+the M2 instrument packet's config surface; Symphony (beam × depth ×
+price) is the motivating case. With this, the cost front has all three
+tenses: ledger (past), Vitals strip (present), walls (future).
