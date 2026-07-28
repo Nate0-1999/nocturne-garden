@@ -567,15 +567,44 @@ law: (a-revised) TOKEN-COST POLICY TYPE. Model selection is a POLICY — a
          syntax); no benchmark table consulted.
        max — the model with the highest intelligence_index in the cached
          benchmark table; ties break by lower prompt price, then permaslug.
-       elbow — the knee of the cost-intelligence Pareto frontier, computed
-         deterministically: take the frontier set (models not dominated on
-         prompt price and intelligence_index; duplicate price/index pairs
-         keep the lexically first permaslug); place each at
-         (intelligence_index, log10 prompt price), each axis min-max
-         normalized over the frontier set; the elbow is the frontier point
-         at maximum perpendicular distance from the chord joining the
-         frontier's cheapest and most-intelligent endpoints; ties break by
-         lower prompt price, then permaslug.
+       elbow — the point of diminishing returns on the cost-intelligence
+         Pareto frontier, computed deterministically as follows. A model
+         is DOMINATED when another model has intelligence_index >= its
+         AND prompt price <= its, at least one strictly; the FRONTIER is
+         the set of non-dominated models (duplicate price/index pairs
+         keep the lexically first permaslug), sorted by
+         intelligence_index ascending — along it, price rises with
+         intelligence. Map each frontier model to
+         x = (intelligence_index - min) / (max - min) and
+         y = (log10 prompt_price - min) / (max - min), min and max taken
+         over the frontier, so the cheapest, least-intelligent model
+         sits at (0,0) and the priciest, most-intelligent at (1,1). The
+         CHORD is the diagonal y = x; its slope is the frontier's own
+         average exchange rate of log-price for intelligence. Each
+         model's SIGNED OFFSET is x - y: positive means its log price
+         sits below the chord — a better-than-average trade. The elbow
+         is the model with the greatest positive offset, the deepest
+         bargain relative to the frontier's average rate; ties break by
+         lower prompt price, then permaslug; if no model has a positive
+         offset, elbow falls back to max. This is a slope rule whose
+         threshold the table computes for itself: the offset grows
+         wherever intelligence is being bought below the frontier's
+         average log-price rate and shrinks wherever it is bought above
+         that rate, so there is no hand-set slope constant, and dense
+         pockets of similar models — point spacing, not value — cannot
+         move the answer the way they whipsaw a local-derivative rule.
+         Worked example (index, $/M prompt): A(20, 0.10) B(35, 0.30)
+         C(55, 1.00) D(60, 8.00), none dominated. log10 prices: -1,
+         -0.523, 0, 0.903. x: 0, .375, .875, 1. y: 0, .251, .525, 1.
+         Offsets x - y: 0, .124, .350, 0 → elbow = C. D buys five more
+         index points at eight times the price; C is the last
+         better-than-average trade.
+         [Clause revised by the owner's pen 2026-07-28, pre-claim, in
+         the audit window: terms defined for agents without the design
+         session's context, and the original unsigned perpendicular-
+         distance rule — which on a concave frontier could select a
+         worse-than-average point — replaced by signed offset, an
+         identical ranking on the intended side of the chord.]
        floor:<n> — A-020(a)'s rule unchanged: lowest prompt price with
          intelligence_index >= n; ties by completion price, then permaslug.
      Table sourcing, the 24-hour cache, per-thread resolution timing,
