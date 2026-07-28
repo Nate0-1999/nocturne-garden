@@ -251,3 +251,16 @@ assuming the agent knows NOTHING about the repo — motivate all the main
 decisions so they can effectively build things. Heavy on exposing the
 DATA that builds other visualizers and input modules. And to be clear:
 visualizers AND input modules — it was never just visualizers.
+
+## 17. The plain shirt is not the product (added 2026-07-28)
+
+Be very clear: what the harness looks like today — a thread list, a chat
+pane, a normal-looking shell — is NOT what it looks like longer term. It
+is M1 scaffolding: the smallest stage that could prove the memory loop.
+The destination is the mock, the Cube, the rack, NEO-NOIR — already law
+in ADR-018/023. No UI decision should ever entrench the current layout;
+M2 re-founds the shell as rack modules on the public plugin API
+(dogfooding law), and anything that would make that re-founding harder
+is moving in the wrong direction. If you are an agent building UI and
+your work is making the harness look MORE like a conventional
+chat-with-tools clone, stop and re-read ADR-018, ADR-023, and this file.
