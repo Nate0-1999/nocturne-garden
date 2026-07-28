@@ -167,3 +167,9 @@ derivable (cost/quantity). Kills the per-token-class column cluster;
 cache-efficiency = quantity arithmetic; "cost of a request" = GROUP BY
 ref. Infra lines read identically (product_type=infra.db.storage,
 quantity_type=storage, unit=GB-month). Row volume ~3-4×, still trivial.
+
+Addendum to item 1 (scoreboard riff), owner principle 2026-07-28: the
+north-star UX metric is TOTAL TIME TO COMPLETION — injection quality buys
+back gate latency. Not directly replayable, but the replay win-metric
+should be chosen as its best available proxy (fewer wasted-context
+removals + more pre-empted add-backs ≈ shorter runs).

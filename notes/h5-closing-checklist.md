@@ -82,3 +82,15 @@ Owner finishes Tier 1-3 → the human gate audits the DB (all events
 present, outcomes correct, quarantine flipped, lineage intact) → owner
 tells a relay session "H5 human-use hold cleared" → H6 unblocks (H8
 follows; then I1, J).
+
+## Owner taste verdicts (2026-07-28)
+
+- Item 10, LATENCY: ACCEPTED for now — no remediation built until it
+  bothers the owner in practice. Governing principle (owner): injection
+  QUALITY buys back latency — the metric that matters is TOTAL TIME TO
+  COMPLETION, not per-pause delay; correct injected context reduces
+  wasted turns, so gate latency is an investment, not a tax. Pre-warming/
+  streaming remedies stay parked unless real use demands them.
+- Item 6, POPULATION FEEL: still open — owner's personal session with a
+  ~15-20 memory palace; jot "shouldn't be here / should have surfaced"
+  notes per gate (M2 scorer-tuning input).
