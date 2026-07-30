@@ -1,6 +1,7 @@
 # H5 closing checklist — human tests before clearing the hold (2026-07-22)
 
-Status: NOTES / gate-day SOP for the owner. Each test: DO → EXPECT → LAW.
+Status: **CLOSED — OWNER CLEARED THE H5 HUMAN-USE HOLD ON 2026-07-30.**
+The checklist remains as the gate-day record. Each test: DO → EXPECT → LAW.
 Tests marked [DEFER] exercise machinery that ships in a later packet — do
 not chase them now. After the owner runs the live tests, the human gate
 audits injection_event / memory_revision through the proxy and confirms
@@ -103,3 +104,10 @@ follows; then I1, J).
   relationships, not content truth); never click insincerely. The deep
   relevance verdict accumulates naturally once the harness does real
   work — gate feedback is the permanent channel, not a one-time exam.
+
+## Hold resolution (2026-07-30)
+
+Nate explicitly declared: "H5 human-use hold cleared. Proceed to J." This
+owner verdict satisfies J's human-gate dependency. The deeper population-feel
+evaluation remains deferred to the real-work era as recorded above; it is no
+longer an M1 stop condition.

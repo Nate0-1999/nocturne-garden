@@ -19,14 +19,14 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H2 | spine_client + contract tests  | S2                                | DONE        | codex / 2026-07-20 / db84    |         |
 | H3 | Agent + memory tools           | H2, S6                            | DONE        | codex / 2026-07-20 / 7c3a    |         |
 | H4 | Web shell + chat               | H1, H7                            | DONE        | codex / 2026-07-20 / c84d    |         |
-| H5 | The gate                       | D1, H4                            | DONE        | codex / 2026-07-28 / 86af    | report 022; remote F007 PASS; HOLD gates J only |
+| H5 | The gate                       | D1, H4                            | DONE        | codex / 2026-07-28 / 86af    | report 022; remote F007 PASS; HOLD CLEARED owner 2026-07-30 |
 | H6 | Memory panel                   | H5                                | DONE        | codex / 2026-07-28 / 86af    | report 023 |
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 024 |
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-30 / 86af    | report 027; all C.8 builder criteria PASS |
-| J  | Judge                          | I1; H5 hold cleared (owner)       | TODO        |                              |         |
+| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | TODO   |                              |         |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
@@ -41,3 +41,5 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   pass locally; deployed Spine remains pre-fix; F011; HUMAN USE HOLD remains
 - H5 — FIXER DONE — codex / 2026-07-28 / 86af — report 022; F011 deployed
   and remote F007 passed; HUMAN USE HOLD remains and gates J only
+- H5 — OWNER HOLD CLEARED — Nate / 2026-07-30 — explicit verdict:
+  "H5 human-use hold cleared. Proceed to J."
