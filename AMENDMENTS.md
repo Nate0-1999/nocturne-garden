@@ -805,3 +805,15 @@ why: This fills the one wire/state seam H6 needs using only already-promised
      C.4 operations, preserves server-held identity and injection authority,
      and makes mid-thought removal bind the next model call without adding
      polling, persistence, retry automation, or a new API behavior family.
+
+[A-025] [H9] [SPEC C.5; A-021(a-revised elbow), (g)] [P4]
+gap: A-021 requires `log10(prompt price)` for elbow selection but does not
+     classify a zero-priced frontier row, which the broker schema permits.
+law: For elbow only, every frontier prompt price must be strictly positive. If
+     any frontier prompt price is zero, the elbow table is degenerate under
+     A-021(g), and resolution fails open to the static `chat_model` and static
+     context tokens. Other policies continue to evaluate non-negative prices
+     under their existing rules.
+why: This applies A-021(g)'s existing fail-open to undefined log arithmetic
+     without inventing an epsilon, dropping a benchmark row, or changing any
+     other policy.
