@@ -817,3 +817,25 @@ law: For elbow only, every frontier prompt price must be strictly positive. If
 why: This applies A-021(g)'s existing fail-open to undefined log arithmetic
      without inventing an epsilon, dropping a benchmark row, or changing any
      other policy.
+
+[A-026] [H9] [SPEC C.5; A-020(d); A-021(a-revised), (g)] [P4]
+gap: The broker benchmark identifies a model by permanent `model_permaslug`,
+     while the model listing uses that value as `canonical_slug` and uses
+     `id` as the request route. The listing is not one-to-one: explicit
+     `:<variant>` routes such as `:free` and `:batch` may share a canonical
+     slug while advertising different context lengths.
+law: A non-pinned policy first selects its benchmark row unchanged, then joins
+     that row's `model_permaslug` to model-list rows by exact
+     `canonical_slug`. A row whose `id` has no `:<variant>` suffix is a
+     standard route. If exactly one standard route exists, the daemon resolves
+     the request model to that row's `id` and the context window to that same
+     row's positive `context_length`; explicit variant rows do not participate.
+     If no standard route exists and exactly one joined row exists, that sole
+     route and its context are used. No joined row, multiple standard routes,
+     or multiple variant-only routes is a missing/ambiguous context under
+     A-021(g) and fails open to the static model and context pair.
+why: The policy selects a benchmarked model, not an unmeasured routing variant.
+     Binding model ID and context from one broker row makes the chosen model
+     executable without silently opting into free, batch, or extended
+     semantics, while retaining a sole available route and the existing safe
+     fail-open for actual ambiguity.
