@@ -453,6 +453,59 @@ before the relay continues.
   end-to-end; walk all seven criteria as a BUILDER (not judge); fix gaps;
   seed demo memories; verification/README pointing a judge at everything.
   (Deps: all S*, H*.)
+- **M1C — M1 closing report.** The PLAN §3 rule 5 NOBODY duty, made a
+  packet so the board never dead-ends: write the M1 closing report
+  (reports/, template §4) summarizing the milestone arc P0→J with the
+  superseding verdict; update BOARD notes; build NOTHING. (Deps: D3.)
+- **M2A — Spend ledger core (wave 1).** Sections: ADR-024 entire (read
+  its Motivation first), A-020(e)/A-021 usage path, C.2 migration
+  discipline. Deliver: spine migration for `spend_event` (receipt-line
+  normal form, ULID event_uid, all lineage columns); broker-seam
+  synchronous llm.* line writing (chat, embeddings, /remember; purpose
+  enum; one line per price class incl. cache read/write, grouped by ref);
+  canonical materialized views v_spend_rate, v_thread_cost, v_run_cost,
+  v_memory_cost, v_cache_efficiency (minute refresh; derived, never
+  authoritative); the receipt-language glossary as SQL COMMENTs.
+  Verification: B.6 r7 — double-run view determinism (same rows →
+  byte-identical views); a sample row must read aloud as a sentence.
+  GCP billing reconciliation + infra.* lines are WAVE 2 — do not build.
+  (Deps: J.)
+- **M2B — Rack refound + NEO-NOIR identity (wave 1).** Sections: ADR-023
+  clauses 1-2 + resize law (read the Motivation), ADR-018 clause 7
+  (themes), NATES_VISION §8 + §16-17. Deliver: the rack grid runtime
+  (CSS grid, drag/resize/dock within manifest-declared grid-unit bounds,
+  ResizeObserver events); every existing surface (thread list, chat
+  pane, gate, memory panel, header) re-founded as a first-party rack
+  module on the plugin read API (event stream, query+as_of stub,
+  selection bus) — NO private paths (dogfooding law); NEO-NOIR as the
+  default theme tokens; layouts savable/restorable. The plain shirt dies
+  here — vision §17 is the acceptance mood. Verification: B.6 r7+r8,
+  screenshots desktop + 390×844, an SOP prose pass on whether it FEELS
+  like the mock's family. (Deps: J. Excludes M2C.)
+- **M2D — Durable transcripts, capture-only (wave 1).** Sections: the
+  m2-planning-agenda item-4 resolution, C.7 (M1 persistence law stands),
+  ADR-016. Deliver: the daemon appends every message + event (including
+  model_change) to a local per-thread append-only jsonl as it happens;
+  restart-proof capture; explicitly NOT serving (thread reload behavior
+  unchanged — serving arrives with the M3 session table, backfilled from
+  these files). Transcripts never ride anything with a git remote.
+  (Deps: J.)
+- **M2E — Hybrid candidate retrieval (wave 1).** Sections: D.2 050(1),
+  C.3 candidate pool, ADR-005. Deliver: Postgres FTS (tsvector over
+  label+body+keywords, indexed); inject/prepare candidate pool becomes
+  vector top-50 ∪ FTS top-N (N a journaled DECISIONS constant); scorer
+  unchanged — it ranks the union; injection_event rows note pool
+  provenance in features meta for future replay. Verification: a
+  planted exact-keyword/weak-embedding memory MUST reach the gate.
+  (Deps: J.)
+- **M2C — Palace Vitals + the spend strip (wave 1).** Sections: ADR-009
+  item 5, v2.17 presentation law (D.2 060), ADR-024 views, ADR-023.
+  Deliver: the Ableton-style bottom strip as a first-party rack plugin —
+  lanes (total, by purpose, by model) over v_spend_rate, hover scrub,
+  lane click = selection focus, collapsible; Vitals counters (lifecycle
+  rates, palace counts, queue depth placeholder). Dollar-true from
+  ledger rows only. Verification: B.6 r7+r8; every lane traces to a
+  canonical view. (Deps: M2A, M2B. Excludes M2B.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
