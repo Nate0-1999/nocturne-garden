@@ -26,7 +26,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-31 / 7f26 | report 030; Harness b64cc82; /model + J1/J2 builder repair complete |
-| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | TODO | | re-judge J1/J2 slices; FRESH CLAUDE CODE session per B.6 independence; prior FAIL (report 028) stands until superseded |
+| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | IN_PROGRESS | claude-code / 2026-07-31 / f648 | re-judge J1/J2 slices; FRESH CLAUDE CODE session per B.6 independence; prior FAIL (report 028) stands until superseded |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
