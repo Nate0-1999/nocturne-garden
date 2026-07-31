@@ -112,3 +112,16 @@ daemon/new-thread model-string proof, declare the visible default OpenRouter
 exchange sufficient, or explicitly move the selector into M1 with an exact
 wire/authority/UI contract. After that choice, the FIXER can retain the
 hello-specific C.7 trace and J2's fresh-word 409/similar action coupling.
+
+RESOLUTION F012 (owner, 2026-07-31, via the human gate — SPEC v2.26, D.2
+069): OPTION THREE, refined — the owner rules that deliberate switching
+must exist and drift must not: thread stability becomes changes-only-at-
+explicit-journaled-RESOLUTION-POINTS; M1 gains the minimal `/model <slug>`
+command (no M2 registry surface pulled forward — the /remember pattern);
+C.9 J1 rewritten to test it as originally worded. The I1 repair FIXER
+implements /model per C.6 v2.26, produces the J1/J2 evidence (J2 charge
+unchanged: the fresh-word restatement must itself reach the 409/similar
+path), then J resets to TODO for a FRESH CLAUDE CODE judge per B.6
+independence. Rationale: the re-resolution seam is real future surface —
+M2's selector knob and M3's cost-optimization role policies switch models
+at this exact seam, so J1 tests product, not ceremony.

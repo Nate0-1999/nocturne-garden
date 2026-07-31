@@ -25,8 +25,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H8 | Gate-day polish: md + model    | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 024 |
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
-| I1 | Integration & AC dry run       | S1-S6, H1-H9                      | BLOCKED     | codex / 2026-07-31 / 7f26 | F012; report 029 — J1 protocol conflicts with thread-stable M1 law |
-| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | codex / 2026-07-30 / 7f26 | report 028; FAIL — harness/verification/m1/VERDICT.md |
+| I1 | Integration & AC dry run       | S1-S6, H1-H9                      | TODO        |                              | F012 RESOLVED (v2.26): implement /model per C.6, repair J1/J2 evidence per verdict + report 029 |
+| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | TODO | | re-judge J1/J2 slices; FRESH CLAUDE CODE session per B.6 independence; prior FAIL (report 028) stands until superseded |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 

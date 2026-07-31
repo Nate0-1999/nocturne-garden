@@ -129,6 +129,10 @@ and this file disagree, law wins — then this file gets fixed.
   just above the elbow; the market's echo of the commodity tier, never
   an independent selection signal; earmarked as M3 Symphony diversity
   shards.
+- **resolution point** — the only moments a thread's model may change:
+  thread start, a human `/model` command, or (M3, reserved) an algorithmic
+  role boundary — each journaled (old→new, reason, sacrificed prefix) with
+  a new stickiness epoch. Drift is never a resolution point (v2.26).
 - **cache-sticky routing** — session_id = thread_id on every broker
   request, pinning provider and model from turn one so a run's growing
   prefix re-bills at cache-read prices. The cheapest token is the one
