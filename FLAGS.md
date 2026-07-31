@@ -94,3 +94,21 @@ scale, traffic/`d1v`, Artifact Registry immutability, and the billing breaker.
 Evidence: Spine `verification/h5/f011-2026-07-28/deployment.json`; Harness
 `verification/h5/f011-2026-07-28/`. Any further cloud mutation needs a fresh
 owner grant. The HUMAN USE HOLD remains and gates J only.
+
+[F012] [I1 FIXER] [P3, P4] — C.9 J1 requires one thread to send `hello` on
+the default model and then "Switch the thread to an OpenRouter model string;
+one exchange." The shipped M1 default is already OpenRouter; A-020(b)/A-021
+require a thread's first model resolution to remain stable for that thread's
+daemon lifetime; owner decision D.2 061 and PLAN H8 explicitly defer the
+per-thread model selector to M2. Current C.7 has no model-set message and the
+M1 UI only displays the resolved model. The named evidence therefore cannot
+be produced honestly: two daemon starts or two threads do not prove a
+same-thread switch; adding the selector pulls an M2 control and parameter-
+registry behavior into M1; treating the existing default OpenRouter exchange
+as both stages changes explicit judge law. COMPLETION cannot choose among
+those outcomes without reversing standing law or changing an explicit
+sentence. Minimally, the owner must either rewrite J1 to require a second
+daemon/new-thread model-string proof, declare the visible default OpenRouter
+exchange sufficient, or explicitly move the selector into M1 with an exact
+wire/authority/UI contract. After that choice, the FIXER can retain the
+hello-specific C.7 trace and J2's fresh-word 409/similar action coupling.
