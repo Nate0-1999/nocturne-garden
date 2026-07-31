@@ -125,3 +125,15 @@ path), then J resets to TODO for a FRESH CLAUDE CODE judge per B.6
 independence. Rationale: the re-resolution seam is real future surface —
 M2's selector knob and M3's cost-optimization role policies switch models
 at this exact seam, so J1 tests product, not ceremony.
+
+[F013] [D3] [P4] — ADR-019 fixes the public install contract as
+`pipx install nocturne`, but PyPI's normalized `nocturne` distribution name is
+already owned by an unrelated scalable-deep-learning project, with published
+releases through 0.0.6 and a different maintainer. D3 cannot publish the two
+NOCTURNE wheels under that exact install name, and silently choosing another
+distribution name would reverse an explicit accepted ADR rather than complete
+contract silence. Minimally, the owner must either secure a PyPI ownership
+transfer for `nocturne` or amend ADR-019 to a new public distribution/install
+name while retaining the `nocturne` console command. This disturbs the public
+onboarding identity, quickstart, and both-wheel dependency metadata; it does
+not require product-runtime redesign.

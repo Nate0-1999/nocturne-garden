@@ -24,7 +24,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 024 |
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
-| D3 | Deploy & onboarding command    | J                                 | IN_PROGRESS | codex / 2026-07-31 / 850e    |         |
+| D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-07-31 / 850e    | F013; report 032 |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-31 / 7f26 | report 030; Harness b64cc82; /model + J1/J2 builder repair complete |
 | J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28); OWNER GATE CLEARED 2026-07-31 |
 
@@ -32,10 +32,10 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Active stop-line
 
-- None. The superseding J verdict is PASS (report 031;
-  harness/verification/m1/VERDICT.md, claude-code / 2026-07-31 / f648),
-  and the owner cleared the post-J verdict gate on 2026-07-31. M1 is done;
-  D3 is claimable, M2 planning opens, and M3 re-plans too.
+- F013 blocks D3: PyPI's `nocturne` distribution name belongs to an unrelated
+  project, so ADR-019's exact `pipx install nocturne` contract needs either a
+  name transfer or an owner-authored install-name amendment. M1 remains done;
+  M2 planning is open and M3 re-plans too.
 
 ### Exclusions (symmetric; see PLAN §1)
 
