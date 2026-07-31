@@ -133,10 +133,11 @@ and this file disagree, law wins — then this file gets fixed.
   thread start, a human `/model` command, or (M3, reserved) an algorithmic
   role boundary — each journaled (old→new, reason, sacrificed prefix) with
   a new stickiness epoch. Drift is never a resolution point (v2.26).
-- **cache-sticky routing** — session_id = thread_id on every broker
-  request, pinning provider and model from turn one so a run's growing
-  prefix re-bills at cache-read prices. The cheapest token is the one
-  already cached (A-020).
+- **cache-sticky routing** — epoch zero uses session_id = thread_id; every
+  later resolution point uses a distinct epoch-scoped session_id, re-pinning
+  provider and model while preventing drift inside that epoch. A growing
+  prefix can then re-bill at cache-read prices. The cheapest token is the one
+  already cached (A-020; v2.26 resolution-point refinement).
 - **the blast-radius principle** — price a role by the blast radius and
   reviewability of its errors, never by task difficulty: economic
   policies where volume is high and errors are judge-filtered (leaf
