@@ -26,18 +26,16 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-31 / 7f26 | report 030; Harness b64cc82; /model + J1/J2 builder repair complete |
-| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28) |
+| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28); OWNER GATE CLEARED 2026-07-31 |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Active stop-line
 
 - None. The superseding J verdict is PASS (report 031;
-  harness/verification/m1/VERDICT.md, claude-code / 2026-07-31 / f648).
-  Per PLAN §7 the owner now reads the verdict beside its screenshots —
-  only then is M1 done and M2 planning opens (M3 re-plans too). The
-  verdict's ADR status-normalization proposals await that same gate. D3 is
-  claimable once the owner closes the gate.
+  harness/verification/m1/VERDICT.md, claude-code / 2026-07-31 / f648),
+  and the owner cleared the post-J verdict gate on 2026-07-31. M1 is done;
+  D3 is claimable, M2 planning opens, and M3 re-plans too.
 
 ### Exclusions (symmetric; see PLAN §1)
 
@@ -52,3 +50,5 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   and remote F007 passed; HUMAN USE HOLD remains and gates J only
 - H5 — OWNER HOLD CLEARED — Nate / 2026-07-30 — explicit verdict:
   "H5 human-use hold cleared. Proceed to J."
+- J — OWNER VERDICT GATE CLEARED — Nate / 2026-07-31 — explicit verdict:
+  "J verdict gate cleared. Proceed to D3."
