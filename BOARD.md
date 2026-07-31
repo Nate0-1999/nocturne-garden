@@ -25,8 +25,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H8 | Gate-day polish: md + model    | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 024 |
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | D3 | Deploy & onboarding command    | J                                 | TODO        |                              |         |
-| I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-30 / 86af    | report 027; all C.8 builder criteria PASS |
-| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | IN_PROGRESS | codex / 2026-07-30 / 7f26 |         |
+| I1 | Integration & AC dry run       | S1-S6, H1-H9                      | FAILED_JUDGMENT | codex / 2026-07-30 / 86af | report 027; J1/J2 proof gaps — harness/verification/m1/VERDICT.md |
+| J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | codex / 2026-07-30 / 7f26 | report 028; FAIL — harness/verification/m1/VERDICT.md |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
