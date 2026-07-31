@@ -24,25 +24,25 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H7 | Envelope v1.12 & loop controls | H1                                | DONE        | codex / 2026-07-20 / 9d2f    |         |
 | H8 | Gate-day polish: md + model    | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 024 |
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
-| D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-07-31 / 850e    | F013; report 032 |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-31 / 7f26 | report 030; Harness b64cc82; /model + J1/J2 builder repair complete |
 | J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28); OWNER GATE CLEARED 2026-07-31 |
-| M1C| M1 closing report              | D3                                | TODO        |                              | PLAN §3 rule 5 duty as a packet |
+| M1C| M1 closing report              | J; owner gate cleared 2026-07-31  | TODO        |                              | PLAN §3 rule 5 duty as a packet |
 | M2A| Spend ledger core              | J                                 | TODO        |                              | ADR-024; wave 1 |
 | M2B| Rack refound + NEO-NOIR identity | J                               | TODO        |                              | ADR-023 cl.1-2, themes; wave 1 |
 | M2D| Durable transcripts (capture-only) | J                             | TODO        |                              | agenda item 4; wave 1 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | TODO        |                              | D.2 050(1); wave 1 |
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
+| D3 | Deploy & onboarding command    | M2C, M2D, M2E                     | TODO        |                              | owner-deferred after M2 wave 1; F013 resolved v2.30; report 033 |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Active stop-line
 
-- F013 blocks D3: PyPI's `nocturne` distribution name belongs to an unrelated
-  project, so ADR-019's exact `pipx install nocturne` contract needs either a
-  name transfer or an owner-authored install-name amendment. M1 remains done;
-  M2 planning is open and M3 re-plans too.
+- None. F013 is resolved by current SPEC v2.30 / D.2 073, but the owner has
+  deferred D3 until M2 wave 1 is complete so its install identity can sit
+  without blocking the relay. M1C is the deterministic next packet; M2A,
+  M2B, M2D, and M2E are also ready for mutually non-excluded sessions.
 
 ### Exclusions (symmetric; see PLAN §1)
 

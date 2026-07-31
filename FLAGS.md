@@ -137,3 +137,9 @@ transfer for `nocturne` or amend ADR-019 to a new public distribution/install
 name while retaining the `nocturne` console command. This disturbs the public
 onboarding identity, quickstart, and both-wheel dependency metadata; it does
 not require product-runtime redesign.
+
+RESOLUTION F013 (SPEC v2.30, D.2 073; owner deferral 2026-07-31): current law
+uses PyPI distribution `nocturne-ai` while the console command remains
+`nocturne`. The owner has deferred D3 until M2 wave 1 is complete and may
+supersede that distribution name before D3 is claimed. D3 is reset to TODO
+behind M2C/M2D/M2E; the naming question no longer blocks unrelated packets.

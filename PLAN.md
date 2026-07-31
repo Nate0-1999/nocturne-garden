@@ -380,7 +380,9 @@ before the relay continues.
   broad IAM; the D2 breaker step prompts for HUMAN confirmation);
   quickstart README. Verification per ADR-019's clause: fresh machine +
   Docker + one OpenRouter key → working browser chat. Nodes: P4.
-  (Deps: J — packaging opens after the judge; C.8 stays repo-based.)
+  Owner-deferred 2026-07-31: leave the current install-name law untouched and
+  revisit it before this packet is claimed. (Deps: M2C, M2D, M2E — packaging
+  follows M2 wave 1 for now; C.8 stays repo-based.)
 
 - **H1 — Envelope + daemon WS.** Sections: C.7, C.1. Deliver: envelope
   models, WS server, type routing, malformed-envelope rejection tests.
@@ -456,7 +458,8 @@ before the relay continues.
 - **M1C — M1 closing report.** The PLAN §3 rule 5 NOBODY duty, made a
   packet so the board never dead-ends: write the M1 closing report
   (reports/, template §4) summarizing the milestone arc P0→J with the
-  superseding verdict; update BOARD notes; build NOTHING. (Deps: D3.)
+  superseding verdict; update BOARD notes; build NOTHING. (Deps: J plus the
+  recorded post-J owner gate; D3 is not an M1 closure dependency.)
 - **M2A — Spend ledger core (wave 1).** Sections: ADR-024 entire (read
   its Motivation first), A-020(e)/A-021 usage path, C.2 migration
   discipline. Deliver: spine migration for `spend_event` (receipt-line
