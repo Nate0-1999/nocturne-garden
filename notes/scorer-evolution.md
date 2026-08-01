@@ -249,3 +249,14 @@ forgotten: (1) EMBEDDING-MODEL MIGRATION — re-embedding a large palace when
 the embedding model changes (embedding_model tag exists per-unit; the
 migration procedure doesn't); (2) ARCHIVAL TIERS at scale (hot/cold memory
 storage split); (3) PALACE EXPORT/PORTABILITY (leave-with-your-data law).
+
+## f_sess RESURRECTED (2026-08-01, v2.33/D.2 076)
+
+The founding excision rationale ("near-always zero at the only moment
+scoring occurs") was voided by OQ-15's resolution (per-message re-scoring,
+v2.31). Candidate shape: within-thread affinity — memories similar to what
+the human added/confirmed this thread get a boost on subsequent re-scores;
+possibly also in-thread citation recency. Enters via the agentic-axes
+pipeline: replay against the v2.32 binary scoreboard decides admission and
+weights. Direct human dispositions are NOT features — they are binary
+locks (v2.31 + v2.33) and must never be double-counted as f_sess signal.
