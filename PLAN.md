@@ -380,9 +380,9 @@ before the relay continues.
   broad IAM; the D2 breaker step prompts for HUMAN confirmation);
   quickstart README. Verification per ADR-019's clause: fresh machine +
   Docker + one OpenRouter key → working browser chat. Nodes: P4.
-  Owner-deferred 2026-07-31: leave the current install-name law untouched and
-  revisit it before this packet is claimed. (Deps: M2C, M2D, M2E — packaging
-  follows M2 wave 1 for now; C.8 stays repo-based.)
+  Owner-resumed 2026-08-01 under SPEC v2.30 / D.2 073: publish the Harness
+  distribution as `nocturne-ai`, retain console command `nocturne`, and run
+  D3 concurrently with the independently claimed M1C/M2 relays. (Deps: J.)
 
 - **H1 — Envelope + daemon WS.** Sections: C.7, C.1. Deliver: envelope
   models, WS server, type routing, malformed-envelope rejection tests.

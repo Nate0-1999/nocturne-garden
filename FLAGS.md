@@ -143,3 +143,9 @@ uses PyPI distribution `nocturne-ai` while the console command remains
 `nocturne`. The owner has deferred D3 until M2 wave 1 is complete and may
 supersede that distribution name before D3 is claimed. D3 is reset to TODO
 behind M2C/M2D/M2E; the naming question no longer blocks unrelated packets.
+
+OWNER SEQUENCING UPDATE (2026-08-01): the owner confirmed the v2.30 naming
+resolution and resumed D3 now, concurrently with the independently claimable
+M1C/M2 relays. The public install line is `pipx install nocturne-ai`; the
+brand and console command remain `nocturne`. PLAN and BOARD restore D3's
+direct dependency on the completed J packet.
