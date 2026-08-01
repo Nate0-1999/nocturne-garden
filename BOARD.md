@@ -34,6 +34,15 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
+| M2G| Per-message re-scoring + locks | J                                 | TODO        |                              | OQ-15 impl (v2.31/33); wave 2 headliner |
+| M2F| Chrysopoeia learner v1         | J                                 | TODO        |                              | v2.32 scoreboard; PROPOSED-version authority; wave 2 |
+| M2H| Extraction + queue + thread-end card | M2B, M2D                    | TODO        |                              | ADR-021 cl.4 (v2.34 trigger); v2.25 queue law; wave 2 |
+| M2I| Seed ingestion                 | M2H                               | TODO        |                              | ADR-019 cl.4; wave 2 |
+| M2J| Parameter registry + model device | M2B                            | TODO        |                              | ADR-023 cl.3; wave 2 |
+| M2K| Memory Graph + console + contribution bars | M2B                   | TODO        |                              | ADR-009 items 3-4; Invariant 6 bars; wave 2 |
+| M2L| Citation heuristic v1 (n-gram) | M2G                               | TODO        |                              | ADR-005 (OQ-5 v1 already decided); wave 2 |
+| M2M| Ledger self-audit vs broker    | M2A                               | TODO        |                              | ADR-024 sourcing (v2.34 scope); wave 2 |
+
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
@@ -47,6 +56,7 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - H6 ⊗ H8 — both edit the harness web SPA (gate/chat surfaces).
 - M2B ⊗ M2C — both edit the web SPA (rack surfaces).
+- M2H ⊗ M2J ⊗ M2K ⊗ M2C — pairwise: all edit the web SPA (rack modules).
 
 ### Gate scout notes
 

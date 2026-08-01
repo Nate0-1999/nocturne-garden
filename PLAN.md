@@ -509,6 +509,68 @@ before the relay continues.
   rates, palace counts, queue depth placeholder). Dollar-true from
   ledger rows only. Verification: B.6 r7+r8; every lane traces to a
   canonical view. (Deps: M2A, M2B. Excludes M2B.)
+- **M2G — Per-message re-scoring + disposition locks (wave 2).**
+  Sections: ADR-005 per-message re-scoring block (v2.31/v2.33 — read the
+  MOTIVATION: gate once, then autonomous; locks not boosts), C.3/C.5,
+  A-016 ordering. Deliver: every post-first message re-scores against the
+  live palace (prepare per message, as-of its own snapshot); binding
+  selection = τ + budget (k is display config); human-confirmed/pinned
+  never auto-demoted; human-removed thread-excluded until re-added; every
+  autonomous entry/exit an injection_event (passive keeps per C5); panel
+  updates ambiently — NO modals after the first gate. (Deps: J.)
+- **M2F — The Chrysopoeia learner v1 (wave 2).** Sections: ADR-005
+  learning scope + v2.32 scoreboard + v2.34 authority (read all three
+  motivations), notes/m2-planning-agenda methodology. Deliver: spine-side
+  batch exact re-fit (pairwise ranking over the hygiene-filtered,
+  actor-classed log; weights ≥0 sum 1 as constraints; b_m shrinkage);
+  time-split BINARY replay (fewest disagreements with recorded
+  dispositions wins; wrong/stale excluded; cheaper-at-tie; margin
+  config); minimum-dispositions floor (config) before first challenger;
+  winner → PROPOSED scorer_config version, owner activates (early era);
+  /retrain manual trigger + optional nightly schedule; every version
+  reproducible from the log alone. (Deps: J.)
+- **M2H — Extraction + approval queue + thread-end card (wave 2).**
+  Sections: ADR-021 clause 4 with the v2.34 trigger, v2.25 unified queue
+  law (birthplace routing, passive approval on literal visibility),
+  ADR-022 kinships. Deliver: extraction on archive/close (+ idle
+  fallback over M2D transcripts; ≤5 atomic keyworded candidates,
+  verdicts-at-birth, queue-aware dedup); candidate status invisible to
+  injection/search; the rack-module thread-end card (final post up top,
+  approve/deny list beneath; viewport-visible passive approval;
+  contradictions and collapsed groups never passive-approve); rejected →
+  tombstoned-as-rejected + logged. (Deps: M2B, M2D. Excludes M2J, M2K,
+  M2C.)
+- **M2I — Seed ingestion (wave 2).** Sections: ADR-019 clause 4, v2.25
+  queue law (grouped batches = explicit action), ADR-022 splitting law.
+  Deliver: markdown upload → splitter pass → atomic candidates through
+  the standard create/dedup pipeline → per-document batch in the Palace
+  queue module. (Deps: M2H.)
+- **M2J — Parameter registry + model device (wave 2).** Sections:
+  ADR-023 clause 3 (read the motivation: every knob binds a real
+  parameter), C.5, v2.26 resolution points. Deliver: the typed parameter
+  registry (descriptors, journaled A-016 change events, as_of-scrubbable);
+  per-thread model params (temperature, top_p, top_k, max_tokens, effort)
+  wired to broker requests; the MODEL DEVICE reference control plugin —
+  resolved slug display + registry-bound knobs + the per-thread selector
+  knob riding the resolve_named seam. (Deps: M2B. Excludes M2H, M2K, M2C.)
+- **M2K — Memory Graph + hyperparameter console + contribution bars
+  (wave 2).** Sections: ADR-009 items 3-4 (authoritative encodings),
+  Invariant 6, ADR-023 (console = the first law-bound control plugin).
+  Deliver: the force-directed Memory Graph (encodings per law; CAS-safe
+  edit on click); the console (τ, top_k, budget, half-lives, weights —
+  every change INSERTs a version; displays PROPOSED learner versions for
+  one-tap activation); per-feature contribution bars on every gate/panel
+  card. (Deps: M2B. Excludes M2H, M2J, M2C.)
+- **M2L — Citation heuristic v1 (wave 2).** Sections: ADR-005 citation
+  law (n-gram v1 is decided; OQ-5 is only the later LLM-judge upgrade).
+  Deliver: n-gram detection of injected-memory reuse in agent output;
+  cited outcomes logged (increments f_freq numerator); per-message scope
+  rides M2G's re-scoring loop. (Deps: M2G.)
+- **M2M — Ledger self-audit vs broker (wave 2).** Sections: ADR-024
+  sourcing (v2.34 scope). Deliver: scheduled job reconciling llm.* ledger
+  sums against the broker's usage/credits API; drift alert into Vitals;
+  GCP billing-export ingestion explicitly NOT built (deferred owner-gated
+  setup). (Deps: M2A.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
