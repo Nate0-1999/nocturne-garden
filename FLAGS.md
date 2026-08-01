@@ -149,3 +149,19 @@ resolution and resumed D3 now, concurrently with the independently claimable
 M1C/M2 relays. The public install line is `pipx install nocturne-ai`; the
 brand and console command remain `nocturne`. PLAN and BOARD restore D3's
 direct dependency on the completed J packet.
+
+[F014] [D3] [P4] — D3's release artifacts, OIDC publication workflows, and
+public quickstart now exist, but neither `nocturne-spine` nor `nocturne-ai`
+exists on PyPI (both project JSON endpoints returned 404 on 2026-08-01).
+Trusted publication of a first release requires an owner-authenticated PyPI
+pending-publisher registration; the relay has no PyPI authority and must not
+invent or solicit a long-lived upload token. The minimal owner action is to
+register these two pending publishers, in dependency order: owner
+`Nate0-1999`, repository `nocturne-spine`, workflow `release.yml`, environment
+`pypi`, PyPI project `nocturne-spine`; then owner `Nate0-1999`, repository
+`nocturne-harness`, workflow `release.yml`, environment `pypi`, PyPI project
+`nocturne-ai`. A fresh relay can then publish GitHub release `v0.1.0` for Spine,
+wait for PyPI, publish Harness `v0.1.0`, and prove a clean public-index
+`pipx install nocturne-ai==0.1.0`. This disturbs only first-release authority;
+no product contract or code change is needed. PyPI documents this no-project-
+yet flow at https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/.

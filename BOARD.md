@@ -32,17 +32,16 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2D| Durable transcripts (capture-only) | J                             | TODO        |                              | agenda item 4; wave 1 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | TODO        |                              | D.2 050(1); wave 1 |
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
-| D3 | Deploy & onboarding command    | J                                 | IN_PROGRESS | codex / 2026-08-01 / d3a1    | owner resumed D3 under SPEC v2.30 / D.2 073; F013 resolved; report 033 superseded for sequencing |
+| D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Active stop-line
 
-- None. F013 is resolved by current SPEC v2.30 / D.2 073. On 2026-08-01 the
-  owner resumed D3 immediately under distribution `nocturne-ai` and console
-  command `nocturne`; M1C, M2A, M2B, M2D, and M2E remain independently
-  claimable by other relay sessions.
+- D3 only — F014: the owner must register the two pending PyPI trusted
+  publishers before a relay creates the `v0.1.0` releases. M1C, M2A, M2B,
+  M2D, and M2E remain independently claimable by other relay sessions.
 
 ### Exclusions (symmetric; see PLAN §1)
 
