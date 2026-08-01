@@ -839,3 +839,43 @@ why: The policy selects a benchmarked model, not an unmeasured routing variant.
      executable without silently opting into free, batch, or extended
      semantics, while retaining a sole available route and the existing safe
      fail-open for actual ambiguity.
+
+[A-027] [M2A] [ADR-024 ledger and broker seam] [P4]
+gap: ADR-024 requires Harness broker calls to synchronously write Spine-owned
+     receipt lines, but defines neither their cross-process write contract nor
+     how its "3-4 lines" shorthand behaves when a reported price class is zero
+     or reasoning is separately billed.
+law: Spine exposes bearer-protected POST `/v1/spend/events` with body
+     `{events:[SpendEvent...]}` and response `{accepted:n}`. The nonempty batch
+     contains unique client-minted ULID `event_uid` values and every ADR-024
+     spend_event column. M2A accepts only `llm.request` and `llm.embedding`.
+     The write is atomic and append-only. Replaying an event_uid with every
+     normalized field equal is an idempotent acceptance; reusing one with any
+     different field returns RFC7807 409 and inserts nothing. `accepted` is the
+     number of supplied lines, including identical replays. The route uses the
+     standing application bearer unchanged.
+
+     Replace "an LLM request emits 3-4 lines" with: "A successful broker
+     request emits one receipt line for each nonzero price class the provider
+     reports, all sharing the broker response or generation id as `ref`.
+     Unreported and zero-value classes emit no synthetic line. When reasoning
+     tokens are reported as a distinct billed subset of output, subtract them
+     from the ordinary output quantity and emit a `reasoning` line; otherwise
+     they remain output and the raw provider detail stays in `meta`. Embeddings
+     emit `llm.embedding` input_fresh lines. If a broker supplies only aggregate
+     native USD, allocate that exact total across its lines, mark those lines
+     `basis=allocated`, and record the allocation source in `meta`; a directly
+     attributable broker amount is `measured`. Missing cost remains NULL and
+     never changes a measured token quantity into an estimate."
+
+     Harness mints chat receipt ids and submits the complete response batch
+     before terminalizing the turn. Spine's production embedding adapter mints
+     and appends its receipt before returning vectors to memory behavior.
+     Receipt-write failure fails the enclosing operation visibly; no
+     best-effort background queue is introduced. A missing broker generation id
+     uses the provider request-id header, or finally the first event_uid, as
+     `ref`, with that fallback named in `meta`.
+why: This supplies the smallest replay-safe HTTP seam between the already
+     separate Harness and Spine processes, preserves Spine as sole ledger owner,
+     and makes every recorded line an honest purchase rather than padding each
+     request with zero-quantity pseudo-receipts.
