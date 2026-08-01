@@ -26,7 +26,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | H9 | Model policy routing A-020/021 | H5                                | DONE        | codex / 2026-07-30 / 86af    | report 025 |
 | I1 | Integration & AC dry run       | S1-S6, H1-H9                      | DONE        | codex / 2026-07-31 / 7f26 | report 030; Harness b64cc82; /model + J1/J2 builder repair complete |
 | J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28); OWNER GATE CLEARED 2026-07-31 |
-| M1C| M1 closing report              | J; owner gate cleared 2026-07-31  | TODO        |                              | PLAN §3 rule 5 duty as a packet |
+| M1C| M1 closing report              | J; owner gate cleared 2026-07-31  | IN_PROGRESS | codex / 2026-08-01 / b5e2    | PLAN §3 rule 5 duty as a packet |
 | M2A| Spend ledger core              | J                                 | TODO        |                              | ADR-024; wave 1 |
 | M2B| Rack refound + NEO-NOIR identity | J                               | TODO        |                              | ADR-023 cl.1-2, themes; wave 1 |
 | M2D| Durable transcripts (capture-only) | J                             | TODO        |                              | agenda item 4; wave 1 |
