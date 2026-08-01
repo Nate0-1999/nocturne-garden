@@ -209,3 +209,9 @@ that query them (extraction reads, Cube as_of, multi-machine), BACKFILLED
 from the jsonl — append-only guarantees nothing recorded between now and
 then is ever lost. Perpetuity default; archival tiers stay the parked
 horizon item priced by the spend ledger's storage lines.
+
+ITEM 1 RESOLVED (owner, 2026-08-01; SPEC v2.32 / D.2 075): the scoreboard
+is BINARY override-rate on held-out replay — agree/disagree with every
+recorded human disposition, fewest wrongs wins, self-balancing; wrong/stale
+excluded; cheaper-at-tie; real margin. The agenda is now fully closed;
+wave 2 (Chrysopoeia learner first) is mintable on the owner's word.
