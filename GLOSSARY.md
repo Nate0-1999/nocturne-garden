@@ -95,6 +95,12 @@ and this file disagree, law wins — then this file gets fixed.
 - **the 10% principle** — a build agent spends at most ~10% of thread
   tokens on memory; push injection, fire-and-forget saves.
 
+- **the capability ladder** — NOCTURNE is one product with rungs, never
+  forks: local palace → your palace in your own cloud (the MIRROR
+  PRINCIPLE: deploy is a recipe anyone runs against their own supplier;
+  self-operated, never SaaS by accident) → replicas + sync (blue-water,
+  M5). Moving between rungs = explicit export/import until M5.
+
 ## Cost domain
 
 - **the spend ledger / spend_event** — append-only, receipt-line-normal
