@@ -28,7 +28,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | J  | Judge                          | I1; H5 hold cleared 2026-07-30 (owner) | DONE | claude-code / 2026-07-31 / f648 | report 031; superseding verdict PASS (J0 re-audited, J1/J2 re-executed live, J3–J8 stand); ADR normalizations ENACTED (D.2 071, v2.28); OWNER GATE CLEARED 2026-07-31 |
 | M1C| M1 closing report              | J; owner gate cleared 2026-07-31  | DONE        | codex / 2026-08-01 / b5e2    | report 035; M1 CLOSED; M2 relay open |
 | M2A| Spend ledger core              | J                                 | DONE        | codex / 2026-08-01 / a4d2    | report 036; Spine 371b698; Harness 4a59046; A-027 |
-| M2B| Rack refound + NEO-NOIR identity | J                               | IN_PROGRESS | codex / 2026-08-01 / c8e4    | ADR-023 cl.1-2, themes; wave 1 |
+| M2B| Rack refound + NEO-NOIR identity | J                               | DONE        | codex / 2026-08-01 / c8e4    | report 037; Harness 05d4e98; B.6 r7+r8 |
 | M2D| Durable transcripts (capture-only) | J                             | TODO        |                              | agenda item 4; wave 1 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | TODO        |                              | D.2 050(1); wave 1 |
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
@@ -56,8 +56,9 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - M1 CLOSED — report 035. The superseding J verdict passes J0–J8; the owner
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
-  status normalization. M2A is next by deterministic board order. D3 is not an
-  M1 closure dependency and remains blocked only on F014.
+  status normalization. M2A and M2B are DONE; M2D is next by deterministic
+  board order. D3 is not an M1 closure dependency and remains blocked only on
+  F014.
 
 ### Exclusions (symmetric; see PLAN §1)
 
