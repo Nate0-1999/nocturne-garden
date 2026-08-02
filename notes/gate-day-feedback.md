@@ -51,3 +51,11 @@ parity index):
   weights are hand-set and only `never` moves per-memory bias. The
   Chrysopoeia (M2 learning loop) trains on exactly these logged signals.
   The owner's add-back is the first real human tuning example in the log.
+
+## M2B rack first-look (owner, 2026-08-02)
+
+Theme improving, sharp trajectory. Frictions for M2C/M2K polish: still a
+bit boxy (see vision §18 — planes and depth, not butting rectangles);
+clunky non-intuitive UI phrasing (vision §18 — read labels aloud).
+Also owner doctrine enacted same day: B.6 rule 10 REAL CALLS (no mock
+default paths; verification spends real pennies).

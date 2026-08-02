@@ -264,3 +264,13 @@ M2 re-founds the shell as rack modules on the public plugin API
 is moving in the wrong direction. If you are an agent building UI and
 your work is making the harness look MORE like a conventional
 chat-with-tools clone, stop and re-read ADR-018, ADR-023, and this file.
+
+## 18. De-box it, and say it like a human (added 2026-08-02)
+
+First look at the racked NEO-NOIR shell: the theme is improving — looking
+sharp. Two frictions for every UI packet that follows: it still reads a
+bit BOXY (soften the grid's edges: the mock's language was holographic
+planes and depth, not rectangles butting rectangles), and some UI
+phrasing is clunky and non-intuitive — labels should sound like a human
+wrote them for a human, not like an envelope field escaped into the UI.
+When in doubt, read the label aloud; if you wouldn't say it, don't ship it.
