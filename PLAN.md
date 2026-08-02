@@ -571,6 +571,19 @@ before the relay continues.
   sums against the broker's usage/credits API; drift alert into Vitals;
   GCP billing-export ingestion explicitly NOT built (deferred owner-gated
   setup). (Deps: M2A.)
+- **M2N — Owner DB lifecycle hardening (wave 2).** Sections: ADR-019
+  v0.1 positioning (v2.35 — read the motivation: the owner's data is
+  real now; this is operational durability, NOT a multi-user refactor),
+  ADR-003, C.2 migration discipline. Deliver: pin the local pgvector
+  image to a digest (no floating pg16 tag); `nocturne backup` /
+  `nocturne restore` / `nocturne doctor`; an automatic BACKUP RECEIPT
+  before every migration (local and owner-cloud); an Alembic advisory
+  lock (no two concurrent migrations); historical upgrade-matrix tests
+  (every supported revision → head, not just empty → head); a config-file
+  upgrader (versioned config migrates, never merely errors); retain N
+  backup generations (config). Explicitly NOT in scope: per-install
+  cloud targets, fleet lifecycle, expand/contract discipline for
+  strangers — see the positioning clause. (Deps: J.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
