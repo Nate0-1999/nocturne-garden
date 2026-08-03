@@ -165,3 +165,9 @@ wait for PyPI, publish Harness `v0.1.0`, and prove a clean public-index
 `pipx install nocturne-ai==0.1.0`. This disturbs only first-release authority;
 no product contract or code change is needed. PyPI documents this no-project-
 yet flow at https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/.
+
+RESOLUTION F014 (owner, 2026-08-02): DEFERRED — publishing waits until the
+product reaches a more complete state ("I don't think we are in a state yet
+to publish"). The pending-publisher registration remains the owner's task
+when he chooses to ship; the release workflows stay ready. Relay: do not
+re-raise; D3's shipped artifacts stand.
