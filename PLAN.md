@@ -558,8 +558,10 @@ before the relay continues.
   Invariant 6, ADR-023 incl. clause 5 scope law (console = the first
   law-bound control plugin; graph and bars ship with GLOBAL|CURRENT
   toggles, and the spend strip adopts its toggle here). The console
-  ships the v2.42 READ+CONTROL layers incl. the accuracy series;
-  audition + what-if are M2P's, not yours.
+  ships the v2.42 READ+CONTROL layers incl. the accuracy series AND
+  the v2.43 SCORE GRAPH (two series, annotated) with normalized knob
+  display, docked COMPACT in the factory set; simulate + audition are
+  M2P's, not yours.
   Deliver: the force-directed Memory Graph (encodings per law; CAS-safe
   edit on click); the console (τ, top_k, budget, half-lives, weights —
   every change INSERTs a version; displays PROPOSED learner versions for
@@ -609,10 +611,13 @@ before the relay continues.
   answer. (Deps: J.)
 - **M2P — Injection Console: audition + what-if (wave 2).** Sections:
   ADR-009 item 4 v2.42 (read the four layers and their motivations),
-  ADR-023 clauses 3+5, v2.34 learner authority. Deliver: WHAT-IF preview
-  (knob turns re-rank the visible gate under tentative values,
-  unmistakably marked, never persisted; commit = the existing versioned
-  insert) and the AUDITION overlay (spine scores the same prepare under
+  ADR-023 clauses 3+5, v2.34 learner authority. Deliver: SIMULATE
+  (v2.43 rename) — INSTANT preview (knob turns re-rank the visible gate,
+  unmistakably marked, never persisted) and DEEP (one-click backtest of
+  arbitrary values via a new small spine endpoint over M2F's replay
+  engine; returns the held-out %); FORCE with honest delta + journal
+  (the exploration lever); 2D accuracy-vs-parameter slice curves (the
+  Landscape's M3 precursor); and the AUDITION overlay (spine scores the same prepare under
   incumbent AND the PROPOSED version; overlay renders counterfactual
   picks faint/marked on live gates + panel; incumbent alone governs
   injection until the one-tap; pure consumer — verified by diffing
