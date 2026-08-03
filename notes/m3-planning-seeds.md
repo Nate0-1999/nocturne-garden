@@ -47,3 +47,41 @@ Gate-collected inputs for M3 planning, gathered while M2's wave runs.
    also have shown X / left out Y"). Accept after WATCHING it work, not
    after trusting a number. Cheap: challenger exists, prepare scores
    twice, ghost renders at low opacity.
+
+## Empirical tool census (this machine's logs, 2026-08-03 — the survey's
+## first dataset; aggregate counts only)
+
+CLAUDE CODE (gate sessions): Bash 685 ≫ Edit 432 > Read 177 > browser
+36 > Write 32 > WebFetch 18 = AskUserQuestion 18 > Artifact 16 >
+WebSearch 12 > sub-Agent 8 > Skill 6.
+CODEX (builder sessions): exec/shell overwhelmingly dominant (~10k+ real
+calls); browser used in SOP packets; the rest is session plumbing.
+
+FINDINGS: (1) SHELL IS THE KING by 10x — git, tests, everything; (2)
+EDIT beats WRITE 13:1 — surgical patching is the real writing tool; (3)
+browser use is essential but episodic (verification, not building); (4)
+skills/MCP are GARNISH in practice on this machine (6 skill calls total)
+— the "basic stuff" = shell, edit, read, browser, web fetch/search, and
+structured questions to the human.
+
+PINNING ANCHORS (owner directive: "static but with versioning to some
+open source version" — this IS ADR-013 adopt-wrap-pin, applied):
+- shell/fs/read/edit → own thin tools or pydantic-ai natives (versioned
+  by our own wheel; no external dep to pin);
+- browser → Playwright, version-pinned (the boring OSS anchor; enables
+  rule-8 SOPs to run IN-harness; Codex-extension port stays optional);
+- search → ripgrep, pinned binary;
+- web fetch → httpx (already a dep), pinned;
+- MCP client → official modelcontextprotocol Python SDK, pinned;
+- skills → the Agent Skills open standard (SKILL.md; already ADR-007).
+
+## N1 — THE OUROBOROS (proposed M3 north-star acceptance test)
+
+"NOCTURNE completes one relay packet on its own repositories, end to
+end": boot sequence → read law → run both suites → claim → edit → test
+→ commit → handoff report, under walls. Requirements = shell+git, file
+read/edit, the work protocol, boundary walls; browser only for UI
+packets. The harness building itself is the parity wave's honest
+finish line. Rough distance: wave-2 remainder → M2 judge → M3 parity
+packets (fs/shell/edit first) → first attempt on a small spine-side
+packet. Order of ~10 packets from 2026-08-03.
