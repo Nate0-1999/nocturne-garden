@@ -999,7 +999,12 @@ law: Add non-null `actor_class TEXT NOT NULL DEFAULT 'human'` to
 
      Extend feedback signal with `mid_thread_added`. It is valid only as the
      exactly-once/idempotent transition from `mid_thread_removed` on the same
-     event membership; it does not change corpus counters. The Harness keeps
+     event membership; a later `mid_thread_removed` may symmetrically replace
+     `mid_thread_added` on that membership. A first `mid_thread_removed` may
+     transition a passive `kept` or `auto_entered` membership as well as the
+     standing human outcomes; otherwise the panel could not remove context
+     that entered through autonomous scoring. Re-addition does not change
+     corpus counters. The Harness keeps
      daemon-lifetime per-thread current, confirmed, excluded, and event-source
      sets as trusted state: first-gate survivors become confirmed; panel remove
      moves a member from confirmed/current to excluded after Spine accepts
@@ -1007,9 +1012,11 @@ law: Add non-null `actor_class TEXT NOT NULL DEFAULT 'human'` to
      after Spine accepts `mid_thread_added`. Each post-first ordinary prompt
      supplies those sets to autonomous prepare, atomically replaces only the
      autonomous portion of current context from `final_block`, and emits an
-     unprompted `memory.panel.update` state when membership changes. Remember
+     unprompted `memory.panel.update` state when membership changes, using a
+     daemon-minted request_id and state result `rescored`. Remember
      commands retain their command path and do not invoke re-scoring. The first
-     gate remains the only modal memory review.
+     gate remains the only modal memory review. Memory-panel state items add
+     boolean `thread_excluded`; only those non-context rows expose re-add.
 why: This is the smallest contract extension that makes the already-decided
      gate-once/autonomous-afterward behavior executable and replayable. It
      preserves every DONE-packet gate call, keeps lock magnitudes binary, uses
