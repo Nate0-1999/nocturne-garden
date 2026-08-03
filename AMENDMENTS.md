@@ -936,3 +936,22 @@ why: This completes the read and honesty seams already required by the M2C
      changing an authoritative row or pretending future M2 machinery has
      emitted events. Typed unavailability is reversible as those logs arrive,
      while guessed zeroes or a retrofit event history would not be.
+
+[A-029] [M2C] [A-028 model lane keys; ADR-024 views] [P2.4, P4.1]
+gap: A-028 reserves model-lane key `unreported` for a null canonical model but
+     also says non-null model keys are their exact canonical values. The spend
+     contract permits a real model whose canonical value is literally
+     `unreported`; merging those rows would corrupt totals, while emitting two
+     identical keys would make lane selection ambiguous.
+law: Reserve public model-lane key `unreported` solely for a null canonical
+     model. A non-null canonical model normally remains its exact public key.
+     If its value equals `unreported` or begins with `~`, prefix one `~` to form
+     the public key; its human label remains the exact canonical value. Thus a
+     real `unreported` model has key `~unreported`, a real `~unreported` model
+     has key `~~unreported`, and neither collides with the null-model lane.
+     Deterministic model-lane ordering uses these resulting public keys. This
+     key escape affects only the Vitals read projection and selection identity;
+     it never rewrites a canonical ledger row.
+why: This is the smallest injective completion of A-028's self-collision. It
+     preserves every spend row and the stable null sentinel without narrowing
+     accepted ledger data, adding a schema field, or changing authority.
