@@ -40,17 +40,18 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2I| Seed ingestion                 | M2H                               | DONE        | codex / 2026-08-03 / 92ad    | report 044; Spine f3b3e53; Harness 456397f; A-033; B.6 r7+r8 |
 | M2J| Parameter registry + model device | M2B                            | DONE        | codex / 2026-08-03 / 3d91    | report 045; Harness da5c220; A-034; B.6 r7+r8 |
 | M2K| Memory Graph + console + contribution bars | M2B                   | DONE        | codex / 2026-08-03 / 7ac4    | report 046; Spine 8ffff28; Harness 1249fe2; A-035; B.6 r7+r8 |
+
+
+
+
+
 | M2L| Citation heuristic v1 (n-gram) | M2G                               | TODO        |                              | ADR-005 (OQ-5 v1 already decided); wave 2 |
 | M2M| Ledger self-audit vs broker    | M2A                               | TODO        |                              | ADR-024 sourcing (v2.34 scope); wave 2 |
-
 | M2N| Owner DB lifecycle hardening   | J                                 | TODO        |                              | v2.35/D.2 078; wave 2 |
-
 | M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
-
-| M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
-
+| M2R| Context Bars (+memory category) | M2B                              | TODO        |                              | P2.2, viz item 1; v2.46 dropped-ball recovery |
 | M2Q| Test motivation sweep + coverage report | J                        | TODO        |                              | v2.45/D.2 088; wave 2 |
-
+| M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
@@ -74,7 +75,7 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - H6 ⊗ H8 — both edit the harness web SPA (gate/chat surfaces).
 - M2B ⊗ M2C — both edit the web SPA (rack surfaces).
-- M2H ⊗ M2J ⊗ M2K ⊗ M2C ⊗ M2P — pairwise: all edit the web SPA (rack modules).
+- M2H ⊗ M2J ⊗ M2K ⊗ M2C ⊗ M2P ⊗ M2R — pairwise: all edit the web SPA (rack modules).
 
 ### Gate scout notes
 

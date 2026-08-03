@@ -85,3 +85,10 @@ packets. The harness building itself is the parity wave's honest
 finish line. Rough distance: wave-2 remainder → M2 judge → M3 parity
 packets (fs/shell/edit first) → first attempt on a small spine-side
 packet. Order of ~10 packets from 2026-08-03.
+
+7. MOVEMENT COUPLING (owner core-check, 2026-08-03; PINNED): the FIRST
+   M3 parity packet ships agent LOCATION + the ADR-010 movement law +
+   origin_path activation + f_loc + movement-refresh WITH fs/shell —
+   never as a later flourish. An agent gets hands and a place to stand
+   in the same breath. The Context Bars omission (v2.46) is the
+   cautionary tale.

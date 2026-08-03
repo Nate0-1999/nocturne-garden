@@ -638,6 +638,16 @@ before the relay continues.
   defender lists, zero-defender sections highlighted, emitted into
   verification/. May split the sweep across two sessions with an honest
   handoff if context demands. (Deps: J.)
+- **M2R — Context Bars, + memory category (wave 2; dropped-ball
+  recovery, v2.46).** Sections: ADR-009 item 1 (the Code Puppy port:
+  category breakdown, compaction threshold line), P2.2 ("what is
+  filling each context window?"), ADR-023 clauses 1+5. Deliver: the
+  per-thread context-window visualizer as a rack module — category
+  breakdown of the live context (system, history, MEMORY BLOCK as its
+  own category, tools) against the model's true context length (the
+  resolved route's, per A-026), threshold line included; GLOBAL|CURRENT
+  scope; compact by default beside the spend strip. (Deps: M2B.
+  Excludes the SPA cluster.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
