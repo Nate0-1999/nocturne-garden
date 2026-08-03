@@ -35,7 +35,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
 | M2G| Per-message re-scoring + locks | J                                 | DONE        | codex / 2026-08-03 / b803    | report 041; Spine aab87ab; Harness 5a8338a; A-030; B.6 r7+r8 |
-| M2F| Chrysopoeia learner v1         | J                                 | TODO        |                              | v2.32 scoreboard; PROPOSED-version authority; wave 2 |
+| M2F| Chrysopoeia learner v1         | J                                 | IN_PROGRESS | codex / 2026-08-03 / c6a1    | v2.32 scoreboard; PROPOSED-version authority; wave 2 |
 | M2H| Extraction + queue + thread-end card | M2B, M2D                    | TODO        |                              | ADR-021 cl.4 (v2.34 trigger); v2.25 queue law; wave 2 |
 | M2I| Seed ingestion                 | M2H                               | TODO        |                              | ADR-019 cl.4; wave 2 |
 | M2J| Parameter registry + model device | M2B                            | TODO        |                              | ADR-023 cl.3; wave 2 |
