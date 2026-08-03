@@ -1260,3 +1260,92 @@ why: This supplies the smallest replayable, mechanically bound seam for M2J's
      real broker controls and selector while preserving A-021, M2D's explicit
      capture-only boundary, and v2.40's separation of module scope from
      parameter scope.
+
+[A-035] [M2K] [ADR-009 items 3-4; ADR-023 clauses 3 and 5; Invariant 6] [P1.2.3, P2.3, P2.5]
+gap: M2K names authoritative graph encodings, scorer-version controls,
+     accuracy, contribution bars, and GLOBAL|CURRENT behavior but defines no
+     read/write boundary, graph membership, descriptor domains, activation
+     journal, or exact contribution arithmetic. The existing Vitals contract
+     also cannot express CURRENT thread spend.
+law: Spine exposes bearer-protected POST `/v1/memory-graph/query` with
+     `{principal_id,memory_ids}` where `memory_ids` is null for GLOBAL or a
+     unique UUID list for CURRENT. GLOBAL returns every non-candidate memory
+     head of that principal; CURRENT returns only requested same-principal
+     non-candidate heads and names any omitted IDs. The live result is
+     `{as_of,graph_edge_sim,nodes,edges,omitted_memory_ids}`. Each node carries
+     the complete current MemoryUnit, `in_current_context`, and its ordered
+     revision trail `{rev_uid,parent_uid,revision,ts,reason}`. Node size derives
+     only from `stats.injections`; color only from kind; brightness only from
+     updated_at recency; pin alone supplies a halo; quarantine is ghosted;
+     tombstone is visibly struck/faded; CURRENT membership alone supplies the
+     live-thread border pulse.
+
+     Graph edges join returned nodes only. `similarity` carries exact cosine
+     similarity and exists iff it is at least configurable
+     `SPINE_GRAPH_EDGE_SIM` (default 0.75), using the stored embedding space.
+     `lineage` carries the exact stored memory_edge type. A head with more than
+     one revision also receives one self-edge `edit_trail` carrying its
+     revision count; the inspector renders the ordered revision trail. Node
+     click publishes a memory selection only: the existing Memory Panel owns
+     the C.4 CAS edit. The Memory Graph remains a visualizer and never writes.
+     Historical graph reconstruction is `historical_unavailable` until head
+     status/stats/pin have replay-complete logs; current heads never masquerade
+     as past truth.
+
+     Spine exposes bearer-protected POST `/v1/scorer-console/query` with
+     `{principal_id,thread_id,as_of}`. Null thread is GLOBAL; a UUID thread is
+     CURRENT. It returns the typed law-bound descriptors, configuration and
+     activation history, active version, PROPOSED learner versions with their
+     replay manifests, accuracy points, and scored-candidate histories. GLOBAL
+     includes the principal's events; CURRENT includes that thread only.
+     Candidate points retain event_uid, time, version, score, rank, shown_as,
+     outcome, six raw features, and seven decimal-string contributions:
+     `sem|kw|time|proj|freq|hist = stored feature * that event version's
+     weight`; `bias = stored score - exact decimal sum of those six`.
+     Consequently the seven decimal contributions sum exactly to the stored
+     score. Gate and Memory Panel cards render these weighted contributions;
+     a unit with no scored event says `Not scored yet` rather than inventing
+     bars. Accuracy is
+     `100 * (holdout_dispositions - disagreements) / holdout_dispositions`
+     from the learner replay manifest, or null/`not_recorded` when that
+     denominator is absent. M2K may add the denominator to future M2F proposal
+     manifests; existing proposal content is never rewritten.
+
+     The console declares exactly these GLOBAL law-bound descriptors:
+     `scorer.tau` number 0..1; `scorer.top_k` integer 1..8;
+     `scorer.budget_tokens` integer >=1; `scorer.half_life_time_days` and
+     `scorer.half_life_hist_days` numbers >0; and six numbers 0..1 named
+     `scorer.weight.sem|kw|time|proj|freq|hist`, whose enacted vector must sum
+     to 1 within 1e-9. Step hints are .01, 1, 128, .5, and .01 respectively;
+     a step is presentation, never rounding authority. The console manifest
+     binds all eleven IDs. Its scope toggle changes the READ candidate set;
+     the descriptors remain visibly Palace-wide in both scopes and never
+     become thread parameters.
+
+     POST `/v1/scorer-configs` accepts the base version, the complete eleven-
+     value set, and daemon-owned human/machine attribution. It validates the
+     base is active, copies every non-controlled parameter unchanged, INSERTs
+     one new scorer_config version, deactivates the prior version, activates
+     the new one, and appends one scorer_activation row in one transaction.
+     POST `/v1/scorer-configs/{version}/activate` accepts only an inactive
+     learner-PROPOSED version and atomically makes it active. Every activation
+     appends `{event_uid,version,previous_version,actor_class,machine_id,
+     reason,changes,ts}`; exact old/new controlled values are journaled and a
+     matching `scorer.change` C.7 event is published. Replays of an event UID
+     are idempotent only when identical. No update mutates a configuration's
+     weights or params. WHAT-IF re-ranking and AUDITION remain entirely M2P.
+
+     For the spend strip's CURRENT scope, Spine adds bearer-protected GET
+     `/v1/vitals/threads/{thread_id}`. It returns the existing Vitals shape,
+     but spend lanes group trailing-hour authoritative spend_event rows for
+     that exact thread and label `source_view="spend_event"`; palace gauges
+     remain explicitly Palace-wide. GET `/v1/vitals` and its canonical
+     `v_spend_rate` projection are unchanged. Every graph, console, and Vitals
+     module persists its GLOBAL|CURRENT toggle only in rack layout state and
+     every CURRENT query follows the shared selected thread without a second
+     selector.
+why: This is the smallest mechanically honest contract for the M2K surfaces.
+     It uses existing heads, revisions, events, configs, ledger rows, CAS edit,
+     and selection bus; adds one append-only activation journal; and does not
+     build M2P previews/auditions, M3 graph maintenance, bulk actions, private
+     first-party data paths, or fabricated historical state.
