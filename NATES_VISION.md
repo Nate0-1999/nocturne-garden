@@ -274,3 +274,14 @@ planes and depth, not rectangles butting rectangles), and some UI
 phrasing is clunky and non-intuitive — labels should sound like a human
 wrote them for a human, not like an envelope field escaped into the UI.
 When in doubt, read the label aloud; if you wouldn't say it, don't ship it.
+
+## 19. The device chain — a skill visualizer (added 2026-08-02)
+
+We have the context window visualizer; I want a better SKILL visualizer.
+The intuition completes the Ableton metaphor: an agent's tools and skills
+rendered as a DEVICE CHAIN, like devices on a track — which are loaded,
+which fired this thread and how often, what each costs (the ledger's
+purpose lanes price it), with enable/disable toggles. That makes it a
+CONTROL plugin bound through the registry, not just a picture: the
+agent's capability rack, watchable and playable. Arrives with M3 when
+skills/tools themselves arrive; design it alongside them, not after.
