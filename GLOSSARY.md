@@ -55,6 +55,9 @@ and this file disagree, law wins — then this file gets fixed.
   resolves (enter-unless-denied, the gate's grammar on the write door);
   logged as weak signal; contradictions and collapsed groups never
   passive-approve.
+- **auto_exited** — a memory autonomously demoted by per-message
+  re-scoring (never by a human hand); ungraded by the scoreboard — not a
+  disposition (A-031).
 - **candidate** — a memory unit's status while waiting in the queue.
 - **the conversation journal** — the plain file on disk where the daemon
   writes every message as it happens (the owner's "commit after every
