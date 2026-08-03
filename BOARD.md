@@ -49,6 +49,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
 
+| M2Q| Test motivation sweep + coverage report | J                        | TODO        |                              | v2.45/D.2 088; wave 2 |
+
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 

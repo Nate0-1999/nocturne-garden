@@ -625,6 +625,19 @@ before the relay continues.
   injection until the one-tap; pure consumer — verified by diffing
   actual context with overlay on/off). (Deps: M2K, M2F. Excludes the
   SPA cluster.)
+- **M2Q — Test motivation sweep + law-coverage report (wave 2).**
+  Sections: B.6 rule 12 (v2.45 — read the motivation: a test is law
+  made executable and cites its statute). Deliver: (1) the deterministic
+  pre-commit checker in BOTH repos (motivation docstring + citation
+  token grammar; fails unmotivated tests; baseline file grandfathers
+  the existing suite); (2) THE SWEEP: motivate every existing test
+  (~144 spine + ~306 harness) by reading it against the law — a test
+  that cannot be motivated is either unwritten law (propose the
+  completion) or nothing (delete it, journaled); retire the baseline;
+  (3) the LAW-COVERAGE REPORT generator: citations → per-section
+  defender lists, zero-defender sections highlighted, emitted into
+  verification/. May split the sweep across two sessions with an honest
+  handoff if context demands. (Deps: J.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
