@@ -1442,3 +1442,52 @@ why: This compares the one existing broker key to the one authoritative ledger
      without a third secret, discounts spend predating M2A, preserves audit
      history, and makes disagreement visible without building the deferred GCP
      export or demanding owner attention.
+
+[A-038] [M2O] [B.6 rules 10-11] [P3, P4.1]
+gap: B.6 requires isolated fixtures, a queued estimated receipt, and loud
+     Vitals drift, but does not define fixture identity enforcement, legacy
+     catalog cleanup, queue durability/replay, or the immediate Vitals shape.
+law: Every Harness fixture/scenario app has one nonblank identity ending in
+     ` REGRESSION`, exposes it from GET `/__scenario__/identity` as
+     `{fixture,deterministic:true}`, and redirects a top-level UI request that
+     lacks the exact `fixture` query value to the same URL with that value.
+     It refuses every request received on product port 8765 before serving UI
+     or accepting a WebSocket. The rack renders the verified identity as a
+     pointer-transparent, viewport-covering FIXTURE overlay; a query string
+     alone never creates the overlay. Fixture launchers run in the foreground
+     or own the child in a `finally` cleanup, reject port 8765, and browser
+     automation creates a fresh temporary profile which it removes on exit.
+
+     The one-time polluted-catalog cleanup is explicit and narrow. The thread
+     rail offers `Remove fixture threads` only when the browser-local catalog
+     contains a title produced from the first prompt of a pre-M2O H4, H5, H6,
+     H8, or M2G deterministic scenario. It shows the count and removes only
+     those exact catalog entries after the human activates it; it never clears
+     all storage, guesses from substrings, deletes transcripts, or touches a
+     catalog on a distinct fixture origin.
+
+     A failed or incomplete POST `/v1/spend/events` never changes a completed
+     model outcome. Harness changes each failed batch line's basis to
+     `estimated`, retains its event_uid and broker timestamp, records the
+     original basis plus queue time in safe meta, and stores one atomic
+     mode-0600 JSON batch beneath `NOCTURNE_HOME/receipt-queue`. It retries
+     queued batches oldest-first at daemon startup and before a later current
+     receipt. A file is removed only after Spine accepts its complete batch;
+     replay therefore rides A-027 idempotency. Queue or retry failure emits a
+     safe `spend_pending` event but does not fail, retract, or replace the turn.
+     If disk enqueue itself fails, the process retains the batch in memory and
+     reports degraded accounting; accounting remains fail-open.
+
+     Harness enriches only its public Rack Vitals result (the Spine A-028 body
+     is unchanged) with `accounting:{status,pending_lines,oldest_queued_at,
+     source}`. Status is `clear`, `pending`, or `degraded`; source is always
+     `harness.receipt_queue`; counts include disk and memory batches; oldest is
+     null exactly when no line is pending. `degraded` means at least one
+     pending batch is not durable. Vitals renders pending/degraded in the
+     theme's sole danger color as a persistent accounting-drift line, without
+     an alert role, popup, notification, or card. Successful replay returns it
+     to clear. Broker reconciliation remains the dollar authority and exposes
+     any cumulative mismatch on its existing cadence.
+why: This makes the two owner-observed failures mechanically visible and
+     replay-safe at their existing boundaries, without adding a mock mode, a
+     second ledger, a notification channel, or generic browser-data cleanup.

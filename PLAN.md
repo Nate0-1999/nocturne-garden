@@ -646,7 +646,10 @@ before the relay continues.
   breakdown of the live context (system, history, MEMORY BLOCK as its
   own category, tools) against the model's true context length (the
   resolved route's, per A-026), threshold line included; GLOBAL|CURRENT
-  scope; compact by default beside the spend strip. (Deps: M2B.
+  scope; compact by default beside the spend strip. ALSO (v2.48): sweep
+  ALL existing customer-facing surfaces for garden leaks — ADR/packet/
+  amendment ids, build jargon in labels, errors, command output — and
+  rephrase per THE GARDEN NEVER SHOWS + vision §18. (Deps: M2B.
   Excludes the SPA cluster.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different

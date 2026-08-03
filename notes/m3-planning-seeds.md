@@ -66,10 +66,12 @@ structured questions to the human.
 
 PINNING ANCHORS (owner directive: "static but with versioning to some
 open source version" — this IS ADR-013 adopt-wrap-pin, applied):
-- shell/fs/read/edit → own thin tools or pydantic-ai natives (versioned
-  by our own wheel; no external dep to pin);
-- browser → Playwright, version-pinned (the boring OSS anchor; enables
-  rule-8 SOPs to run IN-harness; Codex-extension port stays optional);
+- shell/fs/read/edit → ADOPT an existing OSS toolset base, never from
+  scratch (owner, v2.48; candidates: Code Puppy, OpenCode, Hermes,
+  OpenHands, aider, pydantic-ai natives) — fork/pin, modify under our
+  law; the walls and policy stay ours;
+- browser → the OpenAI/Codex CHROME EXTENSION PORT is the DEFAULT
+  (owner, v2.48); Playwright pinned as the headless fallback;
 - search → ripgrep, pinned binary;
 - web fetch → httpx (already a dep), pinned;
 - MCP client → official modelcontextprotocol Python SDK, pinned;

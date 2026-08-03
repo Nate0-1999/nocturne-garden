@@ -53,9 +53,9 @@ the M3 survey's first act (gate can start early on request).
 | capability | source repo | license | pin form | what we take |
 |---|---|---|---|---|
 | tool framework + MCP client | pydantic/pydantic-ai | MIT | ALREADY PINNED: pydantic-ai==2.12.0 (harness pyproject) | function tools, MCP client |
-| shell/fs/read/edit tools | (our own thin tools) | — | versioned by our wheel | policy + walls are the work, not the plumbing |
-| browser use | microsoft/playwright-python | Apache-2.0 | exact pin | driver + page control; enables in-harness rule-8 SOPs |
-| browser alt | openai/codex (chrome extension) | Apache-2.0 | port, not dep | owner-named option; evaluate vs Playwright at survey |
+| shell/fs/read/edit tools | ADOPT an OSS toolset base (owner doctrine v2.48): survey Code Puppy, OpenCode, Hermes, OpenHands, aider, pydantic-ai natives | varies | fork/pin the chosen base | 'modify them, but at least we'll have a standard list' — from-scratch specing rejected; policy + walls remain OUR work |
+| browser use (DEFAULT, owner 2026-08-03) | openai/codex chrome extension | Apache-2.0 | PORT, version-tracked against upstream | the owner's named default for browser use |
+| browser fallback | microsoft/playwright-python | Apache-2.0 | exact pin | headless automation / rule-8 SOP driving where the extension doesn't fit |
 | search | BurntSushi/ripgrep | MIT/Unlicense | pinned binary | rg |
 | web fetch | encode/httpx | BSD | already a dep (>=0.27,<1 → tighten at M3) | fetch |
 | MCP | modelcontextprotocol/python-sdk | MIT | exact pin | client, door-open only (zero-MCP finding) |
