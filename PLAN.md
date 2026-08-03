@@ -557,7 +557,9 @@ before the relay continues.
   (wave 2).** Sections: ADR-009 items 3-4 (authoritative encodings),
   Invariant 6, ADR-023 incl. clause 5 scope law (console = the first
   law-bound control plugin; graph and bars ship with GLOBAL|CURRENT
-  toggles, and the spend strip adopts its toggle here).
+  toggles, and the spend strip adopts its toggle here). The console
+  ships the v2.42 READ+CONTROL layers incl. the accuracy series;
+  audition + what-if are M2P's, not yours.
   Deliver: the force-directed Memory Graph (encodings per law; CAS-safe
   edit on click); the console (τ, top_k, budget, half-lives, weights —
   every change INSERTs a version; displays PROPOSED learner versions for
@@ -605,6 +607,17 @@ before the relay continues.
   basis=estimated ledger line queued for reconciliation, loud drift
   surface in Vitals; regression: a turn with a dead ledger MUST still
   answer. (Deps: J.)
+- **M2P — Injection Console: audition + what-if (wave 2).** Sections:
+  ADR-009 item 4 v2.42 (read the four layers and their motivations),
+  ADR-023 clauses 3+5, v2.34 learner authority. Deliver: WHAT-IF preview
+  (knob turns re-rank the visible gate under tentative values,
+  unmistakably marked, never persisted; commit = the existing versioned
+  insert) and the AUDITION overlay (spine scores the same prepare under
+  incumbent AND the PROPOSED version; overlay renders counterfactual
+  picks faint/marked on live gates + panel; incumbent alone governs
+  injection until the one-tap; pure consumer — verified by diffing
+  actual context with overlay on/off). (Deps: M2K, M2F. Excludes the
+  SPA cluster.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8

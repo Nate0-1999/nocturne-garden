@@ -76,6 +76,11 @@ and this file disagree, law wins — then this file gets fixed.
   condition?" Never touch a weight.
 - **Palace Health Report** — the deterministic diagnostic (code, not
   LLM) every curator pass must read before intervening.
+- **the Injection Console** — the four-layer scoring module (ADR-009
+  item 4, v2.42): READ (score decomposition, exactly summing bars),
+  CONTROL (versioned knob law), WHAT-IF (preview re-rank, never
+  persisted), AUDITION (challenger counterfactuals overlaid on live
+  gates; incumbent governs until the one-tap).
 - **earned autonomy** — curator verdict classes graduate from queued to
   auto-execute only when the owner's approvals run near-unanimous;
   contradictions never graduate.

@@ -47,6 +47,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
 
+| M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
+
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
@@ -70,7 +72,7 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - H6 ⊗ H8 — both edit the harness web SPA (gate/chat surfaces).
 - M2B ⊗ M2C — both edit the web SPA (rack surfaces).
-- M2H ⊗ M2J ⊗ M2K ⊗ M2C — pairwise: all edit the web SPA (rack modules).
+- M2H ⊗ M2J ⊗ M2K ⊗ M2C ⊗ M2P — pairwise: all edit the web SPA (rack modules).
 
 ### Gate scout notes
 
