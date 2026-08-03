@@ -30,7 +30,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2A| Spend ledger core              | J                                 | DONE        | codex / 2026-08-01 / a4d2    | report 036; Spine 371b698; Harness 4a59046; A-027 |
 | M2B| Rack refound + NEO-NOIR identity | J                               | DONE        | codex / 2026-08-01 / c8e4    | report 037; Harness 05d4e98; B.6 r7+r8 |
 | M2D| Durable transcripts (capture-only) | J                             | DONE        | codex / 2026-08-02 / fe58    | report 038; Harness e44bfaa; ADR-025 |
-| M2E| Hybrid retrieval (FTS ∪ vector) | J                                | IN_PROGRESS | codex / 2026-08-02 / c2a4    | D.2 050(1); wave 1 |
+| M2E| Hybrid retrieval (FTS ∪ vector) | J                                | DONE        | codex / 2026-08-02 / c2a4    | report 039; Spine 93ffd17; D.2 050(1) |
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
@@ -53,14 +53,14 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 ### Active stop-line
 
 - D3 only — F014: the owner must register the two pending PyPI trusted
-  publishers before a relay creates the `v0.1.0` releases. M2E remains
+  publishers before a relay creates the `v0.1.0` releases. M2C remains
   independently claimable by another relay session.
 
 ### Milestone closure
 
 - M1 CLOSED — report 035. The superseding J verdict passes J0–J8; the owner
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
-  status normalization. M2A, M2B, and M2D are DONE; M2E is next by
+  status normalization. M2A, M2B, M2D, and M2E are DONE; M2C is next by
   deterministic board order. D3 is not an M1 closure dependency and remains
   blocked only on F014.
 
