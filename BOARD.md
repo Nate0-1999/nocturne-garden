@@ -45,7 +45,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 
 
-| M2L| Citation heuristic v1 (n-gram) | M2G                               | TODO        |                              | ADR-005 (OQ-5 v1 already decided); wave 2 |
+| M2L| Citation heuristic v1 (n-gram) | M2G                               | IN_PROGRESS | codex / 2026-08-03 / a83f    | ADR-005 (OQ-5 v1 already decided); wave 2 |
 | M2M| Ledger self-audit vs broker    | M2A                               | TODO        |                              | ADR-024 sourcing (v2.34 scope); wave 2 |
 | M2N| Owner DB lifecycle hardening   | J                                 | TODO        |                              | v2.35/D.2 078; wave 2 |
 | M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
