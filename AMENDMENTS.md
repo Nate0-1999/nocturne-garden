@@ -1094,3 +1094,60 @@ why: This makes the owner-resolved batch learner and binary referee exactly
      reproducible from the existing append-only evidence, preserves manual
      activation and manual selection parameters, and adds no online SGD,
      learner UI, automatic promotion, or hidden training state.
+
+[A-032] [M2H] [ADR-021 clause 4 and unified queue; ADR-022 kinships] [P1.4, P1.5]
+gap: M2H requires verdicts at birth and says approval enacts them, but the
+     general curator tool set and health-report worker do not land until M3.
+     The queue row, exact decision transition, archive/idle trigger, and
+     viewport-visible passive-resolution contract are otherwise unspecified.
+law: Add `candidate` to memory-unit status and add append-only
+     `memory_edge` plus `approval_queue_item` and `approval_decision` rows.
+     A queue item owns one candidate unit, one birthplace thread, ordered
+     machine-fetched neighbor IDs, zero or more implicated target IDs, and one
+     proposed verdict: `new`, `merge`, `supersede`, or `contradict`. Its state
+     is `pending`, `approved`, or `rejected`. Candidate creation runs under the
+     same principal advisory lock, embedding provider, body/label limits, and
+     cosine thresholds as ordinary creation, but deduplicates against both
+     ACTIVE and CANDIDATE heads. A hard duplicate creates no candidate or queue
+     row; a similar match is admitted and appears in ordered neighbors.
+
+     POST `/v1/extractions` accepts one thread-born batch of at most five
+     atomic, nonblank, keyworded candidates and returns the admitted queue
+     cards. Each candidate supplies its proposed verdict and implicated target
+     IDs; targets must be same-principal ACTIVE units and must be present in
+     the machine-fetched neighbor set. GET `/v1/approval-queue` reads pending
+     cards, optionally narrowed to birthplace thread. POST
+     `/v1/approval-queue/{item_uid}/decisions` accepts `approve` or `deny`,
+     `approval_mode` explicit or passive, and actor class human or passive.
+     Deny is always explicit/human, tombstones the candidate with revision
+     reason `rejected`, and appends the decision. Approve activates the
+     candidate and appends the decision. `new` changes nothing else; `merge`
+     and `supersede` revision-tombstone their implicated targets and append
+     respectively `merged_from` or `supersedes` edges from the new unit;
+     `contradict` leaves targets active and appends `contradicts` edges.
+     Contradiction rejects passive mode mechanically. A repeated identical
+     decision is idempotent; a conflicting second decision is 409. These are
+     the minimal deterministic verdict mechanics M2H needs, not the M3 curator
+     agent, report, autonomy, generic tool SDK, or graph retrieval.
+
+     Harness extraction reads the durable M2D transcript on explicit
+     `POST /v1/threads/{thread_id}/archive`; a daemon idle sweep uses the same
+     path after configurable positive `EXTRACTION_IDLE_HOURS`. The model emits
+     working summary, open loops, and at most five candidate drafts. Archive is
+     idempotent per transcript tail. Failed extraction leaves the thread
+     unarchived and returns a visible service error; an idle failure is logged
+     and retried without blocking chat. The thread-end rack card shows the
+     final assistant post above its candidate list. An IntersectionObserver
+     marks an individual uncollapsed, non-contradiction row seen only when its
+     whole row intersects the literal viewport. Resolving the card explicitly
+     denies selected rows and passively approves only those marked seen;
+     unseen, collapsed, and contradiction rows remain pending for the Palace
+     queue module. Passive sends actor class passive and approval_mode passive;
+     taps send human/explicit. No timer resolves queue items and no queue event
+     notifies the owner. The law-bound module declares CURRENT by default,
+     follows the shared thread selection, and persists GLOBAL|CURRENT only as
+     rack layout presentation state.
+why: This supplies the smallest auditable bridge between extraction consent
+     and M3 curator operations. It makes every approved verdict real without
+     smuggling in the future diagnostic agent, and it defines literal passive
+     visibility so scrolling past a card cannot silently approve hidden work.
