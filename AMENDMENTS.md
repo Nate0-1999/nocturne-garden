@@ -1151,3 +1151,59 @@ why: This supplies the smallest auditable bridge between extraction consent
      and M3 curator operations. It makes every approved verdict real without
      smuggling in the future diagnostic agent, and it defines literal passive
      visibility so scrolling past a card cannot silently approve hidden work.
+
+[A-033] [M2I] [ADR-019 clause 4; ADR-021 unified queue; ADR-022 splitting] [P1.4, P1.5]
+gap: M2I requires corpus-born, per-document seed batches, but M2H's queue
+     contract records only a non-null thread birthplace and exposes only
+     item-at-a-time decisions. The seed splitter also has no bounded request,
+     retry identity, or executable source-lineage contract. Reusing a fake
+     thread ID would corrupt birthplace routing, while activating children
+     one at a time would violate the explicit grouped-batch action.
+law: Harness exposes JSON POST `/v1/seeds` to its own rack surface with
+     `{batch_uid,source_name,markdown}`. `batch_uid` is a client-minted UUID;
+     `source_name` is the basename of a `.md` or `.markdown` file; markdown is
+     nonblank valid UTF-8 and at most 24 KiB. The browser may submit several
+     selected files, but each file is one independent request and one batch.
+     Markdown is the only M2I format. The tools-free splitter receives the
+     complete document and emits one or more independently comprehensible
+     candidates, each with one claim, its own label, kind, and 2-5 keywords.
+     It may emit at most 64 children, and every child must satisfy the standing
+     128-token memory limit. If those bounds cannot preserve the source, the
+     request fails visibly; it never truncates, mechanically chops, summarizes,
+     or partially substitutes the document.
+
+     Harness fetches the active neighborhood and proposes the standing
+     new/merge/supersede/contradict verdict for every split child, then submits
+     the whole result to bearer-protected Spine POST `/v1/seeds`. Spine verifies
+     the SHA-256 digest of the supplied markdown, creates one queue-invisible
+     tombstoned-as-split source head whose first revision retains the exact
+     markdown, and runs every child through M2H's same candidate create/dedup
+     path. Each admitted child's first revision has `parent_uid` equal to that
+     source revision; every admitted sibling pair receives symmetric
+     `relates_to` edges. Hard duplicates produce no child card and increment
+     the batch duplicate count. Candidate children remain invisible to list,
+     search, and injection.
+
+     Extend each approval queue row/card with birthplace exactly `thread` or
+     `seed`, nullable thread UUID, and for seed rows non-null `batch_uid`,
+     `source_name`, and lowercase SHA-256 digest. Existing rows migrate as
+     thread-born. Queue reads can filter birthplace; thread-end surfaces always
+     request thread-born rows, and seed rows render only in the law-bound Palace
+     queue module. Reusing a batch UID with the same principal, source name, and
+     digest returns its existing batch without re-splitting; any mismatch is
+     409. There is no stored upload blob beyond the tombstoned source revision
+     and no filesystem copy.
+
+     POST `/v1/approval-queue/batches/{batch_uid}/decisions` accepts only
+     `{decision:approve|deny,approval_mode:explicit,actor_class:human,machine_id}`
+     and decides every pending card in that seed batch in one transaction.
+     Approval enacts each card's standing verdict; denial tombstones every
+     candidate. An identical replay returns the existing decisions; a mixed or
+     conflicting replay is 409 and changes nothing. Any stale implicated target
+     makes the whole approval 409 and leaves the batch pending. Seed batches
+     never passive-approve, expire, notify, or appear in a thread-end card.
+why: This is the smallest honest extension of the queue M2H already shipped.
+     One tombstoned source head makes ADR-022's existing revision lineage real
+     without a document store, explicit batch decisions preserve the owner's
+     attention boundary, and strict failure preserves information better than
+     a convenient lossy splitter.
