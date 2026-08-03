@@ -546,8 +546,8 @@ before the relay continues.
   the standard create/dedup pipeline → per-document batch in the Palace
   queue module. (Deps: M2H.)
 - **M2J — Parameter registry + model device (wave 2).** Sections:
-  ADR-023 clause 3 (read the motivation: every knob binds a real
-  parameter), C.5, v2.26 resolution points. Deliver: the typed parameter
+  ADR-023 clauses 3 AND 5 (read the motivations: every knob binds a real
+  parameter; GLOBAL|CURRENT scope), C.5, v2.26 resolution points. Deliver: the typed parameter
   registry (descriptors, journaled A-016 change events, as_of-scrubbable);
   per-thread model params (temperature, top_p, top_k, max_tokens, effort)
   wired to broker requests; the MODEL DEVICE reference control plugin —
@@ -555,7 +555,9 @@ before the relay continues.
   knob riding the resolve_named seam. (Deps: M2B. Excludes M2H, M2K, M2C.)
 - **M2K — Memory Graph + hyperparameter console + contribution bars
   (wave 2).** Sections: ADR-009 items 3-4 (authoritative encodings),
-  Invariant 6, ADR-023 (console = the first law-bound control plugin).
+  Invariant 6, ADR-023 incl. clause 5 scope law (console = the first
+  law-bound control plugin; graph and bars ship with GLOBAL|CURRENT
+  toggles, and the spend strip adopts its toggle here).
   Deliver: the force-directed Memory Graph (encodings per law; CAS-safe
   edit on click); the console (τ, top_k, budget, half-lives, weights —
   every change INSERTs a version; displays PROPOSED learner versions for

@@ -285,3 +285,13 @@ purpose lanes price it), with enable/disable toggles. That makes it a
 CONTROL plugin bound through the registry, not just a picture: the
 agent's capability rack, watchable and playable. Arrives with M3 when
 skills/tools themselves arrive; design it alongside them, not after.
+
+## 20. The stage turns as one (added 2026-08-03)
+
+Visualizers should switch natively to the current chat. Two modes per
+module: GLOBAL or CURRENT. Cost can be global across all active agents
+and projects, or set to the current one. If something is set to CURRENT,
+then whenever any visual switches to a new project, they ALL switch —
+one stage refocusing together. If something is GLOBAL, it stays. The
+point is never having to re-point five panels just because I changed
+what I'm working on.
