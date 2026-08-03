@@ -36,7 +36,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2G| Per-message re-scoring + locks | J                                 | DONE        | codex / 2026-08-03 / b803    | report 041; Spine aab87ab; Harness 5a8338a; A-030; B.6 r7+r8 |
 | M2F| Chrysopoeia learner v1         | J                                 | DONE        | codex / 2026-08-03 / c6a1    | report 042; Spine 326de29; A-031 |
-| M2H| Extraction + queue + thread-end card | M2B, M2D                    | TODO        |                              | ADR-021 cl.4 (v2.34 trigger); v2.25 queue law; wave 2 |
+| M2H| Extraction + queue + thread-end card | M2B, M2D                    | IN_PROGRESS | codex / 2026-08-03 / d4e2    | ADR-021 cl.4 (v2.34 trigger); v2.25 queue law; wave 2 |
 | M2I| Seed ingestion                 | M2H                               | TODO        |                              | ADR-019 cl.4; wave 2 |
 | M2J| Parameter registry + model device | M2B                            | TODO        |                              | ADR-023 cl.3; wave 2 |
 | M2K| Memory Graph + console + contribution bars | M2B                   | TODO        |                              | ADR-009 items 3-4; Invariant 6 bars; wave 2 |
