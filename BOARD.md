@@ -45,6 +45,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2N| Owner DB lifecycle hardening   | J                                 | TODO        |                              | v2.35/D.2 078; wave 2 |
 
+| M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
+
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 

@@ -584,6 +584,18 @@ before the relay continues.
   backup generations (config). Explicitly NOT in scope: per-install
   cloud targets, fleet lifecycle, expand/contract discipline for
   strangers — see the positioning clause. (Deps: J.)
+- **M2O — Fixture isolation + accounting fail-open (wave 2).** Sections:
+  B.6 rules 10-11 (v2.38 — read the motivation: the owner transmitted to
+  a leftover fixture daemon unknowingly, and a failed spend receipt
+  killed a real turn). Deliver: (1) scenario/fixture servers bind a
+  distinct non-default port, render a full-surface FIXTURE banner,
+  terminate with their launching session, and all SOP tooling uses an
+  isolated browser profile (fixture threads never enter the owner's
+  catalog; provide a one-shot cleanup for already-polluted catalogs);
+  (2) agent_runtime spend-receipt failure FAILS OPEN — turn completes,
+  basis=estimated ledger line queued for reconciliation, loud drift
+  surface in Vitals; regression: a turn with a dead ledger MUST still
+  answer. (Deps: J.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8
