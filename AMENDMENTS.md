@@ -1349,3 +1349,41 @@ why: This is the smallest mechanically honest contract for the M2K surfaces.
      and selection bus; adds one append-only activation journal; and does not
      build M2P previews/auditions, M3 graph maintenance, bulk actions, private
      first-party data paths, or fabricated historical state.
+
+[A-036] [M2L] [ADR-005 citation heuristic; C.3 f_freq; C.4 /v1/feedback] [P1.2]
+gap: ADR-005 chooses an n-gram heuristic for M2 v1, but does not fix n, the
+     text boundary, short-memory behavior, per-message event attribution, or
+     the canonical statistic transition. Implementations could therefore
+     produce different training labels from the same turn or keep f_freq inert.
+law: Citation v1 tokenizes with C.3's maximal runs of Unicode alphanumeric
+     characters after lowercase conversion. For each memory selected in the
+     exact context of one ordinary model call, let n be the smaller of eight
+     and that memory body's token count. A body with fewer than four tokens is
+     not autonomously cited. Otherwise the memory is cited exactly when at
+     least one of its contiguous n-token sequences occurs contiguously in the
+     successful final assistant text. Labels, prompts, thinking, tool traffic,
+     system instructions, and failed or cancelled outputs do not participate.
+     Repeated matches in one output still produce one signal for that memory.
+
+     Harness snapshots the selected bodies and each member's current
+     injection-event source at the same model/feedback lock boundary M2G uses,
+     then submits one existing `cited` feedback per detected member after the
+     successful model call and before releasing that boundary. Thus every
+     post-first message attributes reuse to its own autonomous scoring batch;
+     the first gated message attributes it to the committed gate batch. A
+     citation-feedback failure emits the existing safe memory-unavailable
+     error with phase `citation` but does not retract or replace an assistant
+     answer already produced. Each member is attempted independently; no
+     background retry queue or cross-member batch endpoint is introduced.
+
+     Spine permits `cited` from `kept`, `added_back`, or `auto_entered`.
+     Its first successful transition atomically changes that event outcome to
+     `cited`, increments the current head's `stats.citations` once through C.2
+     CAS, and appends the ordinary revision with editor `system:feedback`, the
+     event machine, and reason `feedback/cited`. An identical replay is an
+     idempotent no-op. This is the f_freq numerator; no weight, bias, status,
+     or other statistic changes. Existing outcome-conflict rules remain.
+why: This makes the already-chosen cheap citation signal deterministic and
+     replayable, activates the scorer feature ADR-005 reserved for M2, and
+     rides M2G's per-message event source without adding semantic judgment,
+     provider cost, another transport, or a UI surface.

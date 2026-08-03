@@ -45,7 +45,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 
 
-| M2L| Citation heuristic v1 (n-gram) | M2G                               | IN_PROGRESS | codex / 2026-08-03 / a83f    | ADR-005 (OQ-5 v1 already decided); wave 2 |
+| M2L| Citation heuristic v1 (n-gram) | M2G                               | DONE        | codex / 2026-08-03 / a83f    | report 047; Spine 2974d81; Harness 216888b; A-036 |
 | M2M| Ledger self-audit vs broker    | M2A                               | TODO        |                              | ADR-024 sourcing (v2.34 scope); wave 2 |
 | M2N| Owner DB lifecycle hardening   | J                                 | TODO        |                              | v2.35/D.2 078; wave 2 |
 | M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
@@ -67,7 +67,7 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
   status normalization. M2A, M2B, M2C, M2D, M2E, M2F, M2G, and M2H are DONE;
   M2 wave one is complete and M2 wave two is open. M2I, M2J, and M2K are DONE;
-  M2L is next by deterministic board order. Later independent rows are dependency-
+  M2L is DONE; M2M is next by deterministic board order. Later independent rows are dependency-
   ready but remain later. D3 is not an M1 closure dependency and remains
   blocked only on F014.
 
