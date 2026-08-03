@@ -92,3 +92,19 @@ packet. Order of ~10 packets from 2026-08-03.
    never as a later flourish. An agent gets hands and a place to stand
    in the same breath. The Context Bars omission (v2.46) is the
    cautionary tale.
+
+## Census layer 2 (2026-08-03): inside the shell + MCP inventory
+
+WHAT THE SHELL CALLS ACTUALLY RUN (Claude Code, first tokens; cd-chains
+undercount payloads): navigation (cd 350, ls 22), search (grep 53, find
+9), text surgery (sed 35, cat 9), runtimes (uv 33 — the test runner —
+python3 21), git 20, gcloud 23, docker 8, shell constructs (for/export).
+THE INNER TOOLKIT for a self-building agent = navigate, search, read,
+patch, run tests, commit — plus cloud/docker episodically. This is the
+shell-tool policy + walls design input: what the sandbox must permit
+freely (navigate/search/read/test) vs journal (git write ops) vs
+boundary-card (gcloud, docker, network).
+MCP INVENTORY: ZERO user-configured MCP servers on this machine — all
+MCP usage is platform-builtin (browser). Finding: the real dependency
+set is small and mostly NOT MCP; MCP client support (pinned SDK) is a
+door to keep open, not a load-bearing wall to build first.
