@@ -31,7 +31,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2B| Rack refound + NEO-NOIR identity | J                               | DONE        | codex / 2026-08-01 / c8e4    | report 037; Harness 05d4e98; B.6 r7+r8 |
 | M2D| Durable transcripts (capture-only) | J                             | DONE        | codex / 2026-08-02 / fe58    | report 038; Harness e44bfaa; ADR-025 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | DONE        | codex / 2026-08-02 / c2a4    | report 039; Spine 93ffd17; D.2 050(1) |
-| M2C| Palace Vitals + spend strip    | M2A, M2B                          | IN_PROGRESS | codex / 2026-08-02 / c2c0    | ADR-009 item 5, v2.17; wave 1 |
+| M2C| Palace Vitals + spend strip    | M2A, M2B                          | DONE        | codex / 2026-08-02 / c2c0    | report 040; Spine ac332d2; Harness 3f2f6ed; B.6 r7+r8 |
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
 | M2G| Per-message re-scoring + locks | J                                 | TODO        |                              | OQ-15 impl (v2.31/33); wave 2 headliner |
@@ -53,16 +53,16 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 ### Active stop-line
 
 - D3 only — F014: the owner must register the two pending PyPI trusted
-  publishers before a relay creates the `v0.1.0` releases. M2C remains
-  independently claimable by another relay session.
+  publishers before a relay creates the `v0.1.0` releases. Wave-two M2
+  packets remain independently claimable.
 
 ### Milestone closure
 
 - M1 CLOSED — report 035. The superseding J verdict passes J0–J8; the owner
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
-  status normalization. M2A, M2B, M2D, and M2E are DONE; M2C is next by
-  deterministic board order. D3 is not an M1 closure dependency and remains
-  blocked only on F014.
+  status normalization. M2A, M2B, M2C, M2D, and M2E are DONE; M2 wave one is
+  complete and M2G is next by deterministic board order. D3 is not an M1
+  closure dependency and remains blocked only on F014.
 
 ### Exclusions (symmetric; see PLAN §1)
 
