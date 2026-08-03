@@ -295,3 +295,12 @@ then whenever any visual switches to a new project, they ALL switch —
 one stage refocusing together. If something is GLOBAL, it stays. The
 point is never having to re-point five panels just because I changed
 what I'm working on.
+
+## 21. The mark (added 2026-08-03)
+
+Identity seed for the splash/branding work: the name is NOCTURNE; the
+MARK is the ouroboros — a serpent curled into a crescent moon, neon line
+work on black, NEO-NOIR. The wordmark says what it's for (night music,
+the composer asleep); the icon says what it is (the loop that closes,
+self-renewal — hen to pan). The serpent and the Chrysopoeia share a
+manuscript; the logo gets to know that even if nobody else does.
