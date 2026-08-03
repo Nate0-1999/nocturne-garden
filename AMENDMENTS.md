@@ -879,3 +879,60 @@ why: This supplies the smallest replay-safe HTTP seam between the already
      separate Harness and Spine processes, preserves Spine as sole ledger owner,
      and makes every recorded line an honest purchase rather than padding each
      request with zero-quantity pseudo-receipts.
+
+[A-028] [M2C] [ADR-009 item 5; ADR-023 query surface; ADR-024 views] [P2.4, P4.1]
+gap: M2C requires a first-party Vitals plugin to read canonical spend lanes and
+     lifecycle gauges, but law gives no read contract or window, and the current
+     logs cannot reconstruct several named lifecycle transitions. Treating
+     absent instrumentation as zero would violate Invariant 10.
+law: Spine exposes bearer-protected GET `/v1/vitals` with no query parameters.
+     It returns one live trailing-hour snapshot with this exact shape:
+       `{as_of, window_minutes:60,
+         spend:{source_view:"v_spend_rate", latest_minute,
+           lanes:[{dimension:"total"|"purpose"|"model", key, label,
+             points:[{minute, cost_usd, receipt_lines, unpriced_lines}]}]},
+         lifecycle_rates:[{metric, status, per_hour, source}],
+         palace_counts:[{metric, status, count, source}]}`.
+     `as_of`, `minute`, and nullable `latest_minute` are offset-aware timestamps.
+     A total lane has `key=null`; purpose/model keys are their exact canonical
+     values, with a null model represented by the stable key `unreported` and
+     human label "Model not reported". `cost_usd` is an exact non-negative
+     decimal string or null. Counts are non-negative integers. Lane points are
+     grouped only from rows of `v_spend_rate` whose minute is within
+     `(as_of - 60 minutes, as_of]`, ordered by minute; lanes are ordered total,
+     purpose key, then model key. Total, purpose, and model regroup the same
+     canonical rows, so priced dollars, receipt lines, and unpriced lines
+     conserve across all three dimensions. A mixed-price point carries the sum
+     of known dollars plus its positive `unpriced_lines`; an all-unpriced point
+     keeps `cost_usd=null`. Missing cost is never rendered or aggregated as
+     free. The endpoint reads the materialized view at its ordinary cadence and
+     never refreshes it on demand.
+
+     Gauge `status` is exactly `measured`, `not_recorded`, or `placeholder`.
+     A non-measured gauge has a null numeric value and null source; it is never
+     encoded as zero. M2C measures only `created` per hour from
+     `memory_unit.created_at`, plus current `active_units` and active
+     `pinned_units` counts from `memory_unit`. It returns the named lifecycle
+     metrics `reinforced`, `superseded`, `merged`, `quarantined`, `tombstoned`,
+     and `add_backs` as `not_recorded` until a canonical transition timestamp
+     exists. It returns `candidates_pending`, `edges`, and `staged_units` as
+     `not_recorded`, and `queue_depth` as the packet's explicit `placeholder`.
+     The UI says these signals are not recorded or not active yet; it does not
+     parse revision reasons, borrow prepare timestamps for later decisions, or
+     infer transitions from a head's current `updated_at`.
+
+     The compiled first-party Vitals resident obtains this response only through
+     ADR-023's public query surface with
+     `{resource:"vitals", as_of:null|"now"}`. Other `as_of` values return the
+     existing `historical_unavailable` result. Hover/touch scrub publishes the
+     minute on the shared selection surface together with the currently focused
+     spend lane; it does not claim historical Palace counters. The frame retains
+     `connect-src 'none'` and never receives Spine credentials or a private
+     transport. M2C implements PLAN's wave-one total/purpose/model lanes; no
+     plugin loader, authoring SDK, parameter registry, or lifecycle writer is
+     introduced.
+why: This completes the read and honesty seams already required by the M2C
+     packet, using the canonical M2A view and existing memory heads without
+     changing an authoritative row or pretending future M2 machinery has
+     emitted events. Typed unavailability is reversible as those logs arrive,
+     while guessed zeroes or a retrofit event history would not be.
