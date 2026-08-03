@@ -29,7 +29,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M1C| M1 closing report              | J; owner gate cleared 2026-07-31  | DONE        | codex / 2026-08-01 / b5e2    | report 035; M1 CLOSED; M2 relay open |
 | M2A| Spend ledger core              | J                                 | DONE        | codex / 2026-08-01 / a4d2    | report 036; Spine 371b698; Harness 4a59046; A-027 |
 | M2B| Rack refound + NEO-NOIR identity | J                               | DONE        | codex / 2026-08-01 / c8e4    | report 037; Harness 05d4e98; B.6 r7+r8 |
-| M2D| Durable transcripts (capture-only) | J                             | DONE        | codex / 2026-08-02 / fe58    | report 038; Harness e44bfaa; ADR-025 |
+| M2D| Durable transcripts (capture-only) | J                             | DONE        | codex / 2026-08-02 / fe58    | report 038; Harness e44bfaa; Harness Decision 025 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | DONE        | codex / 2026-08-02 / c2a4    | report 039; Spine 93ffd17; D.2 050(1) |
 | M2C| Palace Vitals + spend strip    | M2A, M2B                          | DONE        | codex / 2026-08-02 / c2c0    | report 040; Spine ac332d2; Harness 3f2f6ed; B.6 r7+r8 |
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
