@@ -298,7 +298,7 @@ what I'm working on.
 
 ## 21. The mark (added 2026-08-03)
 
-Identity seed for the splash/branding work: the name is NOCTURNE; the
+RATIFIED (owner, 2026-08-03; D.2 090). For the splash/branding work: the name is NOCTURNE; the
 MARK is the ouroboros — a serpent curled into a crescent moon, neon line
 work on black, NEO-NOIR. The wordmark says what it's for (night music,
 the composer asleep); the icon says what it is (the loop that closes,
