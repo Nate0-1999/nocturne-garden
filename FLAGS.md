@@ -171,3 +171,26 @@ product reaches a more complete state ("I don't think we are in a state yet
 to publish"). The pending-publisher registration remains the owner's task
 when he chooses to ship; the release workflows stay ready. Relay: do not
 re-raise; D3's shipped artifacts stand.
+
+[F015] [M2N] [P1.2.1b, P4] — M2N requires `nocturne restore`, but ADR-019,
+ADR-003, C.2, and D.2 078 do not define whether restoring may replace the live
+Palace database, must target an empty database, or restores beside the live
+database and switches only after verification. Those choices have materially
+different recovery behavior and data-loss risk. PLAN §2 explicitly forbids a
+COMPLETION from touching data-loss semantics, so the relay cannot silently
+choose one and cannot honestly claim a durable restore path while leaving the
+choice to implementation accident. The recommended minimum is a
+non-destructive side-by-side restore: create a fresh managed database volume,
+restore and verify the artifact there, preserve the former volume as a
+rollback generation, then switch the local Palace only after an explicit
+owner confirmation; a failed restore never touches the live volume. The owner
+may instead authorize an in-place replacement contract with an exact force /
+confirmation boundary and mandatory pre-restore backup receipt. Resolution
+must also say whether owner-cloud restore belongs to M2N or remains a human
+Cloud SQL operation; D.2 078 requires owner-cloud pre-migration backups but
+names only one unqualified `nocturne restore` command. This disturbs only the
+restore and recovery boundary. Digest pinning, backup creation/retention,
+doctor, pre-migration receipts, migration locking, historical upgrades,
+config upgrades, Resources Vitals, and the soak proof remain mechanically
+defined, but building them ahead of the recovery contract would leave one
+supposed lifecycle as two incompatible designs.

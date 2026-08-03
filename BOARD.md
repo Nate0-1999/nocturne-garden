@@ -47,7 +47,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2L| Citation heuristic v1 (n-gram) | M2G                               | DONE        | codex / 2026-08-03 / a83f    | report 047; Spine 2974d81; Harness 216888b; A-036 |
 | M2M| Ledger self-audit vs broker    | M2A                               | DONE        | codex / 2026-08-03 / d91c    | report 048; Spine eaf5bc7; Harness 38720ae; A-037; B.6 r7+r8 |
-| M2N| Owner DB lifecycle hardening   | J                                 | IN_PROGRESS | codex / 2026-08-03 / b4d7    | v2.35/D.2 078; wave 2 |
+| M2N| Owner DB lifecycle hardening   | J                                 | BLOCKED     | codex / 2026-08-03 / b4d7    | report 049; F015 restore data-loss semantics |
 | M2O| Fixture isolation + accounting fail-open | J                       | TODO        |                              | v2.38/D.2 081; wave 2; owner-hit incident |
 | M2R| Context Bars (+memory category) | M2B                              | TODO        |                              | P2.2, viz item 1; v2.46 dropped-ball recovery |
 | M2Q| Test motivation sweep + coverage report | J                        | TODO        |                              | v2.45/D.2 088; wave 2 |
@@ -57,9 +57,12 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 ### Active stop-line
 
-- D3 only — F014: the owner must register the two pending PyPI trusted
-  publishers before a relay creates the `v0.1.0` releases. Wave-two M2
+- M2N — F015: the owner must define whether `nocturne restore` is a
+  non-destructive side-by-side recovery or an authorized in-place replacement,
+  and whether the command covers owner-cloud recovery. Other wave-two M2
   packets remain independently claimable.
+- D3 — F014: release remains owner-deferred; the two pending PyPI trusted
+  publishers are required before a relay creates the `v0.1.0` releases.
 
 ### Milestone closure
 
@@ -67,7 +70,7 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
   status normalization. M2A, M2B, M2C, M2D, M2E, M2F, M2G, and M2H are DONE;
   M2 wave one is complete and M2 wave two is open. M2I, M2J, and M2K are DONE;
-  M2L and M2M are DONE; M2N is next by deterministic board order. Later
+  M2L and M2M are DONE; M2N is blocked on F015. Later
   independent rows are dependency-ready but remain later. D3 is not an M1
   closure dependency and remains blocked only on F014.
 
