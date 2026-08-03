@@ -1022,3 +1022,75 @@ why: This is the smallest contract extension that makes the already-decided
      preserves every DONE-packet gate call, keeps lock magnitudes binary, uses
      the existing event and renderer authorities, and deliberately stops at
      daemon-lifetime thread state until later session-serving work exists.
+
+[A-031] [M2F] [ADR-005 learning scope and scoreboard] [P1.2]
+gap: ADR-005 fixes the learner's math and authority but leaves the deterministic
+     time split, actor discount, proposal encoding, and manual trigger response
+     undefined, so two conforming learners could fit and promote different
+     versions from the same log.
+law: The M2F learner reads one repeatable-read snapshot of `injection_event`,
+     ordered by gate time then injection UUID, and groups rows by injection_id.
+     Hygiene excludes a group when any row's principal or machine identity is
+     test/fixture/verification-class: exact or delimited `test`, `fixture`, or
+     `verification`, including a machine value ending in `-verification`.
+     Eligible positive dispositions are human `kept`, every `added_back`,
+     `cited`, and `mid_thread_added`, plus passive `kept` and `auto_entered`;
+     eligible negatives are every `removed:not_relevant`, `removed:never`, and
+     `mid_thread_removed`. Explicit disposition/feedback outcomes have weight
+     1 even when they replace a row originally created with actor_class
+     `passive`; only passive `kept` and `auto_entered` positives receive the
+     configurable discount, default 0.25. Null, `removed:wrong`, `auto_exited`,
+     and every other outcome are ungraded.
+
+     Sort eligible gates by `(max(ts), injection_id)`. The newest configurable
+     fraction, default 0.20 rounded up to whole gates, is holdout; every older
+     gate is training. At least one gate and one eligible disposition must
+     remain on each side. Before the first challenger, require configurable
+     minimum eligible dispositions, default 25. Training creates every
+     positive-negative pair within each training gate and performs one
+     deterministic whole-log convex re-fit using squared hinge loss,
+     configurable pair margin default 0.05, non-negative global weights
+     constrained to sum exactly 1, and L2-shrunk per-memory bias offsets with
+     configurable coefficient default 1.0. A pair containing a passive example
+     receives the smaller actor weight. The online head bias remains the
+     immediate never-kill safety term; a version's learned offset is added to
+     it, not substituted for it.
+
+     Replay grades each eligible holdout disposition as one binary decision.
+     A pin predicts injected. A regular row predicts injected exactly when its
+     recomputed score meets the incumbent version's manual tau; budget and k
+     remain manual and are not learner variables. This per-disposition replay
+     is the v1 meaning of ADR-005's storage-complete claim: it uses the recorded
+     feature tuple and frozen body, never fabricates candidates outside the
+     logged gate. Each mismatch adds its actor weight; cheaper-at-tie sums
+     `cl100k_base` body tokens for predicted injected dispositions. A challenger
+     wins when its weighted mismatches improve on the incumbent's recorded
+     decisions by the configurable absolute margin, default 1.0, or when
+     weighted mismatches tie exactly and it injects fewer tokens.
+
+     POST `/retrain` has no request body and returns
+     `{status, incumbent_version, proposal_version, eligible_dispositions,
+     training_dispositions, holdout_dispositions, training_pairs, incumbent,
+     challenger, reason}`. Status is `insufficient_data`, `not_better`, or
+     `proposed`; proposal_version and both score objects are nullable where no
+     comparison exists. A score object is
+     `{disagreements, weighted_disagreements, injected_tokens}` with the
+     weighted value serialized as an exact decimal string. The trigger never
+     activates a version.
+
+     A winner inserts one inactive `scorer_config`. Its deterministic version
+     derives from a canonical digest of the incumbent, ordered training and
+     holdout examples, and learner settings. It copies every manual scorer
+     parameter unchanged and stores under params `_learner`: status
+     `proposed`, algorithm id, source digest and boundary, settings, fit
+     diagnostics, replay scores, and the learned memory-id-to-bias-offset map.
+     Repeating an identical fit returns the same proposal idempotently. Active
+     scorer loading applies that map when such a version is later activated;
+     old rows have an empty map. Optional positive
+     `SPINE_LEARNER_SCHEDULE_HOURS` runs the same operation periodically;
+     unset means manual-only. Concurrent triggers serialize on one database
+     advisory transaction lock.
+why: This makes the owner-resolved batch learner and binary referee exactly
+     reproducible from the existing append-only evidence, preserves manual
+     activation and manual selection parameters, and adds no online SGD,
+     learner UI, automatic promotion, or hidden training state.

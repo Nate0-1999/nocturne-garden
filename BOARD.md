@@ -35,7 +35,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
 | M2G| Per-message re-scoring + locks | J                                 | DONE        | codex / 2026-08-03 / b803    | report 041; Spine aab87ab; Harness 5a8338a; A-030; B.6 r7+r8 |
-| M2F| Chrysopoeia learner v1         | J                                 | IN_PROGRESS | codex / 2026-08-03 / c6a1    | v2.32 scoreboard; PROPOSED-version authority; wave 2 |
+| M2F| Chrysopoeia learner v1         | J                                 | DONE        | codex / 2026-08-03 / c6a1    | report 042; Spine 326de29; A-031 |
 | M2H| Extraction + queue + thread-end card | M2B, M2D                    | TODO        |                              | ADR-021 cl.4 (v2.34 trigger); v2.25 queue law; wave 2 |
 | M2I| Seed ingestion                 | M2H                               | TODO        |                              | ADR-019 cl.4; wave 2 |
 | M2J| Parameter registry + model device | M2B                            | TODO        |                              | ADR-023 cl.3; wave 2 |
@@ -60,10 +60,10 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - M1 CLOSED — report 035. The superseding J verdict passes J0–J8; the owner
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
-  status normalization. M2A, M2B, M2C, M2D, M2E, and M2G are DONE; M2 wave
-  one is complete and M2 wave two is open. M2F is next by deterministic board
-  order; M2L is dependency-ready but remains later in row order. D3 is not an
-  M1 closure dependency and remains blocked only on F014.
+  status normalization. M2A, M2B, M2C, M2D, M2E, M2F, and M2G are DONE; M2
+  wave one is complete and M2 wave two is open. M2H is next by deterministic
+  board order; M2L and later independent rows are dependency-ready but remain
+  later. D3 is not an M1 closure dependency and remains blocked only on F014.
 
 ### Exclusions (symmetric; see PLAN §1)
 
