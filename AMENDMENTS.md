@@ -1207,3 +1207,56 @@ why: This is the smallest honest extension of the queue M2H already shipped.
      without a document store, explicit batch decisions preserve the owner's
      attention boundary, and strict failure preserves information better than
      a convenient lossy splitter.
+
+[A-034] [M2J] [ADR-023 clauses 3 and 5; C.5; v2.26 resolution points] [P2.5, P3, P4]
+gap: M2J names a typed registry, control writes, history, and a scoped model
+     device but does not define the parameter domains, public write/query
+     boundary, refusal event, or the meaning of GLOBAL for thread-only controls.
+law: The M2J Harness registry declares exactly these free-journaled thread
+     descriptors: `model.slug` (nonblank OpenRouter model string),
+     `model.temperature` (nullable number, 0..2), `model.top_p` (nullable
+     number, 0..1), `model.top_k` (nullable integer, 0..500),
+     `model.max_tokens` (nullable integer, 1..131072), and `model.effort`
+     (nullable option: none|minimal|low|medium|high|xhigh). Null means inherit
+     the provider default and is every model-parameter descriptor's default.
+     The selector's displayed default is the thread's resolved slug. The
+     superseded A-020 environment floor is not resurrected: A-021's policy
+     grammar remains configuration, and PLAN M2J's delivered controls are the
+     per-thread selector and five request parameters.
+
+     Extend ADR-023's public rack query surface with resource `parameters`,
+     requiring a thread UUID for CURRENT. A live result is
+     `{thread_id,as_of,resolved_model,descriptors,values,changes}`; descriptors
+     carry the clause-3 fields, values contains the six current values, and
+     changes is ordered by timestamp then event id. `as_of=now` reads current
+     state; an aware ISO-8601 timestamp replays daemon-lifetime registry events
+     at or before that instant. A timestamp earlier than the retained process
+     history is still an honest replay from descriptor defaults and the
+     thread's first resolution; M2D's capture-only journal is not served back.
+
+     The public control action submits
+     `{module_id,thread_id,parameter_id,value}`. The host and daemon both require
+     the module manifest to bind that exact descriptor. A successful write
+     validates the descriptor, atomically changes thread state, and publishes
+     one C.7 `parameter.change` event with event id, actor `human`, timestamp,
+     old and new values, and scope/thread identity; transcript capture makes
+     the event durable. Null resets a request parameter to provider inheritance.
+     `model.slug` invokes the existing `resolve_named` seam, preserves the five
+     request overrides, starts a new stickiness epoch, and emits the standing
+     `model_change` event as well as `parameter.change`. Writes while that
+     thread has a live run are refused so a request cannot change underneath
+     execution.
+
+     Any unknown, unbound, law-bound, invalid, or busy write changes nothing
+     and publishes one C.7 `parameter.refused` event with the attempted id,
+     module id, timestamp, and stable reason; values and credentials are not
+     copied into refusal events. The MODEL DEVICE manifest is a control plugin
+     bound only to the six descriptors above. CURRENT follows the shared thread
+     selection and may write. GLOBAL shows the same registry descriptors and
+     inherited defaults without a thread target and is read-only until a real
+     global descriptor ships; the GLOBAL|CURRENT toggle remains saved rack
+     presentation state and never enters the registry.
+why: This supplies the smallest replayable, mechanically bound seam for M2J's
+     real broker controls and selector while preserving A-021, M2D's explicit
+     capture-only boundary, and v2.40's separation of module scope from
+     parameter scope.

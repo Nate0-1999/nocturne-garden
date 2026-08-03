@@ -38,7 +38,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2F| Chrysopoeia learner v1         | J                                 | DONE        | codex / 2026-08-03 / c6a1    | report 042; Spine 326de29; A-031 |
 | M2H| Extraction + queue + thread-end card | M2B, M2D                    | DONE        | codex / 2026-08-03 / d4e2    | report 043; Spine e73d420; Harness c452499; A-032; B.6 r7+r8 |
 | M2I| Seed ingestion                 | M2H                               | DONE        | codex / 2026-08-03 / 92ad    | report 044; Spine f3b3e53; Harness 456397f; A-033; B.6 r7+r8 |
-| M2J| Parameter registry + model device | M2B                            | IN_PROGRESS | codex / 2026-08-03 / 3d91    | ADR-023 cl.3; wave 2 |
+| M2J| Parameter registry + model device | M2B                            | DONE        | codex / 2026-08-03 / 3d91    | report 045; Harness da5c220; A-034; B.6 r7+r8 |
 | M2K| Memory Graph + console + contribution bars | M2B                   | TODO        |                              | ADR-009 items 3-4; Invariant 6 bars; wave 2 |
 | M2L| Citation heuristic v1 (n-gram) | M2G                               | TODO        |                              | ADR-005 (OQ-5 v1 already decided); wave 2 |
 | M2M| Ledger self-audit vs broker    | M2A                               | TODO        |                              | ADR-024 sourcing (v2.34 scope); wave 2 |
@@ -63,8 +63,8 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 - M1 CLOSED — report 035. The superseding J verdict passes J0–J8; the owner
   cleared the verdict gate on 2026-07-31, and D.2 071 enacted the verdict's ADR
   status normalization. M2A, M2B, M2C, M2D, M2E, M2F, M2G, and M2H are DONE;
-  M2 wave one is complete and M2 wave two is open. M2I is DONE; M2J is next
-  by deterministic board order. M2L and later independent rows are dependency-
+  M2 wave one is complete and M2 wave two is open. M2I and M2J are DONE; M2K
+  is next by deterministic board order. M2L and later independent rows are dependency-
   ready but remain later. D3 is not an M1 closure dependency and remains
   blocked only on F014.
 
