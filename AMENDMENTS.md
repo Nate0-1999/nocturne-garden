@@ -955,3 +955,63 @@ law: Reserve public model-lane key `unreported` solely for a null canonical
 why: This is the smallest injective completion of A-028's self-collision. It
      preserves every spend row and the stable null sentinel without narrowing
      accepted ledger data, adding a schema field, or changing authority.
+
+[A-030] [M2G] [SPEC C.2, C.4 POST /v1/inject/prepare and /v1/feedback; ADR-005] [P1.2, P1.4]
+gap: ADR-005 requires an atomic prepare on every post-first message, binary
+     human locks, actor-classed passive outcomes, and human re-addition, while
+     C.2/C.4 expose only one prepare per thread, no actor class, and feedback
+     that can remove but cannot re-add. They also do not define the exact
+     autonomous transition contract needed to render the next model context.
+law: Add non-null `actor_class TEXT NOT NULL DEFAULT 'human'` to
+     `injection_event`, constrained for M2G writes to `human` or `passive`.
+     Existing rows are `human`. Extend POST `/v1/inject/prepare` with optional
+     `mode`, exactly `gate` (default) or `autonomous`, and optional UUID lists
+     `current_memory_ids`, `confirmed_memory_ids`, and `excluded_memory_ids`,
+     each defaulting empty. Extend its response with nullable `final_block`,
+     which is null in gate mode and the canonical C.6 block in autonomous mode.
+
+     Gate mode requires all three lists empty and retains the existing one-shot
+     prepare/commit behavior unchanged. Autonomous mode requires an already
+     prepared thread with identical principal, agent, machine, and project
+     identity; lists contain no duplicates,
+     `confirmed_memory_ids` is a subset of `current_memory_ids`, and
+     `excluded_memory_ids` is disjoint from both. One repeatable-read
+     transaction locks that thread, advances `thread.snapshot_ts` to its own
+     database-clock snapshot, retrieves the ordinary live candidate union plus
+     every active eligible current or confirmed unit, and excludes every listed
+     excluded unit before scoring. Missing, inactive, wrong-principal, or
+     project-ineligible current/confirmed IDs return RFC7807 409 rather than
+     silently weakening a lock.
+
+     Selection remains score-descending threshold plus token-budget selection;
+     configured top-k remains only its standing safety/display cap. Active pins
+     and confirmed units are binary forced members: pins order first by UUID,
+     then non-pin confirmed units by score DESC and UUID ASC. Both classes
+     bypass threshold and top-k, their token costs reduce the ordinary regular
+     budget to no less than zero, and they alone may overflow it. Remaining
+     regular candidates retain C.3 order and greedy selection. Each autonomous
+     batch writes one event for every returned selected or near-miss unit and
+     for every prior current unit that exits. Selected prior members have
+     outcome `kept`; selected new members `auto_entered`; unselected prior
+     members `auto_exited`; undispositioned near misses remain null. Those rows
+     have actor_class `passive`; gate rows have actor_class `human`.
+     `final_block` is rendered from exactly the selected events in rank order.
+
+     Extend feedback signal with `mid_thread_added`. It is valid only as the
+     exactly-once/idempotent transition from `mid_thread_removed` on the same
+     event membership; it does not change corpus counters. The Harness keeps
+     daemon-lifetime per-thread current, confirmed, excluded, and event-source
+     sets as trusted state: first-gate survivors become confirmed; panel remove
+     moves a member from confirmed/current to excluded after Spine accepts
+     `mid_thread_removed`; panel add moves it from excluded to confirmed/current
+     after Spine accepts `mid_thread_added`. Each post-first ordinary prompt
+     supplies those sets to autonomous prepare, atomically replaces only the
+     autonomous portion of current context from `final_block`, and emits an
+     unprompted `memory.panel.update` state when membership changes. Remember
+     commands retain their command path and do not invoke re-scoring. The first
+     gate remains the only modal memory review.
+why: This is the smallest contract extension that makes the already-decided
+     gate-once/autonomous-afterward behavior executable and replayable. It
+     preserves every DONE-packet gate call, keeps lock magnitudes binary, uses
+     the existing event and renderer authorities, and deliberately stops at
+     daemon-lifetime thread state until later session-serving work exists.
