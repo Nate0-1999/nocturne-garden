@@ -616,7 +616,9 @@ before the relay continues.
   unmistakably marked, never persisted) and DEEP (one-click backtest of
   arbitrary values via a new small spine endpoint over M2F's replay
   engine; returns the held-out %); FORCE with honest delta + journal
-  (the exploration lever); 2D accuracy-vs-parameter slice curves (the
+  (the exploration lever; INFORMED-FORCE v2.44: enabled only after deep
+  simulate scores the exact set — knob changes stale the score and
+  disarm force); 2D accuracy-vs-parameter slice curves (the
   Landscape's M3 precursor); and the AUDITION overlay (spine scores the same prepare under
   incumbent AND the PROPOSED version; overlay renders counterfactual
   picks faint/marked on live gates + panel; incumbent alone governs
