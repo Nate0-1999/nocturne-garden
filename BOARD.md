@@ -31,7 +31,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2B| Rack refound + NEO-NOIR identity | J                               | DONE        | codex / 2026-08-01 / c8e4    | report 037; Harness 05d4e98; B.6 r7+r8 |
 | M2D| Durable transcripts (capture-only) | J                             | DONE        | codex / 2026-08-02 / fe58    | report 038; Harness e44bfaa; ADR-025 |
 | M2E| Hybrid retrieval (FTS ∪ vector) | J                                | DONE        | codex / 2026-08-02 / c2a4    | report 039; Spine 93ffd17; D.2 050(1) |
-| M2C| Palace Vitals + spend strip    | M2A, M2B                          | TODO        |                              | ADR-009 item 5, v2.17; wave 1 |
+| M2C| Palace Vitals + spend strip    | M2A, M2B                          | IN_PROGRESS | codex / 2026-08-02 / c2c0    | ADR-009 item 5, v2.17; wave 1 |
 | D3 | Deploy & onboarding command    | J                                 | BLOCKED     | codex / 2026-08-01 / d3a1    | report 034; F014 owner PyPI publisher setup; release code + installed-wheel evidence pushed |
 
 | M2G| Per-message re-scoring + locks | J                                 | TODO        |                              | OQ-15 impl (v2.31/33); wave 2 headliner |
