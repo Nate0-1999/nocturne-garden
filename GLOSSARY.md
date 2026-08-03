@@ -117,6 +117,10 @@ and this file disagree, law wins — then this file gets fixed.
   estimated. Measured never masquerades as allocated.
 - **Palace Vitals** — the read-only usage gauges (lifecycle rates, spend
   by category, counters); presented as the Ableton-style bottom strip.
+- **the accuracy score** — the memory system's report card: each scorer
+  generation's held-out agreement percentage (binary scoreboard as a %),
+  tracked as a Vitals time series across the harness's life. Updates
+  that wouldn't raise it are never proposed (v2.41).
 - **spend walls** — prospective soft budgets (per run/day) enforced with
   the walls-not-questions posture; judge triages at the wall.
 - **the D2 breaker** — the armed billing circuit breaker that detaches
