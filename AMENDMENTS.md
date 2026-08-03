@@ -1387,3 +1387,58 @@ why: This makes the already-chosen cheap citation signal deterministic and
      replayable, activates the scorer feature ADR-005 reserved for M2, and
      rides M2G's per-message event source without adding semantic judgment,
      provider cost, another transport, or a UI surface.
+
+[A-037] [M2M] [ADR-024 sourcing and self-audit] [P4.1]
+gap: ADR-024 requires broker reconciliation and a Vitals drift alert but does
+     not freeze the credential boundary, comparison baseline, tolerance,
+     durable audit row, schedule, failure state, or Vitals projection.
+law: M2M uses the existing OpenRouter bearer only; it never requests a
+     management key. Spine reads cumulative current-key usage from official
+     `GET /api/v1/key` field `data.usage`, a finite non-negative USD number.
+     Reconciliation is active only when the configured embedding base URL is
+     the OpenRouter API and `SPINE_OPENAI_API_KEY` is present. Direct-provider
+     overrides remain honest `not_recorded`, never queried with the wrong key.
+
+     Add append-only table `spend_reconciliation` with ULID `event_uid` primary
+     key, aware database timestamp `ts`, provider `openrouter`, status exactly
+     `baseline|balanced|drift|unavailable`, nullable cumulative
+     `broker_usage_usd` and `ledger_cost_usd`, nullable
+     `broker_since_baseline_usd`, `ledger_since_baseline_usd`, and signed
+     `drift_usd`, non-negative `tolerance_usd`, non-negative
+     `unpriced_lines`, and nullable stable `error_code`. Successful numeric
+     fields use the ledger's 12-decimal USD precision. `unavailable` has null
+     USD observations except tolerance, may retain the current ledger
+     unpriced-line count, and carries only
+     `broker_unavailable` or `invalid_broker_response`; raw errors, response
+     bodies, headers, and credentials are never persisted.
+
+     One advisory-locked reconciliation reads broker usage and, in the same
+     run, sums every non-null `cost_usd` on `llm.request` and `llm.embedding`
+     rows and counts their null costs. The first successful observation is a
+     baseline. Every later success compares cumulative growth from the oldest
+     successful baseline:
+       `broker_since = broker_now - broker_baseline`
+       `ledger_since = ledger_now - ledger_baseline`
+       `drift = ledger_since - broker_since`.
+     A negative cumulative growth is an invalid broker response. Status is
+     `drift` exactly when `abs(drift) > tolerance`, otherwise `balanced`.
+     Default `SPINE_RECONCILIATION_TOLERANCE_USD` is `0.000001`; default
+     `SPINE_RECONCILIATION_HOURS` is 24, both positive. The owned Spine
+     process runs once at startup and then at that cadence. Failures append an
+     unavailable observation and are logged; they never block receipts, chat,
+     embeddings, Vitals, or the next scheduled run. No GCP resource or billing
+     export is read or created.
+
+     Both Vitals scopes add Palace-wide `reconciliation` with status exactly
+     `not_recorded|baseline|balanced|drift|unavailable`, nullable `checked_at`,
+     the latest row's exact decimal-string observations, tolerance,
+     `unpriced_lines`, source `openrouter:/api/v1/key` when configured, and a
+     safe nullable error code. With no configured reconciler or no row, status
+     is `not_recorded` and observations are null. The rack renders this as a
+     compact watchable line: baseline, aligned, signed drift, temporarily
+     unavailable, or not yet recorded. Drift uses the theme's sole danger
+     color but creates no popup, notification, card, or new attention channel.
+why: This compares the one existing broker key to the one authoritative ledger
+     without a third secret, discounts spend predating M2A, preserves audit
+     history, and makes disagreement visible without building the deferred GCP
+     export or demanding owner attention.
