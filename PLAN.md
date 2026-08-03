@@ -581,7 +581,14 @@ before the relay continues.
   lock (no two concurrent migrations); historical upgrade-matrix tests
   (every supported revision → head, not just empty → head); a config-file
   upgrader (versioned config migrates, never merely errors); retain N
-  backup generations (config). Explicitly NOT in scope: per-install
+  backup generations (config). RESOURCE WATCH (owner meta-review,
+  2026-08-02): `nocturne doctor` also checks free disk, journal size,
+  and db size, and WARNS BEFORE the disk fills (the journal's hard-stop
+  must only ever follow an ignored warning); Vitals gains a RESOURCES
+  gauge (daemon RSS + uptime, disk free, db size — watchable, never
+  demanding); add a rule-7 soak check: the daemon under scripted load
+  for an extended run must hold memory within a stated bound.
+  Explicitly NOT in scope: per-install
   cloud targets, fleet lifecycle, expand/contract discipline for
   strangers — see the positioning clause. (Deps: J.)
 - **M2O — Fixture isolation + accounting fail-open (wave 2).** Sections:

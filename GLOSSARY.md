@@ -56,6 +56,10 @@ and this file disagree, law wins — then this file gets fixed.
   logged as weak signal; contradictions and collapsed groups never
   passive-approve.
 - **candidate** — a memory unit's status while waiting in the queue.
+- **the conversation journal** — the plain file on disk where the daemon
+  writes every message as it happens (the owner's "commit after every
+  chat" perpetuity directive, built at M2D). Restart-proof capture;
+  serving/rewind arrives with M3's session tables.
 - **seed ingestion** — uploading markdown that splitters break into
   atomic candidates (the cold open; ADR-019).
 - **the scorer** — the transparent linear model ranking candidates:
