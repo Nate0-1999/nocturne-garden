@@ -104,6 +104,10 @@ and this file disagree, law wins — then this file gets fixed.
   work silently for triage; nothing interrupts the human except the Deck.
 - **boundary card** — a judge-triaged request to cross a wall, surfaced
   on the Deck once, at highest leverage.
+- **the Ouroboros (N1)** — the self-hosting milestone test: NOCTURNE
+  completes one relay packet on its own repositories, end to end, under
+  walls. The snake bites its tail; the harness builds itself.
+  "Ouroboros mode" is the standing capability that follows.
 - **the 10% principle** — a build agent spends at most ~10% of thread
   tokens on memory; push injection, fire-and-forget saves.
 
