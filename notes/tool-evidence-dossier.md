@@ -70,3 +70,27 @@ tool), walls-not-questions (no per-action approvals), the ledger prices
 every call, movement law gives agents locations, and the rack renders
 what other harnesses bury in logs. The census tells us WHAT verbs to
 support; our law dictates HOW they're held.
+
+## 6. Toolset base survey — first pass (2026-08-03; repos cloned to the
+## gate scratchpad, owner-led selection in progress)
+
+CODE PUPPY (mpfaffenberger/code_puppy) — FRONT-RUNNER, evidence:
+- Built ON pydantic-ai (`pydantic-ai-slim[openai,anthropic,mcp]==1.56.0`)
+  — the same seam as our adapter; MIT license; Python.
+- DBOS is literally its optional extra (`durable = ["dbos>=2.11.0"]`) —
+  the owner's durable-execution prior art, already integrated.
+- tools/ inventory maps ~1:1 onto our census verbs AND our roadmap:
+  command_runner, shell_backgrounding, file_operations,
+  file_modifications, fs_access, a full browser suite (manager,
+  navigation, interactions, locators, page_snapshot), image_tools
+  (v2.38 multimodality!), skills_tools, ask_user_question, subagent_
+  invocation/context/usage_metrics, model_tools.
+- Adoptable size: largest tool modules ~27-45 functions; the whole
+  tools/ dir is readable in an afternoon.
+- CAVEAT (real modification cost): it pins pydantic-ai-slim 1.56.0; we
+  ship pydantic-ai 2.12.0 — a MAJOR version gap; porting tools to 2.x
+  idiom is the expected work ("we'll have to modify them").
+OTHERS: aider — tools woven into coder classes, adopt-unfriendly;
+opencode — TypeScript/Go, wrong seam, BUT packages/codemode = CodeMode
+prior art (noted); OpenHands — agent-sdk layout, needs a deeper pass;
+Hermes — repo not yet identified (owner to point at the exact project).
