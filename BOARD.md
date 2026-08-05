@@ -55,7 +55,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2X| M2 gate day (HUMAN)            | all M2 packets DONE               | TODO        |                              | HUMAN packet — never agent-claimed; scout precedes and derives the checklist (B.6 r9 + PLAN §3.3); HUMAN USE HOLD gates M2J |
 | M2J| M2 judge                       | M2X hold cleared (owner)          | TODO        |                              | fresh CLAUDE CODE session per B.6 independence; judges the M2 wave |
 
-| M2S| Rung-2 first-class startup     | all M2 packets DONE               | TODO        |                              | owner spin friction 2026-08-05; before/during M2X |
+| M2S| Rung-2 first-class startup     | all M2 packets DONE               | IN_PROGRESS | codex / 2026-08-05 / c805    | owner spin friction 2026-08-05; before/during M2X |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
