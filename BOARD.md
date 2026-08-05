@@ -51,7 +51,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2O| Fixture isolation + accounting fail-open | J                       | DONE        | codex / 2026-08-03 / c81e    | report 050; Harness 2d32540+5ab237f; A-038; B.6 r7 |
 | M2R| Context Bars (+memory category) | M2B                              | DONE        | codex / 2026-08-04 / 8a4e    | report 051; Harness 1887756; A-039; B.6 r7+r8 |
 | M2Q| Test motivation sweep + coverage report | J                        | DONE        | codex / 2026-08-04 / 91b7    | report 059; Harness c1bbd01; Spine 2bc3141; A-040 |
-| M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
+| M2P| Injection Console: audition + what-if | M2K, M2F                   | IN_PROGRESS | codex / 2026-08-04 / 4f6a    | v2.42/D.2 085; wave 2 |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
