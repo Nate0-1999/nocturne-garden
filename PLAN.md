@@ -656,6 +656,19 @@ before the relay continues.
   amendment ids, build jargon in labels, errors, command output — and
   rephrase per THE GARDEN NEVER SHOWS + vision §18. (Deps: M2B.
   Excludes the SPA cluster.)
+- **M2S — Rung-2 first-class startup (owner spin friction, 2026-08-05).**
+  Sections: ADR-019 (four commands + capability ladder; read the
+  motivation — the OWNER's rung has no product-grade startup: today it
+  requires sourcing .env and knowing `uv run harness dev`), the
+  garden-never-shows law. Deliver: `nocturne init --remote <spine-url>`
+  (prompts for the bearer; OpenRouter key from env or prompt; writes the
+  same ~/.nocturne config home with a REMOTE palace mode); `nocturne up`
+  with a remote config starts DAEMON ONLY (no local containers) and
+  opens the browser; `nocturne doctor` remote-aware (spine health +
+  journal + disk; local-palace checks skipped with a plain sentence);
+  migrate the owner's .env setup with one command or clear doc line.
+  Acceptance: a cold terminal reaches the rack in TWO commands on
+  either rung. (Deps: all M2 packets.)
 - **M2X — M2 gate day (HUMAN).** Never agent-claimed. The owner uses
   the assembled M2 product for real: re-scoring under every message,
   thread-end flashcards, seed ingestion, the strip, Context Bars, the
