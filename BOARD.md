@@ -50,7 +50,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2N| Owner DB lifecycle hardening   | J                                 | BLOCKED     | codex / 2026-08-03 / b4d7    | report 049; F015 restore data-loss semantics |
 | M2O| Fixture isolation + accounting fail-open | J                       | DONE        | codex / 2026-08-03 / c81e    | report 050; Harness 2d32540+5ab237f; A-038; B.6 r7 |
 | M2R| Context Bars (+memory category) | M2B                              | DONE        | codex / 2026-08-04 / 8a4e    | report 051; Harness 1887756; A-039; B.6 r7+r8 |
-| M2Q| Test motivation sweep + coverage report | J                        | TODO        |                              | v2.45/D.2 088; wave 2 |
+| M2Q| Test motivation sweep + coverage report | J                        | IN_PROGRESS | codex / 2026-08-04 / c7e2    | v2.45/D.2 088; wave 2 |
 | M2P| Injection Console: audition + what-if | M2K, M2F                   | TODO        |                              | v2.42/D.2 085; wave 2 |
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
