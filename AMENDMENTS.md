@@ -1664,3 +1664,47 @@ why: The owner needs enough lead time to act before mandatory history reaches a
      artifact can be re-checked later. One explicit read-only command creates
      that warning and audit seam without inventing a background alert, cleanup
      policy, or restore shortcut.
+
+[A-044] [M2N] [ADR-009 Palace Vitals; ADR-016 journal law] [P1.3, P2.4, P4]
+gap: M2N requires startup disk warning, a passive RESOURCES gauge, and a stated
+     daemon soak bound, but does not define their shared measurements, partial
+     availability, wire shape, or executable bound.
+law: Both Spine Vitals scopes add `resources` with exact shape
+     `{status,daemon_rss_bytes,daemon_uptime_seconds,disk_free_bytes,
+     disk_total_bytes,database_bytes,journal_bytes,backup_bytes,warning}`.
+     Every byte/count value is a non-negative integer or null. `status` is
+     `partial` or `measured`; `warning` is null or `low_disk`. Spine measures
+     `database_bytes` with `pg_database_size(current_database())` in the same
+     read transaction as the Vitals snapshot, leaves every Harness-local value
+     null, sets status partial, and never guesses them.
+
+     Harness enriches that same object only at its public Rack boundary. It
+     measures current daemon RSS, integer monotonic uptime seconds, the free and
+     total capacity of the filesystem containing `NOCTURNE_HOME`, and the
+     symlink-ignoring journal and backup byte counts shared with doctor.
+     `measured` means every field is present; if current RSS cannot be read,
+     status remains partial and only RSS is null. Harness sets `low_disk`
+     exactly at A-043's greater-of-5-GiB-or-10-percent boundary. Both GLOBAL
+     and CURRENT expose the same process/filesystem/database resources.
+
+     `nocturne up` performs the same filesystem measurement before pulling or
+     starting a container. At `low_disk` it prints one owner-language warning
+     and continues; this is the required warning before any future journal
+     hard stop, not the configured Deck threshold and not a prompt.
+
+     The rack renders RESOURCES as a compact passive gauge: free disk, database
+     size, daemon RSS and uptime, with journal and backup size available in the
+     expanded view. `low_disk` may use the theme's sole danger color but has no
+     alert role, popup, notification, card, or new attention channel. Partial
+     data says unavailable rather than zero.
+
+     The rule-7 resource soak drives 10,000 sequential live Rack Vitals queries
+     through a production-composed daemon after 500 warm-up queries, samples
+     current RSS at least every 250 queries, and requires both peak and final
+     RSS growth from the post-warm-up baseline to remain at or below 32 MiB.
+     Provider and Spine responses are deterministic fakes; the daemon, HTTP
+     query path, resource measurement, validation, and serialization are real.
+why: Each process reports only what it can directly observe, while one shared
+     local measurement keeps doctor, startup, and the always-on gauge from
+     disagreeing. A bounded repeated-query soak catches accumulating daemon
+     state without adding monitoring infrastructure or a demanding surface.
