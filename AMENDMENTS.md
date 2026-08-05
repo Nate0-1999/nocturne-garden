@@ -1754,3 +1754,35 @@ why: A versioned named-volume pointer is the smallest durable switch compatible
      with Docker volumes, while a fixed inventory makes the owner's informed
      confirmation reproducible and automatic pointer rollback preserves the
      already-running Palace when the mechanical switch itself fails.
+
+[A-046] [M2N] [ADR-019 owner lifecycle; C.2 migration discipline] [P1.3, P4]
+gap: M2N requires an owner-cloud backup receipt before every migration but does
+     not define when the backup is safe to trust, what the receipt records, or
+     whether that evidence grants cloud restore or deletion authority.
+law: Before an owner-cloud packaged migration, Harness mints a ULID receipt ID
+     and creates one Cloud SQL ON_DEMAND backup of the fixed D1 instance with
+     description `nocturne-pre-migration-<lowercase-receipt-id>`, explicit
+     project, instance, and `us-central1` location. It may request the backup
+     asynchronously only to capture its operation and backup IDs; it waits at
+     most 30 minutes for that exact operation, then independently describes the
+     exact backup. Migration may begin only when the operation is DONE with
+     type BACKUP_VOLUME for the fixed project and instance and the described
+     backup is SUCCESSFUL, ON_DEMAND, in the fixed location, with the exact
+     instance, ID, and description.
+
+     Before migration begins, Harness atomically persists mode-0600 UTF-8 JSON
+     at `NOCTURNE_HOME/cloud-backups/<receipt-id>.json` beneath a mode-0700
+     directory and fsyncs both file and directory. Schema version 1 contains
+     exactly: `schema_version`, `receipt_id`, aware UTC `created_at`,
+     `reason=pre_migration`, `provider=gcp_cloud_sql`, `project`, `region`,
+     `instance`, `database`, `operation_id`, `backup_id`, `description`,
+     `status`, `type`, `location`, `enqueued_time`, `start_time`, and
+     `end_time`. Cloud or receipt failure stops before Alembic and exposes only
+     a safe owner-language error, never credentials or raw command output.
+     These receipts are evidence and locators, not backup archives. M2N neither
+     restores nor deletes a Cloud SQL backup and never claims automated cloud
+     recovery; cloud restore remains an explicit human operation.
+why: A completed provider backup plus a durable local locator is the smallest
+     executable proof that the owner's pre-migration state exists. Waiting and
+     describing close the gap between submitting work and possessing a usable
+     backup without expanding the packet into cloud recovery lifecycle.
