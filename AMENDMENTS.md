@@ -1708,3 +1708,49 @@ why: Each process reports only what it can directly observe, while one shared
      local measurement keeps doctor, startup, and the always-on gauge from
      disagreeing. A bounded repeated-query soak catches accumulating daemon
      state without adding monitoring infrastructure or a demanding surface.
+
+[A-045] [M2N] [ADR-019 owner lifecycle; D.2 092 informed restore] [P1.3, P4]
+gap: v2.49 requires a side-by-side switch and named rollback manifest, but does
+     not define the durable active-volume pointer, the exact comparison set, or
+     how an interrupted switch returns to the former live Palace.
+law: Local config version 3 adds `NOCTURNE_POSTGRES_VOLUME`. Version 2 upgrades
+     atomically by setting it to Compose's existing
+     `<compose-project>_nocturne_postgres` volume; new initialization writes
+     that same default. Compose mounts exactly the configured named volume.
+     Restore-created names are `<compose-project>_restore_<backup-id-lower>`.
+     Config accepts only that project's default or restore-name grammar, so a
+     config value cannot redirect lifecycle commands to an unrelated volume.
+
+     `nocturne restore BACKUP_ID` is local-only and refuses while the Harness
+     or Spine service is reachable. It accepts only one recognized A-042
+     generation whose receipt, digest, modes, contents, and pg_restore listing
+     reverify. It creates a fresh managed volume and isolated pinned-image
+     PostgreSQL container, restores the archive there, upgrades that candidate
+     through the packaged locked migration path, and queries both live
+     databases before asking anything. Any failure removes only the candidate
+     container and candidate volume; the live container, config, and volume
+     remain unchanged.
+
+     The ROLLBACK MANIFEST names, by label and UUID: current memory heads absent
+     from the candidate as `memories lost`; shared heads whose revision or
+     stored unit values differ as `edits reverted`; and current pins absent or
+     unpinned in the candidate as `pins undone`. It also prints current,
+     candidate, and signed delta counts for `memory_revision`,
+     `injection_event`, `spend_event`, `approval_decision`,
+     `scorer_activation`, and `spend_reconciliation`. The owner confirms by
+     typing the exact `RESTORE BACKUP_ID`; every other response cancels and
+     removes the candidate without touching live state.
+
+     After confirmation, restore stops the live PostgreSQL container, atomically
+     changes only the active-volume config value, starts the candidate through
+     normal Compose, and verifies reachability. If start or verification fails,
+     it atomically restores the former pointer and restarts the former volume.
+     Success retains the former volume and writes a private mode-0600 rollback
+     receipt under a mode-0700 `NOCTURNE_HOME/rollback-volumes` directory,
+     recording the restore id, backup id, switch time, former and active volume
+     names, and manifest counts. Restore never prunes volumes; the receipt makes
+     the former live volume discoverable for explicit future recovery.
+why: A versioned named-volume pointer is the smallest durable switch compatible
+     with Docker volumes, while a fixed inventory makes the owner's informed
+     confirmation reproducible and automatic pointer rollback preserves the
+     already-running Palace when the mechanical switch itself fails.
