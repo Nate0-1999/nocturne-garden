@@ -1860,3 +1860,14 @@ why: One recomputed content receipt implements informed force without a dialog
      or new persistence table, while reuse of the frozen injection and M2F
      referee keeps preview, audition, and accuracy tied to existing authority
      instead of inventing a second scorer or a persuasive but false metric.
+
+[A-048] [M2P] [ADR-009 item 4; ADR-023 clause 5] [P1.2.3]
+gap: A-047 requires nine distinct ordered slice points while `scorer.top_k`
+     has only eight legal integer values, so its complete bounded domain cannot
+     truthfully contain nine distinct points.
+law: In A-047, read "nine ordered accuracy points" as "up to nine distinct
+     ordered accuracy points." Bounded integer descriptors enumerate their
+     complete legal domain when it contains fewer than nine values. All other
+     A-047 slice rules remain unchanged.
+why: The visualization must show the real control domain rather than duplicate
+     an integer point merely to satisfy an impossible display count.
