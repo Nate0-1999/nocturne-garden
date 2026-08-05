@@ -1537,3 +1537,48 @@ why: The owner needs the real denominator and a useful map of what crowds it,
      explicitly estimated split keeps provenance visible, while a passive 80%
      line previews the future pressure boundary without smuggling M3 compaction
      machinery into M2.
+
+[A-040] [M2Q] [SPEC B.6 rule 12] [P4]
+gap: SPEC v2.48 physically appends enacted B.6 rule 12 to D.4's final parked
+     idea as `rankings.12.`, so its heading hierarchy contradicts D.2 088 and
+     PLAN M2Q. The rule also leaves the grandfathering identity, citation
+     grammar, JavaScript equivalent, and inverse-index catalog ambiguous.
+law: Treat the paragraph beginning `12. Test motivation (owner, v2.45)` as
+     B.6 rule 12 immediately after B.6 rule 11. D.4's Session-affinity bullet
+     ends after `session affinity would have changed rankings.`; no normative
+     test law lives in D.4.
+
+     In each repository, the deterministic checker scans every Python
+     `test_*` function or method under `tests/`. Its motivation is the
+     function docstring. It also scans JavaScript test calls under
+     `web/tests/` when that directory exists; their equivalent motivation is
+     the immediately preceding JSDoc block. A motivation is nonblank prose
+     containing at least one exact citation token: `SPEC <section>`,
+     `ADR-NNN`, `A-NNN`, `Invariant N`, Problem Tree node `P...`, or regression
+     flag `FNNN`.
+
+     The temporary baseline keys a test by repository-relative path plus
+     qualified name (or JavaScript call line) and stores a SHA-256 digest of
+     its normalized source. Python normalization spans decorators through the
+     function body, normalizes newlines, removes common indentation, and
+     ignores trailing line whitespace. Only the exact unchanged test is
+     grandfathered: new, renamed, or source-modified tests comply immediately. A
+     deleted baseline entry is reported as stale debt but does not fail the
+     ratchet. The checker itself and its local pre-commit hook have no network
+     dependency.
+
+     The law-coverage report catalogs SPEC numbered parts, ADR headings, and
+     B/C/D sections from the repository's committed `docs/SPEC.md`, maps exact
+     citations from compliant motivations to sorted test identities, and
+     explicitly marks catalog entries with zero defenders. Amendment,
+     invariant, problem-node, and regression citations are listed in a
+     separate referenced-statutes index because they are valid statutes but
+     are not SPEC headings. The report also states current baseline and stale
+     debt. Mechanical citation validity is checker-owned; whether the prose
+     truthfully names the defended law and prevented failure remains the M2Q
+     human sweep.
+why: This restores already-enacted law to its declared section and makes its
+     ratchet reproducible across the two real test languages. Source digests
+     prevent a baseline from becoming a permanent filename exemption, while
+     separating mechanical grammar from the human sweep avoids pretending a
+     token alone proves motivation.
