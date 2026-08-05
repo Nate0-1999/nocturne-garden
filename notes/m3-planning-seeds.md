@@ -120,3 +120,11 @@ door to keep open, not a load-bearing wall to build first.
    SCOUT is the assembled-product user pass that per-packet SOPs can't
    provide. Amendment fold debt now A-020..A-046 (~27 entries) — the
    pre-M3 editor pass is genuinely due after the M2 judge.
+
+9. REMOTE-INIT GAP (found live, 2026-08-05, owner's M2 spin startup):
+   `nocturne init` only mints a fresh LOCAL palace; there is no "init
+   against an existing spine" (SPINE_URL + token), so the owner's cloud
+   rung rides the pre-D3 .env path with the raw daemon entry point.
+   The mirror-principle packet needs exactly this: init --remote
+   <spine-url> (prompting for the bearer), making rung 2 a first-class
+   CLI citizen and retiring the .env-sourcing ritual.
