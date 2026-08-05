@@ -656,6 +656,20 @@ before the relay continues.
   amendment ids, build jargon in labels, errors, command output — and
   rephrase per THE GARDEN NEVER SHOWS + vision §18. (Deps: M2B.
   Excludes the SPA cluster.)
+- **M2X — M2 gate day (HUMAN).** Never agent-claimed. The owner uses
+  the assembled M2 product for real: re-scoring under every message,
+  thread-end flashcards, seed ingestion, the strip, Context Bars, the
+  Memory Graph, the Injection Console, /model, backup/restore. The
+  SCOUT precedes (B.6 rule 9) and DERIVES the M2 closing checklist
+  (none exists — per the missing-checklist clause), burning down
+  mechanics so the owner's session is taste and authentic signal. The
+  owner's dispositions during the spin count toward the learner's
+  25-signal floor. Hold clears on the owner's word; gates M2J.
+- **M2J — M2 judge.** Fresh CLAUDE CODE session (B.6 independence —
+  every M2 builder was Codex). Judges the assembled wave against the
+  M2 milestone line + all wave charges; re-executes SOPs per rule 8;
+  proposes ADR status normalizations; verdict to
+  harness/verification/m2/VERDICT.md. (Deps: M2X hold cleared.)
 - **J — Judge.** Sections: B.6, C.8, C.9, plus garden/AMENDMENTS.md
   (enacted amendments are law) — nothing else. Fresh session, different
   model than the builders (Codex if built by Claude Code). Execute J0–J8

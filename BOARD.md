@@ -52,6 +52,9 @@ deterministic packet order when more than one dependency-ready packet exists.
 | M2R| Context Bars (+memory category) | M2B                              | DONE        | codex / 2026-08-04 / 8a4e    | report 051; Harness 1887756; A-039; B.6 r7+r8 |
 | M2Q| Test motivation sweep + coverage report | J                        | DONE        | codex / 2026-08-04 / 91b7    | report 059; Harness c1bbd01; Spine 2bc3141; A-040 |
 | M2P| Injection Console: audition + what-if | M2K, M2F                   | DONE        | codex / 2026-08-04 / 4f6a    | report 060; Spine ffb4142; Harness bfe9308; A-047/A-048; B.6 r7+r8 |
+| M2X| M2 gate day (HUMAN)            | all M2 packets DONE               | TODO        |                              | HUMAN packet — never agent-claimed; scout precedes and derives the checklist (B.6 r9 + PLAN §3.3); HUMAN USE HOLD gates M2J |
+| M2J| M2 judge                       | M2X hold cleared (owner)          | TODO        |                              | fresh CLAUDE CODE session per B.6 independence; judges the M2 wave |
+
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
