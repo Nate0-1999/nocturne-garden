@@ -1786,3 +1786,77 @@ why: A completed provider backup plus a durable local locator is the smallest
      executable proof that the owner's pre-migration state exists. Waiting and
      describing close the gap between submitting work and possessing a usable
      backup without expanding the packet into cloud recovery lifecycle.
+
+[A-047] [M2P] [ADR-009 item 4; ADR-023 clauses 3 and 5] [P1.2.3, P2.5]
+gap: M2P requires instant and deep simulation, exact-value informed force,
+     audition, and accuracy slices, but law does not define their public wire,
+     replay boundary, or the receipt that proves the displayed score belongs
+     to the values later activated.
+law: Spine exposes bearer-protected POST `/v1/scorer-simulations` with
+     `{principal_id,injection_id,base_version,values,slice_parameter_id}`.
+     `injection_id` is nullable; when present it names one same-principal
+     frozen injection. `values` is the complete existing eleven-value
+     ScorerValues contract. `slice_parameter_id` is one of those eleven
+     descriptor IDs. The response contains `{simulation_digest,base_version,
+     values,source_boundary,holdout_dispositions,accuracy_percent,
+     incumbent_accuracy_percent,delta_percent,instant,slice}`.
+
+     DEEP uses exactly M2F's hygiene, actor weighting, chronological whole-gate
+     holdout split, binary target, pin rule, and percentage denominator. It
+     scores the supplied weights and tau; top_k and budget remain manual
+     selection controls and therefore do not alter A-031's binary replay
+     referee. A changed half-life deterministically rescales each nonzero
+     stored decay feature by recovering its elapsed age from that event's
+     scorer version; zero remains zero. `source_boundary` is the greatest
+     eligible event ULID, or null when no score is available. Percentages are
+     exact decimal strings or null with zero holdout. `delta_percent` is
+     tentative minus incumbent. The digest is SHA-256 over the canonical
+     base version, exact values, source boundary, denominator, both scores,
+     and delta.
+
+     INSTANT re-scores only the named frozen injection's visible candidate
+     rows under the tentative values, preserving pins, score/UUID order,
+     top_k, and greedy token budget. Each row reports incumbent and preview
+     score/rank/selected state plus `also_shown|would_add|would_drop|still_out`.
+     Future prepare events retain the exact model-context limit in their
+     private replay metadata; a legacy batch without enough frozen inputs
+     returns `instant.status=not_replayable`, never an approximation. Instant
+     writes nothing.
+
+     `slice` is nine ordered accuracy points for the requested descriptor.
+     Bounded descriptors span their complete range; positive unbounded
+     descriptors use multipliers 0.25 through 2 around the tentative value.
+     A weight slice changes that weight and rescales the other five
+     proportionally to preserve the simplex (equal shares if their prior sum
+     is zero). Selection-only controls produce an honestly flat replay curve
+     because A-031 does not grade them. Every point uses the same held-out
+     source boundary.
+
+     POST `/v1/scorer-auditions` accepts
+     `{principal_id,injection_id,proposal_version}` and returns the same
+     instant row comparison for the active incumbent versus that inactive
+     learner-PROPOSED version. Missing, active, or non-learner versions are
+     refused. The operation is read-only; the incumbent remains the sole
+     injection authority.
+
+     Extend POST `/v1/scorer-configs` with required `simulation_digest` and
+     `force:true`. In the same advisory-locked transaction as the version
+     insert, Spine recomputes DEEP from the current evidence and exact body
+     values. A stale base, changed evidence, changed value, or mismatched
+     digest refuses the write. Success keeps the existing immutable version
+     insert and activation journal, and adds `_force` to that journal's
+     changes with the digest, source boundary, denominator, incumbent score,
+     tentative score, and signed delta. No confirmation dialog exists: the
+     displayed score is the confirmation; any knob change clears the browser's
+     receipt and disables FORCE until another DEEP simulation.
+
+     Harness exposes these operations only through the Injection Console's
+     existing public rack query/action bridge. CURRENT follows the shared
+     thread selection and may preview/audition its latest frozen injection;
+     GLOBAL keeps the Palace-wide deep score and slice but has no fabricated
+     gate. Gate and panel audition marks are presentation-only consumers of
+     the returned comparison and never enter commit, feedback, or context.
+why: One recomputed content receipt implements informed force without a dialog
+     or new persistence table, while reuse of the frozen injection and M2F
+     referee keeps preview, audition, and accuracy tied to existing authority
+     instead of inventing a second scorer or a persuasive but false metric.
