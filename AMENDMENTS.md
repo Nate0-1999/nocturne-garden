@@ -1634,3 +1634,33 @@ law: A local backup is one mode-0700 generation directory under
 why: One verified, private, self-describing dump gives backup, migration safety,
      retention, future side-by-side restore, and doctor a single authority while
      leaving v2.49's restore confirmation and cloud-human boundaries unchanged.
+
+[A-043] [M2N] [ADR-019 owner lifecycle; ADR-016 journal law] [P1.3, P4]
+gap: M2N requires `nocturne doctor` to warn before disk exhaustion and to trust
+     the A-042 backup artifact, but does not define its checks, warning boundary,
+     or command result.
+law: `nocturne doctor` is a read-only local inspection. It reports the logical
+     database size, conversation-journal size, retained-backup size, and free
+     space on the filesystem containing `NOCTURNE_HOME`. It warns early when
+     free space is at or below the greater of 5 GiB or 10 percent of that
+     filesystem's capacity. This is a conservative diagnostic boundary, not
+     the later configured Deck threshold and never a deletion or hard stop.
+
+     Doctor verifies the private home/config modes, local PostgreSQL
+     reachability, and every recognized A-042 generation. Generation
+     verification requires the exact receipt schema and values, an aware UTC
+     timestamp, private modes, no extra generation entries, matching archive
+     byte count and SHA-256, and acceptance by the pinned image's
+     `pg_restore --list`. Unknown backup entries remain ignored and untouched,
+     as in retention. The command prints no secret or raw subprocess output.
+
+     The result is `healthy`, `warning`, or `failed`: healthy exits 0; an early
+     disk warning exits 1 so scripts can observe it; a failed privacy,
+     reachability, or backup-integrity check exits 2. Every result still prints
+     the measurements it could safely obtain and one short owner-language line
+     per warning or failure.
+why: The owner needs enough lead time to act before mandatory history reaches a
+     fail-closed boundary, and recovery evidence is useful only if the same
+     artifact can be re-checked later. One explicit read-only command creates
+     that warning and audit seam without inventing a background alert, cleanup
+     policy, or restore shortcut.
