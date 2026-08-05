@@ -8,9 +8,8 @@ owner's first assembled-product startup:
    ever said "your Palace is running older software than this app
    expects; run `nocturne deploy` (owner cloud) or update." The daemon
    authenticated the spine successfully, so it COULD have compared
-   versions/contract and said so in one sentence. Wants: an explicit
-   version handshake at startup with a plain-language, garden-free
-   remedy line. (Root cause of the incident itself: the entire M2 wave
+   versions/contract and said so in one sentence. RESOLVED AS LAW (v2.50, D.2 093): THE UPDATE PROMPT — up's version
+   handshake offers deploy (receipt-first) in one plain sentence. (Root cause of the incident itself: the entire M2 wave
    was never deployed to the owner cloud — lawful, since no packet held
    cloud authority after F011's single-use grant; the owner is running
    `nocturne deploy` himself, first use with M2N receipts.)
@@ -19,5 +18,6 @@ owner's first assembled-product startup:
    a Palace that can never satisfy it. Retry loops against contract-
    level (not transient) failures should back off and quiet down after
    first diagnosis.
-3. PHRASING: init's "Palace bearer:" prompt — "Palace access token"
-   reads aloud better (vision §18); minor.
+3. PHRASING: RESOLVED AS LAW (v2.50): plain secret names — exact vendor
+   names for third-party secrets; "your Palace access token" for the
+   generated one; "bearer" banned from customer surfaces.
