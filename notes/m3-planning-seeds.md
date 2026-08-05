@@ -110,3 +110,13 @@ MCP INVENTORY: ZERO user-configured MCP servers on this machine — all
 MCP usage is platform-builtin (browser). Finding: the real dependency
 set is small and mostly NOT MCP; MCP client support (pinned SDK) is a
 door to keep open, not a load-bearing wall to build first.
+
+8. PACKET SIZING LESSON (gate, 2026-08-04): M2N consumed SIX sessions
+   (five honest RETURNED_TODO handoffs + one close) — lawful under the
+   clean-unfinished-handoff rule, but a sizing smell. M3 planning should
+   split lifecycle-grade packets (backup/restore/locks/matrix/upgrader
+   were five packets wearing one id). Also: r8 tags on the board REQUIRE
+   SOP artifacts (M2M's unbacked tag corrected at the gate); the M2
+   SCOUT is the assembled-product user pass that per-packet SOPs can't
+   provide. Amendment fold debt now A-020..A-046 (~27 entries) — the
+   pre-M3 editor pass is genuinely due after the M2 judge.
