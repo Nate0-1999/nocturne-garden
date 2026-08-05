@@ -1582,3 +1582,32 @@ why: This restores already-enacted law to its declared section and makes its
      prevent a baseline from becoming a permanent filename exemption, while
      separating mechanical grammar from the human sweep avoids pretending a
      token alone proves motivation.
+
+[A-041] [M2N] [ADR-019 v0.1 positioning; C.2 migration discipline] [P1.3, P4]
+gap: M2N requires a versioned config upgrader and serialized migrations but
+     does not define the first config transition, retention domain, or the
+     advisory-lock identity shared by local and owner-cloud migration paths.
+law: Local config version 2 adds `NOCTURNE_BACKUP_GENERATIONS`, an integer in
+     the inclusive range 1..50 with default 5. Loading a private version-1
+     config upgrades it atomically in place before returning: preserve every
+     existing value byte-for-byte, add the default retention value, set the
+     version to 2, fsync and replace under mode 0600. An unknown or future
+     version is refused without mutation. New initialization writes version 2.
+
+     Every online Alembic run acquires the PostgreSQL session advisory lock
+     keyed by signed bigint `5642809481902573646` on the same connection before
+     configuring or beginning migration work, holds it through the complete
+     upgrade/downgrade transaction sequence, and releases it in `finally`.
+     Local and owner-cloud paths both use the packaged migration entrypoint and
+     therefore the same lock. Offline SQL generation takes no database lock.
+
+     The local Compose database image is the multi-platform OCI index
+     `pgvector/pgvector:pg16@sha256:a36250871de0833b8757561c72f2477ef1ddd1101afa4e617fb552e0de514c6b`.
+     Historical support currently means every packaged revision from 0001
+     through head; the upgrade matrix must execute each of those revisions to
+     the single current head against real Postgres.
+why: One atomic config step creates the retention seam without discarding the
+     owner's secrets, one stable database lock serializes every existing
+     migration caller, and an OCI-index digest keeps both owner architectures
+     on the same reviewed database lineage without inventing lifecycle UI or
+     recovery behavior before that work is built.
