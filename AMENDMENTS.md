@@ -1491,3 +1491,49 @@ law: Every Harness fixture/scenario app has one nonblank identity ending in
 why: This makes the two owner-observed failures mechanically visible and
      replay-safe at their existing boundaries, without adding a mock mode, a
      second ledger, a notification channel, or generic browser-data cleanup.
+
+[A-039] [M2R] [ADR-009 item 1, ADR-023 clauses 1 and 5] [P2.2, P2.5]
+gap: The law requires category bars against the resolved model's true context
+     length, but OpenRouter reports only the request's aggregate input-token
+     count. It does not provide a trustworthy system/history/memory/tools split,
+     and M2 does not yet enact compaction policy.
+law: Harness owns one daemon-lifetime context observation per thread, replaced
+     only after a model request returns. The observation's `used_tokens` is the
+     terminal broker response's per-request input-token count, never the run's
+     cumulative usage. Its `context_tokens` is the exact context length on that
+     request's immutable `ThreadModelResolution`. Before a completed request,
+     no observation exists and the instrument says that it is waiting for the
+     first model response.
+
+     The four displayed categories are `system`, `history`, `memory`, and
+     `tools`. Because the broker does not report this split, Harness labels it
+     `estimated breakdown`: memory is the cl100k count of the exact injected
+     MEMORY BLOCK; system and tools are cl100k counts of the owned capability
+     instruction text and stable public tool definitions; history is the
+     non-negative remainder of broker-reported input after those three values.
+     If the three estimates exceed broker input, they are reduced in
+     tools-then-system-then-memory order until the category sum equals the
+     broker total. The aggregate used count and context limit remain measured
+     facts even when category estimates are imperfect.
+
+     The instrument draws a presentation-only threshold at 80% of the resolved
+     context length, says `Compaction is not active`, and shows a compact table
+     of category token counts. It never compacts, warns, blocks, predicts, or
+     changes a run. CURRENT returns the selected thread's observation. GLOBAL
+     returns every observed thread plus aggregate used and capacity totals; its
+     bars and table show those category sums. Missing CURRENT selection or an
+     unobserved thread is a truthful empty state. The first-party CONTEXT BARS
+     module is compact by default beside Palace Vitals and uses only the public
+     Rack query, selection, and scope surfaces.
+
+     Customer-facing copy across the existing owner app must not expose Garden
+     identifiers, packet names, amendment numbers, ADR references, scenario
+     lineage, or implementation vocabulary as product explanation. Internal
+     protocol values and developer-only diagnostics may remain stable; visible
+     labels and recoverable errors are rephrased in owner language without
+     changing their behavior.
+why: The owner needs the real denominator and a useful map of what crowds it,
+     but false precision would be worse than no map. One measured total plus an
+     explicitly estimated split keeps provenance visible, while a passive 80%
+     line previews the future pressure boundary without smuggling M3 compaction
+     machinery into M2.
