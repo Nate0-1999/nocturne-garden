@@ -582,7 +582,12 @@ before the relay continues.
   real now; this is operational durability, NOT a multi-user refactor),
   ADR-003, C.2 migration discipline. Deliver: pin the local pgvector
   image to a digest (no floating pg16 tag); `nocturne backup` /
-  `nocturne restore` / `nocturne doctor`; an automatic BACKUP RECEIPT
+  `nocturne restore` (v2.49 INFORMED RESTORE: side-by-side into a fresh
+  volume, verify there, former volume kept as a rollback generation;
+  before switching, present the ROLLBACK MANIFEST — the named diff list
+  of memories lost / edits reverted / pins undone — and switch only on
+  explicit confirmation; a failed restore never touches the live
+  palace) / `nocturne doctor`; an automatic BACKUP RECEIPT
   before every migration (local and owner-cloud); an Alembic advisory
   lock (no two concurrent migrations); historical upgrade-matrix tests
   (every supported revision → head, not just empty → head); a config-file

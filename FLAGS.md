@@ -194,3 +194,13 @@ doctor, pre-migration receipts, migration locking, historical upgrades,
 config upgrades, Resources Vitals, and the soak proof remain mechanically
 defined, but building them ahead of the recovery contract would leave one
 supposed lifecycle as two incompatible designs.
+
+RESOLUTION F015 (owner, 2026-08-04 — SPEC v2.49, D.2 092): SIDE-BY-SIDE,
+with the ROLLBACK MANIFEST. Restore creates a fresh managed volume,
+restores and verifies there, preserves the former volume as a rollback
+generation, and switches ONLY after the owner confirms against a named
+diff list (memories lost / edits reverted / pins undone / event counts —
+computed by diffing the two live volumes). A failed restore never touches
+the live palace. In-place replacement is NOT authorized. Owner-cloud
+restore remains a human Cloud SQL operation; M2N's cloud duty stays
+pre-migration backup receipts only.
