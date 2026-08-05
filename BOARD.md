@@ -47,7 +47,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2L| Citation heuristic v1 (n-gram) | M2G                               | DONE        | codex / 2026-08-03 / a83f    | report 047; Spine 2974d81; Harness 216888b; A-036 |
 | M2M| Ledger self-audit vs broker    | M2A                               | DONE        | codex / 2026-08-03 / d91c    | report 048; Spine eaf5bc7; Harness 38720ae; A-037; B.6 r7+r8 |
-| M2N| Owner DB lifecycle hardening   | J                                 | TODO        |                              | F015 RESOLVED (v2.49): side-by-side + rollback manifest; resume per report 049 |
+| M2N| Owner DB lifecycle hardening   | J                                 | IN_PROGRESS | codex / 2026-08-04 / a93f    | F015 RESOLVED (v2.49): side-by-side + rollback manifest; resume per report 049 |
 | M2O| Fixture isolation + accounting fail-open | J                       | DONE        | codex / 2026-08-03 / c81e    | report 050; Harness 2d32540+5ab237f; A-038; B.6 r7 |
 | M2R| Context Bars (+memory category) | M2B                              | DONE        | codex / 2026-08-04 / 8a4e    | report 051; Harness 1887756; A-039; B.6 r7+r8 |
 | M2Q| Test motivation sweep + coverage report | J                        | TODO        | codex / 2026-08-04 / c7e2    | report 052; Harness 92d7a45; Spine 568d53d; A-040; sweep remains |
