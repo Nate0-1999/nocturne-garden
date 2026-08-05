@@ -1611,3 +1611,26 @@ why: One atomic config step creates the retention seam without discarding the
      migration caller, and an OCI-index digest keeps both owner architectures
      on the same reviewed database lineage without inventing lifecycle UI or
      recovery behavior before that work is built.
+
+[A-042] [M2N] [ADR-019 owner lifecycle; C.2 migration discipline] [P1.3, P4]
+gap: M2N requires local backup, migration receipts, and bounded generations but
+     does not define the artifact that later restore and doctor may trust.
+law: A local backup is one mode-0700 generation directory under
+     `NOCTURNE_HOME/backups`, named by a client-minted ULID. It contains exactly
+     `palace.pgdump`, a mode-0600 PostgreSQL custom-format dump made with
+     `--no-owner --no-privileges`, and mode-0600 `receipt.json`. The receipt is
+     UTF-8 JSON with schema version 1 and these fields: `backup_id`, aware UTC
+     `created_at`, `reason` (`manual` or `pre_migration`), `database`, nullable
+     `alembic_revision`, `postgres_image`, `archive`, `archive_bytes`, and
+     lowercase `archive_sha256`. Before publication, `pg_restore --list` must
+     accept the completed archive and the recorded digest and byte count must
+     match it. Failure publishes no generation. A successful manual backup and
+     every local packaged migration attempt use this same writer. After a new
+     generation is durably published, prune oldest valid generation directories
+     by ULID order until the configured A-041 retention count remains; ignore
+     every unrecognized file or directory rather than deleting it. Backup and
+     receipt command failures expose safe owner-language errors and never print
+     config values, database credentials, or raw subprocess output.
+why: One verified, private, self-describing dump gives backup, migration safety,
+     retention, future side-by-side restore, and doctor a single authority while
+     leaving v2.49's restore confirmation and cloud-human boundaries unchanged.
