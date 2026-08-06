@@ -187,3 +187,9 @@ door to keep open, not a load-bearing wall to build first.
       curated context); sub-agents-as-calls vs our origin_agent trees;
       CodeMode kinship; subscription capacity for the broker thesis.
       Adopt techniques, never the no-consent posture.
+
+GATE MINTING RULE (self-imposed, 2026-08-06, after the second
+law-without-a-row incident — Context Bars, then the v2.50 update
+prompt): EVERY enacted behavior law names its packet row or its exact
+existing-charge line IN THE SAME ENACTMENT. "Rides the next packet" is
+banned phrasing. Law without a row is a wish.

@@ -669,7 +669,19 @@ before the relay continues.
   migrate the owner's .env setup with one command or clear doc line.
   Acceptance: a cold terminal reaches the rack in TWO commands on
   either rung. (Deps: all M2 packets.)
-- **M2T — Owner-cloud credential alignment + M2 deploy (grant D.2 094,
+- **M2T — Owner-cloud credential alignment + M2 deploy + THE ONE-STEP
+  UPDATE (grant D.2 096, single-use; charge EXPANDED 2026-08-06 — the
+  owner should never hand-run a python one-liner to update his own
+  product).** Additional deliverables beyond the original sequence:
+  (a) wire the alignment INTO deploy — when the plan blocks on
+  credential mismatch, deploy OFFERS the alignment inline (plain
+  consent line, receipt-first, then continues the plan in the same
+  run); no separate function invocation ever; (b) implement v2.50's
+  UPDATE PROMPT in `nocturne up` — remote palace behind → one plain
+  sentence offering the update → accepting runs the full deploy path;
+  the owner's entire update experience is `nocturne up` → 'y'.
+  Original charge follows.
+  (was: grant D.2 094,
   single-use).** Sections: v2.51 (read the motivation: the deployer met
   a hand-built foundation and rightly refused custody it couldn't
   verify), M2N receipts, the deploy runbook. Deliver, in order: (1)
