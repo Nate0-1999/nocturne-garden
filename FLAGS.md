@@ -218,3 +218,10 @@ single-use grant for the corrected reset and state whether receipt
 satisfy backup-first ordering or whether the retry must create a fresh backup.
 This disturbs only owner-cloud mutation authority and M2T/M2X scheduling; no
 credential value was printed or logged.
+
+RESOLUTION F016 (owner, 2026-08-05 — SPEC v2.53, D.2 096): fresh single-use
+grant issued for the CORRECTED reset, same scope/sequence as D.2 094. Bright
+line: every mutation attempt takes its OWN fresh backup receipt — receipt
+01KZA98YYHDRZWTBTRQ7SNVZTS does NOT carry forward (nothing wrong with it;
+the rule is the rule so no future session has to weigh staleness). M2T
+resumes: fresh receipt → corrected reset → image → migrations → verification.
