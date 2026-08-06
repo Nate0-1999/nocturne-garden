@@ -225,3 +225,21 @@ line: every mutation attempt takes its OWN fresh backup receipt — receipt
 01KZA98YYHDRZWTBTRQ7SNVZTS does NOT carry forward (nothing wrong with it;
 the rule is the rule so no future session has to weigh staleness). M2T
 resumes: fresh receipt → corrected reset → image → migrations → verification.
+
+[F017] [M2T] [P1.3, P4] — The D.2 096 owner-path attempt reached the literal
+`nocturne up` version prompt, accepted one `y`, classified the live database at
+Alembic 0002, then failed before backup or mutation because an editable Spine
+checkout does not contain Hatch's wheel-only `_deploy` resources. The same run
+also proved the old managed secret authenticates: the earlier credential block
+was entirely a gcloud PostgreSQL-user classifier defect (`type` is omitted for
+the built-in user), not a bad password. Spine f060cf6 now materializes the same
+strict allowlist from either a built wheel or canonical checkout. Harness
+3d1b6ca now records a private non-secret custody receipt only after the granted
+reset and secret rewrite, so this one alignment occurs despite the inherited
+password working and never repeats on future updates. Full local ground passes.
+Read-only post-failure proof shows no new backup, no custody receipt, secret v1
+still sole enabled, and no 0.1.0 image tag. D.2 096 nevertheless says the grant
+is consumed on success or failure; completion may not reinterpret “attempt” as
+“mutation.” Minimally issue one fresh single-use grant for the now-proven
+`nocturne up → y` path, retaining v2.53's fresh-receipt-first rule. This
+disturbs only owner-cloud mutation authority and M2T/M2X scheduling.
