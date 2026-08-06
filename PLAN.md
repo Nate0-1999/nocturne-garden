@@ -669,6 +669,21 @@ before the relay continues.
   migrate the owner's .env setup with one command or clear doc line.
   Acceptance: a cold terminal reaches the rack in TWO commands on
   either rung. (Deps: all M2 packets.)
+- **M2T — Owner-cloud credential alignment + M2 deploy (grant D.2 094,
+  single-use).** Sections: v2.51 (read the motivation: the deployer met
+  a hand-built foundation and rightly refused custody it couldn't
+  verify), M2N receipts, the deploy runbook. Deliver, in order: (1)
+  Cloud SQL on-demand backup receipt, verified SUCCESSFUL; (2) the
+  one-time credential reset — fresh database password, user updated,
+  spine-database-url secret rewritten, values never printed or logged;
+  (3) the packaged image built and pushed; (4) service rolled forward;
+  (5) migrations 0002→0009 via the classifier; (6) authenticated remote
+  verification (health + typed round trip + one M2-surface probe, e.g.
+  /v1/vitals). ALSO: fix the cascade defect (migrations must not be
+  declared incompatible before alembic_version is read) and apply PLAIN
+  PLAN LANGUAGE to deploy output (v2.51 + garden-never-shows). The
+  grant is consumed by this packet, success or failure. (Deps: all M2
+  packets.)
 - **M2X — M2 gate day (HUMAN).** Never agent-claimed. The owner uses
   the assembled M2 product for real: re-scoring under every message,
   thread-end flashcards, seed ingestion, the strip, Context Bars, the

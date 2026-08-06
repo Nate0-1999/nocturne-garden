@@ -21,3 +21,8 @@ owner's first assembled-product startup:
 3. PHRASING: RESOLVED AS LAW (v2.50): plain secret names — exact vendor
    names for third-party secrets; "your Palace access token" for the
    generated one; "bearer" banned from customer surfaces.
+
+4. DEPLOY PLAN JARGON: RESOLVED AS LAW (v2.51): 'NOOP'/'BLOCKED'/
+   'forbidden' replaced by plain plan language — deploy output is rung-2
+   customer surface. Cascade defect (migrations declared incompatible
+   before alembic_version read) charged to M2T.
