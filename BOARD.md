@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | BLOCKED     | codex / 2026-08-06 / c807    | report 063; F017; D.2 096 consumed by pre-mutation owner-path failure |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | TODO        |                              | F017 RESOLVED (D.2 097): fresh grant, receipt-marks-consumption; run the literal `nocturne up → y` per report 063 notes |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
@@ -66,10 +66,10 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
-- M2T — F017: D.2 096 was consumed when the approved `nocturne up → y` run
-  failed before mutation because editable Spine lacked wheel-only deploy
-  resources. The source seam and durable one-time custody receipt are fixed;
-  another exact owner grant is required before replay.
+- M2T — F017 RESOLVED (D.2 097, 2026-08-06): fresh single-use grant issued
+  for the literal `nocturne up → y` path; consumption recalibrated to
+  receipt-minting, so provably pre-receipt failures now permit in-session
+  repair + retry. Stop-line lifted.
 
 ### Milestone closure
 

@@ -243,3 +243,13 @@ is consumed on success or failure; completion may not reinterpret “attempt” 
 “mutation.” Minimally issue one fresh single-use grant for the now-proven
 `nocturne up → y` path, retaining v2.53's fresh-receipt-first rule. This
 disturbs only owner-cloud mutation authority and M2T/M2X scheduling.
+
+RESOLUTION F017 (owner, 2026-08-06 — SPEC v2.54, D.2 097): fresh single-use
+grant for the literal `nocturne up → y` path (fresh receipt → corrected reset
+→ secret rewrite → image → rollout → migrations 0002→0009 → remote
+verification). CONSUMPTION RECALIBRATED, permanent: the grant is consumed by
+MINTING ITS FRESH RECEIPT (which precedes every mutation, per D.2 096); a run
+that provably fails BEFORE its receipt leaves the grant intact for in-session
+repair + retry with read-only ground re-proven first. Mutation ⇒ receipt ⇒
+consumed, so replay stays impossible; local defects stop costing owner
+round-trips.
