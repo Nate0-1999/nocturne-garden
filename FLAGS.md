@@ -204,3 +204,17 @@ computed by diffing the two live volumes). A failed restore never touches
 the live palace. In-place replacement is NOT authorized. Owner-cloud
 restore remains a human Cloud SQL operation; M2N's cloud duty stays
 pre-migration backup receipts only.
+
+[F016] [M2T] [P1.3, P4] — D.2 094's single-use credential-alignment grant was
+consumed on failure after a verified on-demand Cloud SQL backup receipt was
+persisted but before the database password or `spine-database-url` secret was
+changed. `gcloud sql users set-password` rejected the private flags document
+because its key was `password` rather than the required `--password`; Harness
+fixes and tests that defect, and read-only inspection confirms secret version 1
+is still the sole enabled version. M2T cannot retry because D.2 094 explicitly
+says the grant is consumed on success or failure. Minimally issue a new exact
+single-use grant for the corrected reset and state whether receipt
+`01KZA98YYHDRZWTBTRQ7SNVZTS` (SUCCESSFUL on-demand backup 1785977929765) may
+satisfy backup-first ordering or whether the retry must create a fresh backup.
+This disturbs only owner-cloud mutation authority and M2T/M2X scheduling; no
+credential value was printed or logged.

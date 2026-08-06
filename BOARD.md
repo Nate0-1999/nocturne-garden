@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-05 / c806    | grant D.2 094 (single-use); before M2X hold clears |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | BLOCKED     | codex / 2026-08-05 / c806    | report 062; F016; D.2 094 consumed on failed reset before credential mutation |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
@@ -66,6 +66,9 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
+- M2T — F016: D.2 094 was consumed when gcloud rejected the private reset
+  flags file before credential mutation. The defect is fixed; a new explicit
+  owner grant must define whether the verified backup receipt may be reused.
 
 ### Milestone closure
 
