@@ -168,7 +168,10 @@ door to keep open, not a load-bearing wall to build first.
     charges → swarm → judge → verdict-born packets), the gate was the
     first motivation judge, and the gate session the first conductor.
 
-12. SWARM-INFRA SURVEY CANDIDATES (owner, 2026-08-06):
+12. SWARM-INFRA SURVEY CANDIDATES (owner, 2026-08-06) — OWNER PRIORITY:
+    the Prime Agent + beads deep dive is the FIRST gate work after the
+    owner completes the manual audit of current state (his words,
+    2026-08-06); it precedes other M3 survey items.
     - BEADS (Steve Yegge, Oct 2025): git-backed DAG issue tracker for
       agent swarms; ready-work detection; cross-session memory. Our
       BOARD.md is hand-rolled beads — candidate BACKING STORE for the
