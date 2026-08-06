@@ -193,3 +193,59 @@ law-without-a-row incident — Context Bars, then the v2.50 update
 prompt): EVERY enacted behavior law names its packet row or its exact
 existing-charge line IN THE SAME ENACTMENT. "Rides the next packet" is
 banned phrasing. Law without a row is a wish.
+
+---
+
+WENG HARNESS SURVEY (owner-supplied 2026-08-06, for the swarm-infra deep
+dive alongside beads + Prime Agent):
+https://lilianweng.github.io/posts/2026-07-04-harness/
+
+Why it matters: it is a taxonomy of the exact design space the deep dive
+covers, and it independently converges on several NOCTURNE laws —
+citeable external validation — while contributing one genuinely new
+pattern and two cautions.
+
+CONVERGENCES (our law, arrived at independently):
+- "File system as persistent memory; subagent outputs as files/status
+  records, not transient chat, so the model recovers after
+  interruption" — this IS the garden relay (everything in files,
+  nothing in anyone's head) and the beads thesis restated.
+- ACE (Generator/Reflector/Curator, curator emits STRUCTURED ITEMIZED
+  entries merged deterministically to prevent "context collapse and
+  brevity bias") — our curator doctrine: deterministic toolset +
+  surgeon LLM, admit-then-curate, itemized memory units.
+- "Evaluators and permissions must sit OUTSIDE the evolution loop, with
+  held-out tests and human review" — Chrysopoeia exactly (chronological
+  holdout, PROPOSED version, owner one-tap activation). PIN THIS AS THE
+  REASON the activation tap never gets automated away.
+- "Humans move UP the stack, not out of the loop; design oversight
+  touchpoints" — our gates/consent surfaces; also the precise critique
+  we already leveled at Prime Agent's Continual Harness ("memory
+  without a consent surface"). The post supplies the vocabulary: Prime
+  Agent is a Self-Harness instance missing the survey's own guardrails.
+- AHE "decision observability: every edit carries a manifesto (failure
+  name, root cause, targeted fix, predicted impact)" — DECISIONS.md
+  journal law + B.6 r12 test motivation, generalized.
+- Blast-radius model policy validated: STOP found self-improvement
+  HELPS with strong base models and DEGRADES with weak ones ("the base
+  model must be capable enough to improve the mechanism") — A-021's
+  pinned/max for judges/orchestrators/curators is the right call.
+
+NEW PATTERN worth importing (M3 candidate): Self-Harness — mine
+failures into verifier-grounded patterns → propose BOUNDED harness
+edits → accept only if zero regression on held-in AND held-out splits.
+This is Chrysopoeia's PROPOSED/activate pattern extended from scorer
+hyperparameters to harness behavior itself; meshes with the judge
+panel (judges = the verifier-grounding) and packet system (proposals
+persisted AS PACKETS). Same consent surface applies: owner activates.
+
+CAUTIONS to carry into the deep dive:
+- Diversity collapse: evolutionary/judge loops converge on known
+  patterns. Our brakes (spend wall, same-failure-twice) stop waste but
+  do NOT preserve diversity — an open design question for the ADR-017
+  outer loop.
+- Sub-agent process-manager verb set (spawn/resume/wait/list/close/
+  interrupt) — checklist for the M3 orchestrator tool surface; compare
+  against beads' issue-DAG verbs when we do the beads pass.
+- Weng's closing line is NOCTURNE's bet verbatim: memory should become
+  "a core part of intelligence, not just a software layer."
