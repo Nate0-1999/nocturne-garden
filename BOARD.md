@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | TODO        |                              | F017 RESOLVED (D.2 097): fresh grant, receipt-marks-consumption; run the literal `nocturne up → y` per report 063 notes |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-06 / c808    | F017 RESOLVED (D.2 097): fresh grant, receipt-marks-consumption; run the literal `nocturne up → y` per report 063 notes |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
