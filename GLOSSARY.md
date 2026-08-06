@@ -96,6 +96,11 @@ and this file disagree, law wins — then this file gets fixed.
 
 - **mode scale** — Solo / Duet (pair chat) / Ensemble / **Symphony**
   (parallel search: attempts in worktrees, EXPAND/FORK/GRAFT/PRUNE).
+- **the judge panel** — plan-time judges chartered as artifacts of spec
+  alignment: the MOTIVATION judge (holds the whole why; builders hold
+  slices) and the IMPLEMENTATION judge (build sensibleness), plus any
+  user-chartered seats. FAILs persist as new packets for the next swarm
+  (proposed 2026-08-05; ADR-012/017 sharpening at M3).
 - **the judge** — the evaluating agent seat: triages boundary crossings,
   gates run completion, promotes staged memories, ranks digests.
 - **the work protocol** — spec alignment → agent loop → judge; the human

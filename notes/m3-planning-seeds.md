@@ -144,3 +144,21 @@ door to keep open, not a load-bearing wall to build first.
     frame; costs are real (every run is real browser + real tokens per
     rule 10) so the tiers matter. Candidate law: B.6 rule 13 at M3
     planning, seeded from the existing H5/M2 SOPs.
+
+11. THE JUDGE PANEL — plan-time judges (owner riff, 2026-08-05; ADR-012/
+    017 sharpening for M3): spec alignment EMITS judge charters as
+    first-class plan artifacts — minimum two: the MOTIVATION JUDGE
+    (validation: holds the ENTIRE motivation while builders hold
+    need-to-know slices; the integrity check against losing the plot;
+    catches proxy drift that MEASURED objectives can't) and the
+    IMPLEMENTATION JUDGE (verification: sensibleness of the build);
+    user may charter more (security, cost...). Judge FAIL → feedback
+    persisted AS NEW PACKETS from the judges → next swarm: an
+    EVOLUTIONARY OUTER LOOP around ADR-017's inner search (swarm =
+    generation, verdicts = selection, judge-emitted packets = mutation;
+    inner ring searches solutions, outer ring searches specifications).
+    Same judges serve both radii (in-run PRUNE/GRAFT consults; post-run
+    panel verdicts). Blast-radius inherits (judges pinned/max, A-021).
+    Lineage note: the Garden relay IS the prototype (planning → sliced
+    charges → swarm → judge → verdict-born packets), the gate was the
+    first motivation judge, and the gate session the first conductor.
