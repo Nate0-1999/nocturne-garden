@@ -158,7 +158,29 @@ door to keep open, not a load-bearing wall to build first.
     generation, verdicts = selection, judge-emitted packets = mutation;
     inner ring searches solutions, outer ring searches specifications).
     Same judges serve both radii (in-run PRUNE/GRAFT consults; post-run
-    panel verdicts). Blast-radius inherits (judges pinned/max, A-021).
+    panel verdicts). Blast-radius inherits (judges pinned/max, A-021). LOOP LAW (owner,
+    2026-08-06): the outer loop runs until ALL chartered judges pass —
+    UNANIMITY, never majority. Two brakes: spend walls bound each swarm
+    generation (wall-hit → judge triage → boundary card, never silent
+    runaway); CONVERGENCE CHECK — the same judge failing the same way
+    twice = a stuck loop, escalate to the owner instead of a third swarm.
     Lineage note: the Garden relay IS the prototype (planning → sliced
     charges → swarm → judge → verdict-born packets), the gate was the
     first motivation judge, and the gate session the first conductor.
+
+12. SWARM-INFRA SURVEY CANDIDATES (owner, 2026-08-06):
+    - BEADS (Steve Yegge, Oct 2025): git-backed DAG issue tracker for
+      agent swarms; ready-work detection; cross-session memory. Our
+      BOARD.md is hand-rolled beads — candidate BACKING STORE for the
+      board when judge-emitted packets outpace markdown; tension: the
+      board is law-infused (claims/verdicts/holds), adoption = teaching
+      a tool the constitution. Pairs with MCP Agent Mail for claims.
+    - PRIME AGENT (Prime Intellect, Aug 5 2026): open-source RLM
+      harness — context as a programmable variable, sub-agents as
+      function calls in a persistent IPython kernel, "Continual
+      Harness" (prompts/skills/memory CRUD-ed by the agent from its own
+      trajectory), runs on subscription logins + many providers. Study:
+      the opposite pole from the gate (agent-programmed vs human-
+      curated context); sub-agents-as-calls vs our origin_agent trees;
+      CodeMode kinship; subscription capacity for the broker thesis.
+      Adopt techniques, never the no-consent posture.
