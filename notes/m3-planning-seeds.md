@@ -128,3 +128,19 @@ door to keep open, not a load-bearing wall to build first.
    The mirror-principle packet needs exactly this: init --remote
    <spine-url> (prompting for the bearer), making rung 2 a first-class
    CLI citizen and retiring the .env-sourcing ritual.
+
+10. AGENT TESTS — the new tier (owner riff, 2026-08-05; refine after M2
+    gate-day experience per owner): unit tests verify CODE, integration
+    tests verify CONTRACTS, AGENT TESTS verify EXPERIENCE — a standing,
+    versioned suite of human-style verifications (open/click/watch/
+    judge, real browser, screenshots as evidence, PASS/FAIL/NEEDS-TASTE)
+    re-executed at defined moments. We have the organs (r8 per-packet
+    SOPs, r9 scout, r12 motivation, judge re-execution); the NEW element
+    is PERMANENCE: each UI packet CONTRIBUTES its SOP into a living
+    verification/agent-tests/ suite (motivation-cited per r12) instead
+    of retiring it as one-shot evidence. Tiered like human regression:
+    agent-smoke (core loop, minutes, at big-feature merges) vs full
+    suite (gate days, judgments). The company-SOP analogy is the right
+    frame; costs are real (every run is real browser + real tokens per
+    rule 10) so the tiers matter. Candidate law: B.6 rule 13 at M3
+    planning, seeded from the existing H5/M2 SOPs.

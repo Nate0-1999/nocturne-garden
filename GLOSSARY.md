@@ -104,6 +104,10 @@ and this file disagree, law wins — then this file gets fixed.
   work silently for triage; nothing interrupts the human except the Deck.
 - **boundary card** — a judge-triaged request to cross a wall, surfaced
   on the Deck once, at highest leverage.
+- **agent tests** — the third tier: unit tests verify code, integration
+  tests verify contracts, agent tests verify EXPERIENCE — a standing
+  suite of human-style browser verifications agents re-execute at
+  merges (smoke) and gates (full). Proposed 2026-08-05; law at M3.
 - **the Ouroboros (N1)** — the self-hosting milestone test: NOCTURNE
   completes one relay packet on its own repositories, end to end, under
   walls. The snake bites its tail; the harness builds itself.
