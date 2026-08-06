@@ -680,8 +680,10 @@ before the relay continues.
   (5) migrations 0002→0009 via the classifier; (6) authenticated remote
   verification (health + typed round trip + one M2-surface probe, e.g.
   /v1/vitals). ALSO: fix the cascade defect (migrations must not be
-  declared incompatible before alembic_version is read) and apply PLAIN
-  PLAN LANGUAGE to deploy output (v2.51 + garden-never-shows). The
+  declared incompatible before alembic_version is read) and apply the
+  v2.52 language calibration: NOOP and standard ops vocabulary STAY;
+  fix only the remedy-free refusal sentences (each states situation +
+  next action plainly) and any invented/garden jargon. The
   grant is consumed by this packet, success or failure. (Deps: all M2
   packets.)
 - **M2X — M2 gate day (HUMAN).** Never agent-claimed. The owner uses
