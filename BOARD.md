@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-06 / c810    | F019 RESOLVED (D.2 098 scope law): verification-only closure is ordinary operation — `nocturne deploy` (all infra NOOP) + corrected verification + label, then DONE |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | TODO        | codex / 2026-08-06 / c810    | report 066; Harness b617485; all infra NOOP; live verifier process not started — fresh explicit execution approval required |
 | M2U| Live-contract real-provider expectations     | M2T                  | TODO        |                              | D.2 098: two live tests hardcode fixture-era h2-contract-embedding-1536; parameterize to real providers (mirror of B.6 r10) |
 
 
@@ -67,9 +67,13 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
-- M2T — F019 RESOLVED (D.2 098): the scope law rules verification-only runs
-  ordinary operation (no grant, no receipt — all infra stages NOOP). The
-  stop-line is lifted; M2T closes on the corrected verification.
+- M2T — F019 remains RESOLVED (D.2 098): the local deployer now enforces the
+  scope law and mutation-last ordering, and a real dry-run proves every infra
+  stage NOOP. The execution environment rejected the live ordinary-operation
+  process before start pending fresh explicit owner authorization for its
+  isolated memory round trip and verification-label write. No receipt or
+  production mutation occurred; this is an execution handoff, not a new SPEC
+  flag (report 066).
 
 ### Milestone closure
 
