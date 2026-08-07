@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-06 / c811    | report 066; Harness b617485; owner authorized the exact verification-only production execution; all infrastructure must remain NOOP and no receipt may be minted |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | DONE        | codex / 2026-08-06 / c811    | report 067; Harness b617485+9f3e500; corrected typed verification, cleanup, Vitals, and label PASS; all 20 stages NOOP; no receipt |
 | M2U| Live-contract real-provider expectations     | M2T                  | TODO        |                              | D.2 098: two live tests hardcode fixture-era h2-contract-embedding-1536; parameterize to real providers (mirror of B.6 r10) |
 
 
@@ -67,13 +67,6 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
-- M2T — F019 remains RESOLVED (D.2 098): the local deployer now enforces the
-  scope law and mutation-last ordering, and a real dry-run proves every infra
-  stage NOOP. The execution environment rejected the live ordinary-operation
-  process before start pending fresh explicit owner authorization for its
-  isolated memory round trip and verification-label write. No receipt or
-  production mutation occurred; this is an execution handoff, not a new SPEC
-  flag (report 066).
 
 ### Milestone closure
 
@@ -86,7 +79,11 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   doctor, startup warning, passive resource Vitals, bounded daemon soak, and a
   live-verified owner-cloud pre-migration receipt through report 058. Later
   independent rows remain dependency-ready. D3 is not an M1
-  closure dependency and remains blocked only on F014.
+  closure dependency and remains blocked only on F014. M2T is DONE through
+  report 067: production typed verification, cleanup, Vitals, and the durable
+  verification label pass with every deploy stage converged NOOP and no fresh
+  receipt. M2U is the remaining agent M2 packet before the HUMAN M2X gate
+  becomes dependency-ready.
 
 ### Exclusions (symmetric; see PLAN §1)
 
