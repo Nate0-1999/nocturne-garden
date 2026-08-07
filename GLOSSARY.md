@@ -235,3 +235,10 @@ and this file disagree, law wins — then this file gets fixed.
 - **document the edges, don't police the interior** — the project rule:
   local freedom everywhere; documentation marks what's recommended to
   modify vs law-bound, with the why.
+
+**infrastructure mutation** — a change to the owner foundation: credentials,
+secrets, images, service rollouts, migrations, backup configuration. The only
+action class the grant family (F011, F015-F019) governs; consumed-by-receipt
+law applies here and nowhere else. Contrast the DATA PLANE — memory CRUD,
+vitals reads, verification labels, typed round trips — which is ordinary
+product operation, never grant-gated (D.2 098).

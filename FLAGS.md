@@ -303,3 +303,17 @@ cleanup, Vitals probe, and final verification-label write. The literal
 `nocturne up → y` update has already run and cannot honestly prompt again now
 that the Palace is current. This disturbs only production-verification
 mutation authority and M2T/M2X scheduling.
+
+RESOLUTION F019 (owner via gate, 2026-08-06 — SPEC v2.55, D.2 098): THE SCOPE
+LAW — grants govern INFRASTRUCTURE mutations only (credentials, secrets,
+images, rollouts, migrations, backups); application-data-plane operations
+(memory CRUD, vitals reads, verification labels, typed round trips) are
+ordinary product operation, never grant-gated, never receipt-taking. The
+requested verification-only attempt is therefore ordinary operation: run
+`nocturne deploy` with all infra stages NOOP, execute the corrected typed
+verification + Vitals + verification-label write, close M2T. Also enacted:
+MUTATION-LAST ORDERING — locally-fallible stages (build, push, preflights)
+precede the first service-affecting mutation in every future granted
+sequence. Gate independently verified the deploy live (health/vitals/
+memories 200, schema 0009, secret v2 proven by disabled-v1 + working DB;
+spend-receipt live contract PASSED).

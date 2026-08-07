@@ -669,6 +669,17 @@ before the relay continues.
   migrate the owner's .env setup with one command or clear doc line.
   Acceptance: a cold terminal reaches the rack in TWO commands on
   either rung. (Deps: all M2 packets.)
+- **M2U — Live-contract real-provider expectations.** Two live contract
+  tests (`test_live_create_conflicts_and_dedup_bands`,
+  `test_live_patch_cas_tombstone_and_list`) hardcode the fixture-era
+  embedding model `h2-contract-embedding-1536`; production correctly
+  reports the real broker-routed model (`openai/text-embedding-3-small`).
+  Parameterize the expectation (env-driven or accept the configured real
+  model) so live tests pass against the real palace — the mirror of B.6
+  r10: a test that only passes against a fake is a fake test. Keep the
+  fixture path green too. Exit: all three live contract tests pass against
+  the deployed palace AND the local fixture; each cites its statute
+  (B.6 r12).
 - **M2T — Owner-cloud credential alignment + M2 deploy + THE ONE-STEP
   UPDATE (grant D.2 096, single-use; charge EXPANDED 2026-08-06 — the
   owner should never hand-run a python one-liner to update his own

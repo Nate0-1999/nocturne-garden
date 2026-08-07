@@ -57,7 +57,8 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | BLOCKED     | codex / 2026-08-06 / c809    | report 065; F019; image/rollout/0009 complete; final verifier contract defect; grant consumed |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | TODO        |                              | F019 RESOLVED (D.2 098 scope law): verification-only closure is ordinary operation — `nocturne deploy` (all infra NOOP) + corrected verification + label, then DONE |
+| M2U| Live-contract real-provider expectations     | M2T                  | TODO        |                              | D.2 098: two live tests hardcode fixture-era h2-contract-embedding-1536; parameterize to real providers (mirror of B.6 r10) |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
@@ -66,10 +67,9 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
-- M2T — F019: the F018 grant was consumed by fresh receipt
-  `01KZD3K0CVGV29JMG7QAF9TPZ5` after image, rollout, and migration reached
-  target. The corrected final verifier requires one fresh receipt-first,
-  single-use post-deploy verification grant. No retry is authorized.
+- M2T — F019 RESOLVED (D.2 098): the scope law rules verification-only runs
+  ordinary operation (no grant, no receipt — all infra stages NOOP). The
+  stop-line is lifted; M2T closes on the corrected verification.
 
 ### Milestone closure
 
