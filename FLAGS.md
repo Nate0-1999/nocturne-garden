@@ -253,3 +253,20 @@ that provably fails BEFORE its receipt leaves the grant intact for in-session
 repair + retry with read-only ground re-proven first. Mutation ⇒ receipt ⇒
 consumed, so replay stays impossible; local defects stop costing owner
 round-trips.
+
+[F018] [M2T] [P1.3, P4] — The D.2 097 attempt minted verified fresh receipt
+`01KZD1HVSZXWXJGPNEN58PY6XC`, consuming the grant, then successfully reset the
+database credential, enabled `spine-database-url` version 2, disabled version
+1, and persisted durable custody. The image build then failed before push:
+credential isolation set an empty `DOCKER_CONFIG`, hiding both Homebrew Buildx
+and the Colima context. No rollout, migration, or remote verification ran.
+Cloud Run remains on revision `n8-memory-palace-spine-00004-vs2` and explicitly
+pins now-disabled database-secret version 1; authenticated static `/health` is
+200 but a DB-backed memory read is 500, so the owner service is disrupted.
+Harness 4a5a4db fixes and preflights the exact isolated Docker environment and
+preserves fresh-receipt-first image → service → migration → verification for a
+post-custody continuation. D.2 097 forbids replay. Minimally authorize one new
+single-use POST-ALIGNMENT COMPLETION attempt: fresh verified receipt first;
+reset and secret rewrite stay NOOP; then image build/push → rollout →
+migrations 0002→0009 → authenticated verification. This disturbs only
+production-mutation authority and M2T/M2X scheduling.
