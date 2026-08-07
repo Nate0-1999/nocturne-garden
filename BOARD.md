@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | BLOCKED     | codex / 2026-08-06 / c808    | report 064; F018 — D.2 097 consumed after reset/custody; image build failed before rollout; owner DB path disrupted |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-06 / c809    | F018 RESOLVED — fresh single-use post-alignment grant; reset/secret rewrite NOOP; continue through literal `nocturne up → y` |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
@@ -66,11 +66,10 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
 
 - D3 — F014: release remains owner-deferred; the two pending PyPI trusted
   publishers are required before a relay creates the `v0.1.0` releases.
-- M2T — F018: D.2 097 was consumed after the fresh receipt, credential reset,
-  secret v2 rewrite, and custody publication. Image build failed before push;
-  rollout/migrations/verification did not run and the old revision's DB path
-  is disrupted. Harness 4a5a4db is locally repaired; a new exact single-use
-  post-alignment completion grant is required before any mutation retry.
+- M2T — F018 RESOLVED (owner, 2026-08-06): one fresh single-use
+  post-alignment completion grant through `nocturne up → y`; receipt-first,
+  reset/secret rewrite NOOP, then image → rollout → migrations → verification.
+  Stop-line lifted for session c809 only.
 
 ### Milestone closure
 

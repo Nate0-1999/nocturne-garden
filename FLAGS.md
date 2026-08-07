@@ -270,3 +270,11 @@ single-use POST-ALIGNMENT COMPLETION attempt: fresh verified receipt first;
 reset and secret rewrite stay NOOP; then image build/push → rollout →
 migrations 0002→0009 → authenticated verification. This disturbs only
 production-mutation authority and M2T/M2X scheduling.
+
+RESOLUTION F018 (owner, 2026-08-06 — direct single-use grant): one new M2T
+POST-ALIGNMENT COMPLETION attempt through the literal `nocturne up → y` owner
+path. The attempt takes its own fresh verified backup receipt first; the
+credential reset and secret rewrite remain NOOP under durable custody; then it
+may build/push the image, roll the service to secret v2/latest, migrate
+0002→0009, and run authenticated remote verification. Minting the fresh
+receipt consumes this grant. No second reset or secret rewrite is authorized.
