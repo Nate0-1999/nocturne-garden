@@ -680,6 +680,25 @@ before the relay continues.
   fixture path green too. Exit: all three live contract tests pass against
   the deployed palace AND the local fixture; each cites its statute
   (B.6 r12).
+- **M2V — Editable-checkout web assets + the readiness voice
+  (gate-diagnosed 2026-08-06).** Two defects, one session. (1) HARNESS
+  MIRROR OF SPINE F017: `harness.packaged:create_app` serves bundled web
+  assets from wheel-only `src/harness/_web`; on an editable/source
+  checkout that directory does not exist, so `nocturne up` serves the
+  503 refusal forever while `nocturne doctor` says healthy. Fix exactly
+  as spine f060cf6 fixed the same seam: materialize the assets from
+  either the built wheel OR the canonical checkout (fall back to
+  repo `web/dist`; build it when Node is available; otherwise refuse
+  with the one-line remedy). The gate's interim hand-copy of web/dist →
+  src/harness/_web is a stopgap — replace it with the real seam fix and
+  gitignore `_web` if it isn't already. (2) THE READINESS VOICE
+  (v2.52 plain-language law): `nocturne up`'s readiness poller printed
+  ~150 bare 503 log lines while the daemon's response body stated the
+  exact cause and remedy. The poller MUST read the refusal body and
+  speak it ONCE, plainly, then stop — never a wall. Exit: cold
+  `nocturne up` from a fresh source checkout (no dist, no _web) reaches
+  the rack or refuses in one plain sentence; tests cite statutes
+  (B.6 r12); both suites green.
 - **M2T — Owner-cloud credential alignment + M2 deploy + THE ONE-STEP
   UPDATE (grant D.2 096, single-use; charge EXPANDED 2026-08-06 — the
   owner should never hand-run a python one-liner to update his own
