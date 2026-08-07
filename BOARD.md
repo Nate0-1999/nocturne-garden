@@ -59,7 +59,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | DONE        | codex / 2026-08-06 / c811    | report 067; Harness b617485+9f3e500; corrected typed verification, cleanup, Vitals, and label PASS; all 20 stages NOOP; no receipt |
 | M2U| Live-contract real-provider expectations     | M2V                  | TODO        |                              | D.2 098: two live tests hardcode fixture-era h2-contract-embedding-1536; parameterize to real providers (mirror of B.6 r10); dep = owner priority 2026-08-06: the up seam (M2V) fixes first |
-| M2V| Editable-checkout web assets + readiness voice | —                   | IN_PROGRESS | codex / 2026-08-06 / 7b4e    | gate-diagnosed 2026-08-06: `nocturne up` 503-walls on source checkouts (_web is wheel-only — harness mirror of spine F017/f060cf6); readiness poller must speak the refusal body |
+| M2V| Editable-checkout web assets + readiness voice | —                   | DONE        | codex / 2026-08-06 / 7b4e    | report 068; Harness 2ae09fe; cold no-dist/no-_web factory reached rack; one-refusal readiness regression |
 
 
 Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
@@ -83,8 +83,9 @@ Statuses: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED` · `FAILED_JUDGMENT`.
   closure dependency and remains blocked only on F014. M2T is DONE through
   report 067: production typed verification, cleanup, Vitals, and the durable
   verification label pass with every deploy stage converged NOOP and no fresh
-  receipt. M2U is the remaining agent M2 packet before the HUMAN M2X gate
-  becomes dependency-ready.
+  receipt. M2V is DONE through report 068; M2U is now dependency-ready and is
+  the remaining agent M2 packet before the HUMAN M2X gate becomes
+  dependency-ready.
 
 ### Exclusions (symmetric; see PLAN §1)
 
