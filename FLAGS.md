@@ -278,3 +278,28 @@ credential reset and secret rewrite remain NOOP under durable custody; then it
 may build/push the image, roll the service to secret v2/latest, migrate
 0002→0009, and run authenticated remote verification. Minting the fresh
 receipt consumes this grant. No second reset or secret rewrite is authorized.
+
+[F019] [M2T] [P1.3, P4] — The F018 post-alignment completion attempt minted
+verified fresh receipt `01KZD3K0CVGV29JMG7QAF9TPZ5`, consuming the grant, then
+successfully built and pushed image digest
+`sha256:5b3dc8cb86f83bd60b21bb56573c41dba18277739575279717a46755c320caa7`,
+rolled Cloud Run revision `n8-memory-palace-spine-00005-t64` to
+`spine-database-url:latest`, and migrated Alembic 0002→0009. Final authenticated
+verification created its isolated memory (POST 201), but repeated the exact
+same label and body. Spine C.4 correctly returned the mandatory active-label
+conflict (POST 409) before provider I/O or duplicate classification; Harness
+incorrectly required a hard-duplicate conflict. The verifier then safely
+isolated and tombstoned its fixture (GET 200, PATCH 200), but prepare/commit,
+Vitals, and the final verification-label write did not run. Post-failure
+read-only deploy observation exits 0 and proves migrations, image, and service
+NOOP with remote verification alone UPDATE. Harness corrects the probe by
+retaining the same principal/body under a different label and adds focused
+regression proof. D.2 096/097 and the owner's F018 resolution forbid retry
+after the fresh receipt. Minimally authorize one new single-use POST-DEPLOY
+VERIFICATION attempt through `nocturne deploy`: mint its own fresh verified
+receipt first; credential reset, secret rewrite, image build/push, rollout,
+and migrations remain NOOP; execute only the corrected typed round trip,
+cleanup, Vitals probe, and final verification-label write. The literal
+`nocturne up → y` update has already run and cannot honestly prompt again now
+that the Palace is current. This disturbs only production-verification
+mutation authority and M2T/M2X scheduling.
