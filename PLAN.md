@@ -669,6 +669,35 @@ before the relay continues.
   migrate the owner's .env setup with one command or clear doc line.
   Acceptance: a cold terminal reaches the rack in TWO commands on
   either rung. (Deps: all M2 packets.)
+- **M2W — Release-lifecycle hardening (D.2 099; gate walk 2026-08-07).**
+  Five deliverables, one session, all in service of the owner's release
+  doctrine: every future release is one or two commands and menus.
+  (1) NO DOWNGRADES: `up`'s update check (onboarding.py remote path)
+  fires on any `remote_schema != expected_schema` and always calls the
+  PALACE stale; detect reverse skew as its own case — when the app is
+  older, say so plainly ("this app is older than your Palace — update
+  the app first") and refuse to offer deploy; deploy must never
+  downgrade. (2) DOCTOR PARITY (law): doctor probes everything `up`
+  needs — web assets/packaged factory readiness, port 8765
+  availability, required toolchain for the configured rung, remote
+  palace reachability + schema comparison with the same voice `up`
+  uses. 'Doctor healthy, up refuses' is a defect: add a test asserting
+  doctor's checks are a superset of up's preconditions. (3)
+  VERSION-BUMP GUARD: deploy's image stage returns EXACT on tag
+  existence alone (deploy.py _image_state); when the tag exists but the
+  packaged source no longer matches what that tag was built from,
+  refuse with the plain remedy ("this version is already released;
+  bump the spine version to ship changes"). (4) REMEDY VOICES:
+  `nocturne open` on a down daemon must say "Nocturne isn't running —
+  run `nocturne up`" (today: bare timeout, the owner's original
+  day-one confusion); `up` on an occupied port must narrate
+  adopt-existing plainly (today: "exited with status 3" followed by
+  "running" — true but alarming). (5) RUNG-2 BACKUP: `nocturne backup`
+  requires a local palace; on rung 2 it should take a verified
+  on-demand Cloud SQL backup with the owner's own credentials (owner
+  hands, not agent hands — no grant machinery involved). Exit: tests
+  cite statutes (B.6 r12); both suites green; every new refusal names
+  its remedy (v2.52).
 - **M2U — Live-contract real-provider expectations.** Two live contract
   tests (`test_live_create_conflicts_and_dedup_bands`,
   `test_live_patch_cas_tombstone_and_list`) hardcode the fixture-era
@@ -809,3 +838,15 @@ before the relay continues.
   amendment stands unless you veto it there (append the veto; a FIXER
   inherits it). Supervise the relay closely through S2; loosen as the
   reports earn it.
+
+
+D3 CHARGE ADDENDUM (D.2 099, 2026-08-07): D3 also delivers THE RELEASE
+RITUAL — the documented one-page loop for every future release: bump
+spine/harness versions (the version bump IS the release trigger; see
+M2W's guard), changelog entry, build, publish to PyPI via the trusted
+publishers, tag. And `nocturne update`: the app-side self-update
+command (check PyPI for a newer harness, show the plain one-line diff,
+update on consent) — the mirror of v2.50's palace update prompt. After
+D3, the owner's and every user's full lifecycle for any release is:
+`nocturne update` (app) then `nocturne up` (palace prompt if needed) —
+two commands, two menus, done.

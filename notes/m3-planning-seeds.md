@@ -249,3 +249,15 @@ CAUTIONS to carry into the deep dive:
   against beads' issue-DAG verbs when we do the beads pass.
 - Weng's closing line is NOCTURNE's bet verbatim: memory should become
   "a core part of intelligence, not just a software layer."
+
+
+RELEASE-LIFECYCLE REVIEW (gate walk, 2026-08-07, D.2 099): the six gaps
+found after the M2T-M2V saga, for the record: reverse-skew downgrade
+offer (M2W), doctor blind to up's preconditions (M2W), version-bump
+guard / tag-exists lie (M2W), remedy-free open/port voices (M2W),
+rung-2 backup missing (M2W), app self-update channel absent (D3
+addendum: release ritual + `nocturne update`). Doctrine distilled: the
+palace updates via `up`'s prompt (v2.50, built); the app updates via
+`nocturne update` (D3); NOTHING else may ever be required. Multi-machine
+owners make reverse skew ordinary, not exotic — the no-downgrades law
+is load-bearing the day Nate installs on a second machine.
