@@ -57,7 +57,7 @@ deterministic packet order when more than one dependency-ready packet exists.
 
 | M2S| Rung-2 first-class startup     | all M2 packets DONE               | DONE        | codex / 2026-08-05 / c805    | report 061; Harness 20414bf; owner spin friction removed before M2X |
 
-| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | TODO        | codex / 2026-08-06 / c810    | report 066; Harness b617485; all infra NOOP; live verifier process not started — fresh explicit execution approval required |
+| M2T| Owner-cloud credential alignment + M2 deploy | all M2 packets DONE  | IN_PROGRESS | codex / 2026-08-06 / c811    | report 066; Harness b617485; owner authorized the exact verification-only production execution; all infrastructure must remain NOOP and no receipt may be minted |
 | M2U| Live-contract real-provider expectations     | M2T                  | TODO        |                              | D.2 098: two live tests hardcode fixture-era h2-contract-embedding-1536; parameterize to real providers (mirror of B.6 r10) |
 
 
